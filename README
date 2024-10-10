@@ -1,0 +1,5 @@
+npx create-react-app startup-app --template cra-template-pwa
+
+npm i
+
+npm run start
