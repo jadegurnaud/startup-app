@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container } from "../atoms";
+import { Button, Container, Text } from "../atoms";
 
 const Menu = ({ configs }) => {
   return (
@@ -9,7 +9,7 @@ const Menu = ({ configs }) => {
       {configs.map((config, i) => {
         return (
           <Button.Base>
-            {config.displayName}
+            <Text.Paragraph>{config.displayName}</Text.Paragraph>
           </Button.Base>
         );
       })}
