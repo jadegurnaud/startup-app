@@ -1,20 +1,13 @@
 import React from "react";
 import { Aside } from "../organisms";
-import { Text } from "../atoms";
-import { Image } from "../atoms";
+import { Text, Container, Image } from "../atoms";
+import { DOM } from "../nanites";
 
 const Accueil = () => {
   return (
-    <div className="Accueil">
+    <DOM.StyledContainer className="Accueil">
       <Aside></Aside>
-      <div
-        style={{
-          position: "absolute",
-          left: "20vw",
-          top: 0,
-          height: "100vh",
-          width: "calc(100% - 20vw)",
-        }}>
+      <Container.App>
         <Text.Title>Accueil</Text.Title>
         <Text.SubTitle>
           Bienvenue sur la page d'accueil de notre site.
@@ -24,8 +17,8 @@ const Accueil = () => {
           toutes les informations nécessaires pour naviguer sur notre site.
         </Text.Paragraph>
         <Image.Base src="https://via.placeholder.com/150" />
-      </div>
-    </div>
+      </Container.App>
+    </DOM.StyledContainer>
   );
 };
 

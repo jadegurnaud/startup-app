@@ -1,3 +1,4 @@
 import Menu from "./Menu";
-
-export { Menu };
+import App from "./App";
+import Aside from "./Aside";
+export { Menu, App, Aside };
