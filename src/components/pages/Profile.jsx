@@ -1,10 +1,11 @@
 import React from "react";
 import { Aside } from "../organisms";
 import { Text } from "../atoms";
+import {DOM} from "../nanites";
 
 const Profile = () => {
   return (
-    <div className="Profile">
+    <DOM.StyledContainer className="Profile">
       <Aside></Aside>
         <div
             style={{
@@ -16,7 +17,7 @@ const Profile = () => {
             }}>
             <Text.Title>Profile</Text.Title>
         </div>
-    </div>
+    </DOM.StyledContainer>
   );
 };
 
