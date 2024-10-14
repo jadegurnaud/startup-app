@@ -15,7 +15,6 @@ const Accueil = () => {
 
   return (
     <DOM.StyledContainer className="Accueil">
-      <Aside></Aside>
       <Container.App>
         <Image.Base $width="100%"
           style={{ objectFit: "cover", height: "150px" }} src='/sapins.jpg' />
