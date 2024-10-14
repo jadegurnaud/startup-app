@@ -10,7 +10,7 @@ const Aside = () => {
             { displayName: "Accueil", slug: "accueil" },
             { displayName: "Se connecter", slug: "seconnecter" },
         ]}
-      ></Menu>
+      />
     </Container.Aside>
   );
 };

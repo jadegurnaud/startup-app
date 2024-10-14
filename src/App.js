@@ -1,12 +1,18 @@
 import React from 'react';
-import Accueil from './components/pages/Accueil';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Accueil, Login } from './components/pages';
 import './App.css';
+import { Aside } from './components/organisms';
 
 function App() {
   return (
-    <div className="App">
-      <Accueil></Accueil>
-    </div>
+    <Router basename="/app">
+      <Aside />
+      <Routes>
+        <Route path="/accueil" element={<Accueil />} />
+        <Route path="/seconnecter" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
 
