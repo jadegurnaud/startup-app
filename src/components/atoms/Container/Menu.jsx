@@ -5,7 +5,7 @@ const Menu = ({ children }) => {
 
   return (
     <DOM.StyledContainer
-      width= "100%"
+      $width= "100%"
     >
       {children}
     </DOM.StyledContainer>
