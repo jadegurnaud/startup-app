@@ -8,8 +8,7 @@ const Aside = () => {
       <Menu
         configs={[
             { displayName: "Accueil", slug: "accueil" },
-            { displayName: "Contact", slug: "contact" },
-            { displayName: "Profile", slug: "profile" },
+            { displayName: "Se connecter", slug: "seconnecter" },
         ]}
       ></Menu>
     </Container.Aside>
