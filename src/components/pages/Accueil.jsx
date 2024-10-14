@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Aside } from "../organisms";
 import { Text, Container, Image } from "../atoms";
 import { DOM } from "../nanites";
 
 const Accueil = () => {
-  const [images, setImages] = useState([
-    { url: "https://via.placeholder.com/150" },
-    { url: "https://via.placeholder.com/150" },
-    { url: "https://via.placeholder.com/150" },
-    { url: "https://via.placeholder.com/150" },
-    { url: "https://via.placeholder.com/150" },
-    { url: "https://via.placeholder.com/150" }
-  ]);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchGuides = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/guides");
+        const data = await response.json();
+        // Extraire les URLs des images
+        const imageUrls = data.map(guide => guide.image);
+        console.log(imageUrls);
+        setImages(imageUrls);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchGuides();
+  }, []);
 
   return (
     <DOM.StyledContainer className="Accueil">
