@@ -5,7 +5,7 @@ import { Container } from "../atoms";
 import { AuthContext } from "../../context/AuthContext";
 
 const Aside = () => {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, isAdmin, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,6 +20,9 @@ const Aside = () => {
     menuConfigs.push({ displayName: "Se connecter", slug: "seconnecter" });
   }
   if (isLoggedIn) {
+    if(isAdmin) {
+      menuConfigs.push({ displayName: "Users", slug: "admin" });
+    }
     menuConfigs.push({ displayName: "Se déconnecter", slug: "accueil", onClick: handleLogout });
   }
   return (
