@@ -13,7 +13,6 @@ const Accueil = () => {
         const data = await response.json();
         // Extraire les URLs des images
         const imageUrls = data.map(guide => guide.image);
-        console.log(imageUrls);
         setImages(imageUrls);
       } catch (error) {
         console.error(error);
