@@ -21,8 +21,9 @@ const Aside = () => {
   }
   if (isLoggedIn) {
     if(isAdmin) {
-      menuConfigs.push({ displayName: "Users", slug: "admin" });
+      menuConfigs.push({ displayName: "Utilisateurs", slug: "admin" });
     }
+    menuConfigs.push({ displayName: "Profil", slug: "profil" });
     menuConfigs.push({ displayName: "Se déconnecter", slug: "accueil", onClick: handleLogout });
   }
   return (

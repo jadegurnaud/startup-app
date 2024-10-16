@@ -1,23 +1,26 @@
-import React from "react";
-import { Aside } from "../organisms";
-import { Text } from "../atoms";
-import {DOM} from "../nanites";
+import React, { useContext } from "react";
+import { Text, Container, Image } from "../atoms";
+import { AuthContext } from "../../context/AuthContext";
 
 const Profile = () => {
+  const { user } = useContext(AuthContext);
+
   return (
-    <DOM.StyledContainer className="Profile">
-      <Aside></Aside>
-        <div
-            style={{
-                position: "absolute",
-                left: "20vw",
-                top: 0,
-                height: "100vh",
-                width: "calc(100% - 20vw)",
-            }}>
-            <Text.Title>Profile</Text.Title>
-        </div>
-    </DOM.StyledContainer>
+    <Container.App className="Profil">
+        <Text.Title>Profil</Text.Title>
+        <Image.Base $borderRadius="50%" $width="100px"
+          src={
+            user?.image?.url
+            ? user.image.url
+            : "https://www.gravatar.com/avatar/?d=identicon"
+          }
+          alt="Avatar"
+        />
+        <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
+        <Text.Paragraph>{user?.email}</Text.Paragraph>
+        <Text.Paragraph>{user?.biography}</Text.Paragraph>
+        
+    </Container.App>
   );
 };
 
