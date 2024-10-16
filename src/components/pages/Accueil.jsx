@@ -22,8 +22,8 @@ const Accueil = () => {
   }, []);
 
   return (
-    <DOM.StyledContainer className="Accueil">
-      <Container.App>
+    <Container.App className="Accueil">
+      <DOM.StyledContainer>
         <Image.Base $width="100%"
           style={{ objectFit: "cover", height: "150px" }} src='/sapins.jpg' />
         <Text.SubTitle style={{ textAlign: "left" }}>
@@ -34,8 +34,8 @@ const Accueil = () => {
             <Image.Base key={index} src={image.url} $width= "100%" />
           ))}
         </DOM.StyledContainer>
-      </Container.App>
-    </DOM.StyledContainer>
+      </DOM.StyledContainer>
+    </Container.App>
   );
 };
 
