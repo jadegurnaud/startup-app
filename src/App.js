@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { Accueil, Login, Profile, AccessDenied, Register } from './components/pages';
+import { Accueil, Login, Profile, AccessDenied, Register, Guide } from './components/pages';
 import './App.css';
 import { Aside } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -19,7 +19,6 @@ const AppContent = () => {
     const checkToken = async () => {
       if (isTokenExpired()) {
         dispatch(removeToken());
-        navigate('/seconnecter');
       } else {
         const user = await getAuthenticatedUser();
         if (user) {
@@ -39,6 +38,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
         <Route path="/accueil" element={<Accueil />} />
+        <Route path='/guides/:id' element={<Guide />} />
         <Route path="/admin" element={<AccessDenied />} />
         <Route path="/seconnecter" element={<Login />} />
         <Route path='/register' element={<Register />} />

@@ -4,5 +4,6 @@ import Register from "./Register";
 import Users from "./Users";
 import Profile from "./Profile";
 import AccessDenied from "./AccessDenied";
+import Guide from "./Guide";
 
-export { Accueil, Login, Register, Users, Profile, AccessDenied };
+export { Accueil, Login, Register, Users, Profile, AccessDenied, Guide };
