@@ -10,7 +10,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-          const response = await fetch(`http://localhost:3001/guides/${user.id}`);
+          const response = await fetch(`http://localhost:3001/guides/user/${user.id}`);
           const data = await response.json();
           setGuides(data);
       } catch (error) {
