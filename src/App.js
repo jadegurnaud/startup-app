@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Accueil, Login, Profile, AccessDenied, Register } from './components/pages';
 import './App.css';
 import { Aside } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Provider } from 'react-redux';
-import { store, persistor } from './store';
+import { Provider, useDispatch } from 'react-redux';
+import { store, persistor, removeToken, setUser } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { isTokenExpired, getAuthenticatedUser } from './context/auth';
+
 
 const AppContent = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const checkToken = async () => {
+      if (isTokenExpired()) {
+        dispatch(removeToken());
+        navigate('/seconnecter');
+      } else {
+        const user = await getAuthenticatedUser();
+        if (user) {
+          dispatch(setUser(user));
+        }
+      }
+    };
+
+    checkToken();
+  }, [dispatch, navigate]);
+
+
 
   return (
     <>

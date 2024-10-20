@@ -3,9 +3,6 @@ import { Text, Container, Input, Button } from "../atoms";
 import { Form } from "../molecules";
 import {DOM} from "../nanites";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setToken, setUser } from "../../store";
-import { getAuthenticatedUser } from "../../context/auth";
 
 
 const Register = () => {
@@ -14,7 +11,6 @@ const Register = () => {
     const [firstName, setFistName] = useState("");
     const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const handleRegister = async (e) => {
             try {

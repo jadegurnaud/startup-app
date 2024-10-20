@@ -29,3 +29,16 @@ export const getAuthenticatedUser = async () => {
         return null;
     }
 }
+
+export const isTokenExpired = () => {
+    const token = store.getState().auth.token;
+
+    if (!token) {
+        return true;
+    }
+
+    const decoded = JSON.parse(atob(token.split(".")[1]));
+    const currentTime = Date.now() / 1000;
+
+    return decoded.exp < currentTime;
+}
