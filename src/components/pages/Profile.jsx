@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Text, Container, Image } from "../atoms";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <Container.App className="Profil">

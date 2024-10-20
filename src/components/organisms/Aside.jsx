@@ -1,31 +1,35 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "../molecules";
 import { Container } from "../atoms";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
+import { persistor, removeToken } from "../../store";
+import { useDispatch } from "react-redux";
 
 const Aside = () => {
-  const { isLoggedIn, isAdmin, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    logout(navigate);
-  }
+  const token = useSelector((state) => state.auth.token);
   
+  const handleLogin = () => {
+    dispatch(removeToken());
+    persistor.purge();
+    navigate("/accueil");
+  }
+
   const menuConfigs = [
     { displayName: "Accueil", slug: "accueil" }
   ];
 
-  if (!isLoggedIn) {
+  
+  if (token) {
+    menuConfigs.push({ displayName: "Profil", slug: "profil" });
+    menuConfigs.push({ displayName: "Deconnexion", slug: "sedeconnecter", onClick: handleLogin});
+  } else {
     menuConfigs.push({ displayName: "Se connecter", slug: "seconnecter" });
   }
-  if (isLoggedIn) {
-    if(isAdmin) {
-      menuConfigs.push({ displayName: "Utilisateurs", slug: "admin" });
-    }
-    menuConfigs.push({ displayName: "Profil", slug: "profil" });
-    menuConfigs.push({ displayName: "Se déconnecter", slug: "accueil", onClick: handleLogout });
-  }
+  
   return (
     <Container.Aside className="Aside">
       <Menu
