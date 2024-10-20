@@ -8,16 +8,18 @@ import { setToken, setUser } from "../../store";
 import { getAuthenticatedUser } from "../../context/auth";
 
 
-const Login = () => {
+const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [firstName, setFistName] = useState("");
+    const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
             try {
                 e.preventDefault();
-                const response = await fetch("http://localhost:3001/auth/login", {
+                const response = await fetch("http://localhost:3001/auth/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -25,19 +27,16 @@ const Login = () => {
                     body: JSON.stringify({
                         email,
                         password,
+                        firstName,
+                        lastName
                     }),
                 });
-
+                console.log(response);
                 const data = await response.json();
-                if ((response.status === 200 || response.status === 201) && data.access_token) {
-                    alert("Connexion réussie");
-                    dispatch(setToken(data.access_token));
-                    const user = await getAuthenticatedUser();
-                    if (user) {
-                        dispatch(setUser(user));
-                    }
-                    console.log(user);
-                    navigate("/accueil");
+                console.log(data);
+                if ((response.status === 200 || response.status === 201)) {
+                    alert("Création du compte réussie");
+                    navigate("/seconnecter");
                     return;
                 } else {
                     alert("Erreur lors de la connexion");
@@ -50,18 +49,21 @@ const Login = () => {
 
   return (
     
-    <Container.App className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <Container.App className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px' }}>
-            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Connectez-vous à votre compte</Text.Title>
-            <Form onSubmit={handleLogin} style={{ backgroundColor: '#DCDCDC', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Créez-vous un votre compte</Text.Title>
+            <Form onSubmit={handleRegister} style={{ backgroundColor: '#DCDCDC', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                 <Text.Paragraph>Identifiant</Text.Paragraph>
                 <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
                 <Text.Paragraph>Mot de passe</Text.Paragraph>
                 <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ marginBottom: '10px' }} />
-                <Text.Paragraph>Mot de passe oublié ?</Text.Paragraph>
+                <Text.Paragraph>Prénom</Text.Paragraph>
+                <Input.Base type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} style={{ marginBottom: '10px' }} />
+                <Text.Paragraph>Nom</Text.Paragraph>
+                <Input.Base type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} style={{ marginBottom: '10px' }} />
                 <DOM.StyledContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
                     <Button.Base type="submit" style={{ borderRadius: '5px', cursor: 'pointer' }}>
-                        <Text.Paragraph>Se connecter</Text.Paragraph>
+                        <Text.Paragraph>Créer le compte</Text.Paragraph>
                     </Button.Base>
                 </DOM.StyledContainer>
             </Form>
@@ -70,4 +72,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

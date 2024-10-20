@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { Accueil, Login, Users, Profile, AccessDenied } from './components/pages';
+import { Accueil, Login, Profile, AccessDenied, Register } from './components/pages';
 import './App.css';
 import { Aside } from './components/organisms';
-import { AuthProvider, AuthContext } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const AppContent = () => {
   const navigate = useNavigate();
-  const { login, isLoggedIn, isAdmin } = useContext(AuthContext);
 
   return (
     <>
@@ -15,9 +17,13 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
         <Route path="/accueil" element={<Accueil />} />
-        <Route path="/admin" element={isLoggedIn && isAdmin ? <Users /> : <AccessDenied />} />
-        <Route path="/seconnecter" element={<Login login={(email, password) => login(email, password, navigate)} />} />
-        <Route path="/profil" element={<Profile/>} />
+        <Route path="/admin" element={<AccessDenied />} />
+        <Route path="/seconnecter" element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path="/sedeconnecter" element={<Accueil />} />
+        <Route path="/profil" element={<ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>} />
       </Routes>
     </>
   );
@@ -25,11 +31,13 @@ const AppContent = () => {
 
 function App() {
   return (
-    <Router basename="/">
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+      <Router basename="/">
+          <AppContent />
+      </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
