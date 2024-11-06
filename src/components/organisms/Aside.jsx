@@ -24,6 +24,7 @@ const Aside = () => {
 
   
   if (token) {
+    menuConfigs.push({ displayName: "Favoris", slug: "favorites" });
     menuConfigs.push({ displayName: "Profil", slug: "profil" });
     menuConfigs.push({ displayName: "Deconnexion", slug: "sedeconnecter", onClick: handleLogin});
   } else {
