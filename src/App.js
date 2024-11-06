@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { Accueil, Login, Profile, AccessDenied, Register, Guide } from './components/pages';
+import { Accueil, Login, Profile, AccessDenied, Register, Guide, Favorites } from './components/pages';
 import './App.css';
 import { Aside } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -44,8 +44,11 @@ const AppContent = () => {
         <Route path='/register' element={<Register />} />
         <Route path="/sedeconnecter" element={<Accueil />} />
         <Route path="/profil" element={<ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>} />
+          <Profile />
+        </ProtectedRoute>} />
+        <Route path="/favorites" element={<ProtectedRoute>
+          <Favorites />
+        </ProtectedRoute>} />
       </Routes>
     </>
   );

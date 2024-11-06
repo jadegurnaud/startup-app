@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { createSlice, configureStore, createAsyncThunk } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Utilise localStorage pour le web
 import { combineReducers } from 'redux';
@@ -22,7 +22,32 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
   },
+  /*extraReducers(builder) {
+    builder
+      .addCase(fetchUser.pending, (state, action) => {
+        state.user = null;
+        state.token = null;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state) => {
+        state.user = null;
+        state.token = null;
+      });
+  },*/
 });
+
+/*const fetchUser = createAsyncThunk('auth/fetchUser', async (token) => {
+  const response = await fetch('http://localhost:3001/auth', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  return data;
+
+});*/
 
 // Configuration de redux-persist
 const persistConfig = {
