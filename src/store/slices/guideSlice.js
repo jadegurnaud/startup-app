@@ -20,7 +20,6 @@ export const guideSlice = createSlice({
         })
         .addCase(Guide.getGuide.fulfilled, (state, action) => {
             state.status.guide = "succeed";
-            console.log(action.payload);
             if (action?.payload) {  
                 state.guide = action.payload;
             }

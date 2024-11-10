@@ -8,7 +8,7 @@ export const login = createAsyncThunk('user/login', async (payload) => {
     });
     let config = {
         method: 'POST',
-        url: 'http://localhost:3001/auth/login',
+        url: `${process.env.REACT_APP_API_URL}/auth/login`,
         headers: {
             'Content-Type': 'application/json',
         },
