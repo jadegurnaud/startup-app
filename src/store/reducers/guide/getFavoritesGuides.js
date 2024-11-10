@@ -9,7 +9,7 @@ export const getFavoritesGuides = createAsyncThunk('guide/getFavoritesGuides', a
         
         const config = {
             method: "GET",
-            url: `http://localhost:3001/favorites/user/${userId}`,
+            url: `${process.env.REACT_APP_API_URL}/favorites/user/${userId}`,
             headers: {
                 "Content-Type": "application/json",
             },

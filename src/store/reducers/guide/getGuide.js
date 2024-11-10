@@ -5,7 +5,7 @@ export const getGuide = createAsyncThunk('guide/getGuide', async (guideId, {disp
     try {
         const config = {
             method: "GET",
-            url: `http://localhost:3001/guides/${guideId}`,
+            url: `${process.env.REACT_APP_API_URL}/guides/${guideId}`,
             headers: {
                 "Content-Type": "application/json",
             },

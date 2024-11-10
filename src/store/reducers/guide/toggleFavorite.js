@@ -6,8 +6,8 @@ export const toggleFavorite = createAsyncThunk('guide/toggleFavorites', async ({
         const config = {
             method: isFavorite ? "DELETE" : "POST",
             url: isFavorite
-            ? `http://localhost:3001/favorites/user/${userId}/guide/${guideId}`
-            : `http://localhost:3001/favorites`,
+            ? `${process.env.REACT_APP_API_URL}/favorites/user/${userId}/guide/${guideId}`
+            : `${process.env.REACT_APP_API_URL}/favorites`,
             headers: {
                 "Content-Type": "application/json",
             },

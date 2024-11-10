@@ -10,7 +10,7 @@ export const register = createAsyncThunk('user/register', async (payload) => {
     });
     let config = {
         method: "POST",
-        url: "http://localhost:3001/auth/register",
+        url: `${process.env.REACT_APP_API_URL}/auth/register`,
         headers: {
             "Content-Type": "application/json",
         },
