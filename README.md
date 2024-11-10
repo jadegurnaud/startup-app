@@ -9,17 +9,28 @@ Les utilisateurs peuvent également consulter les guides de voyage créés par d
 ## Fonctionnalités actuelles
 
 ### Accès sans compte
+
 - Consultation de la page d'accueil avec des guides recommandés
+
 - visualisation des détails d'un guide
 
 ### Accès avec compte
+
 - Création d'un guide
+
 - Accès à toutes les fonctionnalités de l'application
 
 ## Technologies utilisées
+
 - Frontend : React.js
+
 - PWA : Service workers pour le fonctionnement hors ligne
+
 - Redux: Pour gérer l'état de nos données dans l'application
+
+## Architecture
+
+Le projet suit une architecture en Atomic Design.
 
 ## Installation
 
