@@ -1,70 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Text, Container } from '../atoms';
 import { DOM } from '../nanites';
 import GuideCard from '../organisms/GuideCard';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Guide } from '../../store/reducers';
+import { useNavigate } from 'react-router-dom';
 
 const Accueil = () => {
-  const [guides, setGuides] = useState([]);
-  const [favorites, setFavorites] = useState({});
-  const user = useSelector((state) => state.auth.user);
+  const { guides, favorites } = useSelector((state) => {
+    return state?.recommendedGuides;
+  });
+
+  const user = useSelector((state) => state.user.user);
+  const login = useSelector((state) => state.user.login);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(Guide.getRecommendedGuides());
+  }, [dispatch, login]);
 
-    const fetchGuides = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/guides");
-        const data = await response.json();
-        setGuides(data);
-      } catch (error) {
-        console.error("Error fetching guides:", error);
-      }
+  useEffect(() => {
+    if (login) {
+      dispatch(Guide.getFavoritesGuides(user.id));
+    }
+  }, [login, user, dispatch]);
 
-    };
-    fetchGuides();
+  const handleToggleFavorite = (guideId) => {
+    if (!login) {
+      navigate("/login");
+      return;
+    }
 
-    if(user?.id){
-
-    const fetchFavorites = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/favorites/user/${user.id}`);
-        const data = await response.json();
-        const favoritesMap = data.reduce((acc, favorite) => {
-          acc[favorite.guide.id] = true;
-          return acc;
-        }, {});
-        setFavorites(favoritesMap);
-      } catch (error) {
-        console.error("Error fetching favorites:", error);
-      }
-    };
-
-    fetchFavorites();
-  }
-  }, [user]);
-
-  const toggleFavorite = async (guideId) => {
-    const isCurrentlyFavorite = favorites[guideId];
     try {
-      if (isCurrentlyFavorite) {
-        await fetch(`http://localhost:3001/favorites/${user.id}/${guideId}`, {
-          method: 'DELETE',
-        });
-      } else {
-        await fetch("http://localhost:3001/favorites", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId: user.id, guideId }),
-        });
-      }
-      setFavorites((prevFavorites) => ({
-        ...prevFavorites,
-        [guideId]: !isCurrentlyFavorite,
-      }));
+      dispatch(
+        Guide.toggleFavorite({ 
+          userId: user.id,
+          guideId,
+          isFavorite: favorites[guideId] || false
+        })
+      );
     } catch (error) {
-      console.error("Error toggling favorite:", error);
+      console.error("Failed to toggle favorite", error);
     }
   };
 
@@ -82,12 +60,12 @@ const Accueil = () => {
         Recommandés pour vous
       </Text.SubTitle>
       <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
-        {guides.map((guide, index) => (
+        {guides && guides.map((guide, index) => (
           <GuideCard
             key={index}
             guide={guide}
-            isFavorite={user?.id ? favorites[guide?.id] : false}
-            toggleFavorite={toggleFavorite}
+            isFavorite={favorites[guide.id] || false}
+            toggleFavorite={handleToggleFavorite}
           />
         ))}
       </DOM.StyledContainer>

@@ -3,6 +3,8 @@ import { Text, Container, Input, Button } from "../atoms";
 import { Form } from "../molecules";
 import {DOM} from "../nanites";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { User } from "../../store/reducers";
 
 
 const Register = () => {
@@ -11,36 +13,12 @@ const Register = () => {
     const [firstName, setFistName] = useState("");
     const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleRegister = async (e) => {
-            try {
-                e.preventDefault();
-                const response = await fetch("http://localhost:3001/auth/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email,
-                        password,
-                        firstName,
-                        lastName
-                    }),
-                });
-                console.log(response);
-                const data = await response.json();
-                console.log(data);
-                if ((response.status === 200 || response.status === 201)) {
-                    alert("Création du compte réussie");
-                    navigate("/seconnecter");
-                    return;
-                } else {
-                    alert("Erreur lors de la connexion");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        
+        e.preventDefault();
+        dispatch(User.register({ email, password, firstName, lastName }));
+        navigate("/login");
     }
 
   return (

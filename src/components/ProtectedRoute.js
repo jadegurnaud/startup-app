@@ -3,13 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children }) => {
-  const token = useSelector(state => state.auth.token); // Récupère le token du store Redux
+  const { login} = useSelector((state) => state.user);
 
-  if (!token) {
-    return <Navigate to="/seconnecter" />; // Redirige vers la page de connexion si l'utilisateur n'est pas authentifié
+  if (!login) {
+    return <Navigate to="/login" />;
   }
 
-  return children; // Rendre les enfants si l'utilisateur est authentifié
+  return children;
 };
 
 export default ProtectedRoute;
