@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Text, Container, Image } from "../atoms";
 import { useSelector } from "react-redux";
 import { DOM } from "../nanites";
+import { Guide } from "../../store/reducers";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
-  const user = useSelector((state) => state.auth.user);
-  const [guides, setGuides] = useState(null);
+  const { user } = useSelector((state) => {
+    return state?.user;
+  });
+  const { guides } = useSelector((state) => {
+    return state?.userGuides;
+  });
+  const login = useSelector((state) => state.user.login);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchGuides = async () => {
-      try {
-          const response = await fetch(`http://localhost:3001/guides/user/${user.id}`);
-          const data = await response.json();
-          setGuides(data);
-      } catch (error) {
-          console.error(error);
-      }
-  };
-  fetchGuides();
-});
+    if (login) {    
+      dispatch(Guide.getUserGuides(user?.id));
+    }
+
+  }, [login, user, dispatch]);
 
 
   return (

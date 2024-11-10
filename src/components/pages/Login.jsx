@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Text, Container, Input, Button } from "../atoms";
 import { Form } from "../molecules";
 import {DOM} from "../nanites";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setToken, setUser } from "../../store";
-import { getAuthenticatedUser } from "../../context/auth";
+import { login } from "../../store/reducers/user";
 
 
 const Login = () => {
@@ -14,38 +13,10 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogin = async (e) => {
-            try {
-                e.preventDefault();
-                const response = await fetch("http://localhost:3001/auth/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email,
-                        password,
-                    }),
-                });
-
-                const data = await response.json();
-                if ((response.status === 200 || response.status === 201) && data.access_token) {
-                    alert("Connexion réussie");
-                    dispatch(setToken(data.access_token));
-                    const user = await getAuthenticatedUser();
-                    if (user) {
-                        dispatch(setUser(user));
-                    }
-                    console.log(user);
-                    navigate("/accueil");
-                    return;
-                } else {
-                    alert("Erreur lors de la connexion");
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        
+    const handleLogin = (e) => {
+        e.preventDefault();
+        dispatch(login({ email, password }));
+        navigate("/accueil");
     }
 
   return (
@@ -58,13 +29,13 @@ const Login = () => {
                 <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
                 <Text.Paragraph>Mot de passe</Text.Paragraph>
                 <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ marginBottom: '10px' }} />
-                <Text.Paragraph>Mot de passe oublié ?</Text.Paragraph>
                 <DOM.StyledContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
                     <Button.Base type="submit" style={{ borderRadius: '5px', cursor: 'pointer' }}>
                         <Text.Paragraph>Se connecter</Text.Paragraph>
                     </Button.Base>
                 </DOM.StyledContainer>
             </Form>
+            <Text.Paragraph style={{ textAlign: 'center', marginTop: '10px' }}>Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link></Text.Paragraph>
         </DOM.StyledContainer>
     </Container.App>
   );
