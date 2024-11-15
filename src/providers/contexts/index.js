@@ -1,3 +1,4 @@
 import { User } from './UserContext';
+import { NightThemeProviderContext, NightThemeProvider } from './NightThemeProvider';
 
-export { User };
+export { User, NightThemeProviderContext, NightThemeProvider };

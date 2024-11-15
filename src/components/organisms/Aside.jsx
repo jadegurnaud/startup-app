@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "../molecules";
-import { Container } from "../atoms";
+import { Button, Container } from "../atoms";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { User } from "../../store/reducers";
@@ -41,6 +41,7 @@ const Aside = () => {
       <Menu
         configs={menuConfigs}
       />
+      <Button.NightSwitch />
     </Container.Aside>
   );
 };

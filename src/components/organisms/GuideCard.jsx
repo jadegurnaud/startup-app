@@ -39,7 +39,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite }) => {
                   $right="10px"
                   $width="30px"
                   $height="30px"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", backgroundColor: "transparent" }}
                   onClick={() => toggleFavorite(guide.id)}
                 >
                   {isFavorite ? (

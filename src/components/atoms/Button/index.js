@@ -1,2 +1,4 @@
 import Base from "./Base";
-export { Base };
+import NightSwitch from "./NightSwitch";
+
+export { Base, NightSwitch };
