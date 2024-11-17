@@ -13,6 +13,8 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [firstName, setFistName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [pseudo, setPseudo] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
     const [localError, setLocalError] = useState("");
     const { error } = useSelector((state) => state.user);
     const navigate = useNavigate();
@@ -24,7 +26,7 @@ const Register = () => {
             setLocalError("Les mots de passe ne correspondent pas");
             return;
         }
-        dispatch(User.register({ email, password, firstName, lastName })).then((result) => {
+        dispatch(User.register({ email, password, firstName, lastName, pseudo, dateOfBirth })).then((result) => {
             if (User.register.fulfilled.match(result)) {
                 navigate("/login");
             }
@@ -35,7 +37,7 @@ const Register = () => {
     
     <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px' }}>
-            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Créez-vous un compte</Text.Title>
+            <Text.Title style={{ textAlign: 'center', marginBottom: '5vh' }}>Créez-vous un compte</Text.Title>
             <Form onSubmit={handleRegister} style={{ backgroundColor: '#DCDCDC', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                 <Text.Paragraph>E-mail</Text.Paragraph>
                 <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
@@ -50,6 +52,11 @@ const Register = () => {
                 <Text.Paragraph>Confirmer le mot de passe</Text.Paragraph>
                 <Input.Base type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ marginBottom: '10px' }} />
                 {localError && <Text.Span style={{ color: 'red' }}>{localError}</Text.Span>}
+                <Text.Paragraph>Pseudo</Text.Paragraph>
+                <Input.Base type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} style={{ marginBottom: '10px' }} />
+                {error && error.filter(err => err.startsWith('pseudo')).map((err, index) => (
+                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                ))}
                 <Text.Paragraph>Prénom</Text.Paragraph>
                 <Input.Base type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} style={{ marginBottom: '10px' }} />
                 {error && error.filter(err => err.startsWith('firstName')).map((err, index) => (
@@ -58,6 +65,11 @@ const Register = () => {
                 <Text.Paragraph>Nom</Text.Paragraph>
                 <Input.Base type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} style={{ marginBottom: '10px' }} />
                 {error && error.filter(err => err.startsWith('lastName')).map((err, index) => (
+                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                ))}
+                <Text.Paragraph>Date de naissance</Text.Paragraph>
+                <Input.Base type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} style={{ marginBottom: '10px' }} />
+                {error && error.filter(err => err.startsWith('dateOfBirth')).map((err, index) => (
                     <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
                 ))}
                 <DOM.StyledContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
