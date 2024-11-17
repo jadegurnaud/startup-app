@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, Container, Image } from "../atoms";
 import { useSelector } from "react-redux";
-import { DOM } from "../nanites";
+import { format } from "date-fns";
 import { Guide } from "../../store/reducers";
 import { useDispatch } from "react-redux";
 import { GuidesContainer } from "../organisms";
@@ -23,6 +23,7 @@ const Profile = () => {
 
   }, [login, user, dispatch]);
 
+  const formattedDate = user?.dateOfBirth ? format(new Date(user.dateOfBirth), "dd/MM/yyyy") :  '';
 
   return (
     <Container.Page className="Profil">
@@ -35,9 +36,10 @@ const Profile = () => {
           }
           alt="Avatar"
         />
+        <Text.Paragraph>{user?.pseudo}</Text.Paragraph>
         <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
         <Text.Paragraph>{user?.email}</Text.Paragraph>
-        <Text.Paragraph>{user?.biography}</Text.Paragraph>
+        <Text.Paragraph>{formattedDate}</Text.Paragraph>
         <Text.Title>Mes guides</Text.Title>
         {guides.length > 0 ? (
           <GuidesContainer

@@ -7,6 +7,8 @@ export const register = createAsyncThunk('user/register', async (payload, { reje
         password: payload.password,
         firstName: payload.firstName,
         lastName: payload.lastName,
+        pseudo: payload.pseudo,
+        dateOfBirth: payload.dateOfBirth
     });
     let config = {
         method: "POST",
