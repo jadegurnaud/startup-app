@@ -1,17 +1,18 @@
 import React from "react";
 import { DOM } from "../../nanites";
 
-const App = ({children, ...props}) => {
+const Page = ({children, ...props}) => {
     return  (
     <DOM.StyledContainer
       $position= "absolute"
-      $left= "20vw"
-      $height= "100vh"
-      $width= "calc(100% - 20vw)"
+      $left= "12rem"
+      $width= "calc(100% - 12rem)"
+      $padding= "0.7rem"
+      style={{ boxSizing: "border-box"}}
       {...props}
     >{children}
     </DOM.StyledContainer>
 );
 }
 
-export default App;
+export default Page;

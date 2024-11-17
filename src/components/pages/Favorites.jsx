@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Text, Container } from "../atoms";
 import { useSelector, useDispatch } from "react-redux";
-import GuideCard from "../organisms/GuideCard";
-import { DOM } from "../nanites";
 import { Guide } from "../../store/reducers";
+import { GuidesContainer } from "../organisms";
 
 const Favorites = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -35,21 +34,18 @@ const Favorites = () => {
     };
 
     return (
-        <Container.App className="Favorites">
+        <Container.Page className="Favorites">
             <Text.Title>Favoris</Text.Title>
             {guides.length > 0 ? (
-                <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
-                    {guides && guides.map((guide, index) => (
-                        <GuideCard key={index}
-                        guide={guide}
-                        isFavorite={favorites[guide.id]}
-                        toggleFavorite={handleToggleFavorite} />
-                    ))}
-                </DOM.StyledContainer>
+                <GuidesContainer
+                    guides={guides}
+                    favorites={favorites}
+                    handleToggleFavorite={handleToggleFavorite}
+                />
             ) : (
                 <Text.Paragraph>Vous n'avez pas encore de favoris.</Text.Paragraph>
             )}
-        </Container.App>
+        </Container.Page>
 
     );
 };
