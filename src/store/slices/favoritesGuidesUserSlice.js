@@ -24,6 +24,10 @@ export const favoritesGuidesUserSlice = createSlice({
                 state.status.guides = "succeed";
                 if (action?.payload) {  
                     state.guides = action.payload;
+                    state.favorites = action.payload.reduce((acc, favorite) => {
+                        acc[favorite.id] = true;
+                        return acc;
+                    }, {});
                 }
             })
             .addCase(Guide.getFavoritesGuides.rejected, (state, action) => {

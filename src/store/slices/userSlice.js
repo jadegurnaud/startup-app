@@ -27,6 +27,10 @@ export const userSlice = createSlice({
       })
       .addCase(User.register.rejected, (state, action) => {
         state.status.register = "failed";
+        if(action?.payload?.message){
+          console.log(action.payload.message);
+          state.error = action.payload.message;
+        }
       })
       .addCase(User.login.pending, (state, action) => {
         state.status.login = "pending";

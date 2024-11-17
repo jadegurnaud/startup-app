@@ -21,7 +21,7 @@ const Login = () => {
 
   return (
     
-    <Container.App className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <Container.Page className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px' }}>
             <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Connectez-vous à votre compte</Text.Title>
             <Form onSubmit={handleLogin} style={{ backgroundColor: '#DCDCDC', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
@@ -37,7 +37,7 @@ const Login = () => {
             </Form>
             <Text.Paragraph style={{ textAlign: 'center', marginTop: '10px' }}>Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link></Text.Paragraph>
         </DOM.StyledContainer>
-    </Container.App>
+    </Container.Page>
   );
 };
 

@@ -14,12 +14,12 @@ const Guide = () => {
     }, [id, dispatch]);
 
     return (
-        <Container.App className="Guide">
+        <Container.Page className="Guide">
             <Text.Title>{ guide.title }</Text.Title>
             <Image.Base src={guide.coverImage} $width="100%"/>
             <Text.Paragraph>{ guide.description }</Text.Paragraph>
             <Text.Paragraph>Créé par : { guide?.user?.firstName } { guide?.user?.lastName }</Text.Paragraph> 
-        </Container.App>
+        </Container.Page>
     );
 };
 

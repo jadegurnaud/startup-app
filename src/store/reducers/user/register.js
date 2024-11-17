@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const register = createAsyncThunk('user/register', async (payload) => {
+export const register = createAsyncThunk('user/register', async (payload, { rejectWithValue }) => {
     let data = JSON.stringify({
         email: payload.email,
         password: payload.password,
@@ -17,10 +17,11 @@ export const register = createAsyncThunk('user/register', async (payload) => {
         data: data,
     };
 
-    const response = await axios(config).then((res) => {
-        return res;
-    }).catch((error) => {
-        return error;
-    });
-    return response.data;
+    try {
+        const response = await axios(config);
+        return response.data;
+    } catch(error) {
+        console.error(error.response.data, "error");
+        return rejectWithValue(error.response.data);
+    };
 });
