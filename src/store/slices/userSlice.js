@@ -24,6 +24,7 @@ export const userSlice = createSlice({
       })
       .addCase(User.register.fulfilled, (state, action) => {
         state.status.register = "succeed";
+        state.error = null;
       })
       .addCase(User.register.rejected, (state, action) => {
         state.status.register = "failed";
@@ -36,6 +37,7 @@ export const userSlice = createSlice({
       })
       .addCase(User.login.fulfilled, (state, action) => {
         state.status.login = "succeed";
+        state.error = null;
         if (action?.payload?.access_token) {
           state.login = true;
           state.token = action.payload.access_token;
@@ -57,18 +59,29 @@ export const userSlice = createSlice({
         state.login = false;
         state.token = null;
         state.user = {};
+        state.error = null;
+      })
+      .addCase(User.logout.rejected, (state, action) => {
+        state.status.login = "failed";
+        if(action?.payload?.message){
+          state.error = action.payload.message;
+        }
       })
       .addCase(User.getAuthenticatedUser.pending, (state, action) => {
         state.status.user = "pending";
       })
       .addCase(User.getAuthenticatedUser.fulfilled, (state, action) => {
         state.status.user = "succeed";
+        state.error = null;
         if(action?.payload){
           state.user = action.payload
         }
       })
       .addCase(User.getAuthenticatedUser.rejected, (state, action) => {
         state.status.user = "failed";
+        if(action?.payload?.message){
+          state.error = action.payload.message
+        }
       })
       .addCase(RESET_APP_STATE, (state, action) => initialState);
   },

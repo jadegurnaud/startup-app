@@ -22,6 +22,7 @@ export const favoritesGuidesUserSlice = createSlice({
             })
             .addCase(Guide.getFavoritesGuides.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
+                state.error = null;
                 if (action?.payload) {  
                     state.guides = action.payload;
                     state.favorites = action.payload.reduce((acc, favorite) => {
@@ -32,13 +33,16 @@ export const favoritesGuidesUserSlice = createSlice({
             })
             .addCase(Guide.getFavoritesGuides.rejected, (state, action) => {
                 state.status.guides = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(Guide.toggleFavorite.pending, (state, action) => {
                 state.status.favorites = "pending";
             })
             .addCase(Guide.toggleFavorite.fulfilled, (state, action) => {
                 state.status.favorites = "succeed";
+                state.error = null;
                 if (action?.payload) {
                     const { guideId, isFavorite } = action.payload;
                     state.favorites[guideId] = isFavorite;
@@ -46,7 +50,9 @@ export const favoritesGuidesUserSlice = createSlice({
             })
             .addCase(Guide.toggleFavorite.rejected, (state, action) => {
                 state.status.favorites = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(RESET_APP_STATE, (state, action) => initialState);
     },

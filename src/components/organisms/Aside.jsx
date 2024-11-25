@@ -29,6 +29,7 @@ const Aside = () => {
 
   
   if (token) {
+    menuConfigs.push({ displayName: "Créer un guide", slug: "newGuide"})
     menuConfigs.push({ displayName: "Favoris", slug: "favorites" });
     menuConfigs.push({ displayName: "Profil", slug: "profil" });
     menuConfigs.push({ displayName: "Deconnexion", slug: "logout", onClick: handleLogout});

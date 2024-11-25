@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getRecommendedGuides = createAsyncThunk('guide/getRecommendedGuides', async () => {
+export const getRecommendedGuides = createAsyncThunk('guide/getRecommendedGuides', async (payload, { rejectWithValue }) => {
    
     try {
         
@@ -13,15 +13,11 @@ export const getRecommendedGuides = createAsyncThunk('guide/getRecommendedGuides
             },
         }
 
-        const response = await axios(config).then((res) => {
-            return res;
-        }).catch((error) => {
-            return error;
-        });
+        const response = await axios(config);
         return response.data;
     }
     catch (error) {
-        console.error(error);
-        return null;
+        console.error(error.response.data, "error");
+        return rejectWithValue(error.response.data);
     }
 });

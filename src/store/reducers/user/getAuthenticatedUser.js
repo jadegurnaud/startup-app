@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getAuthenticatedUser = createAsyncThunk('user/getAuthenticatedUser', async (payload) => {
+export const getAuthenticatedUser = createAsyncThunk('user/getAuthenticatedUser', async (payload, { rejectWithValue }) => {
     try {
         const token = localStorage.getItem("token");
         if (!token || token === undefined) {
@@ -19,15 +19,10 @@ export const getAuthenticatedUser = createAsyncThunk('user/getAuthenticatedUser'
                 "Authorization": `Bearer ${token}`,
             },
         }
-        const response = await axios(config).then((res) => {
-            return res;
-        }).catch((error) => {
-            return error;
-        });
+        const response = await axios(config);
         return response.data;
-    }
-    catch (error) {
-        console.error(error);
-        return null;
+    } catch (error) {
+        console.error(error.response.data, "error");
+        return rejectWithValue(error.response.data);
     }
 });

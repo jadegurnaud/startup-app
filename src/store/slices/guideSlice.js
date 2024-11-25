@@ -20,13 +20,29 @@ export const guideSlice = createSlice({
         })
         .addCase(Guide.getGuide.fulfilled, (state, action) => {
             state.status.guide = "succeed";
+            state.error = null;
             if (action?.payload) {  
                 state.guide = action.payload;
             }
         })
         .addCase(Guide.getGuide.rejected, (state, action) => {
             state.status.guide = "failed";
-            state.error = action.payload;
+            if(action?.payload?.message){
+                state.error = action.payload.message;
+            }
+        })
+        .addCase(Guide.createGuide.pending, (state, action) => {
+            state.status.guide = "pending";
+        })
+        .addCase(Guide.createGuide.fulfilled, (state, action) => {
+            state.status.guide = "succeed";
+            state.error = null;
+        })
+        .addCase(Guide.createGuide.rejected, (state, action) => {
+            state.status.guide = "failed";
+            if(action?.payload?.message){
+                state.error = action.payload.message;
+            }
         })
       .addCase(RESET_APP_STATE, (state, action) => initialState);
   },

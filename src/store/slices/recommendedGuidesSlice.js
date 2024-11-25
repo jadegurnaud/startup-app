@@ -22,19 +22,23 @@ export const recommendedGuidesSlice = createSlice({
             })
             .addCase(Guide.getRecommendedGuides.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
+                state.error = null;
                 if (action?.payload) {  
                     state.guides = action.payload;
                 }
             })
             .addCase(Guide.getRecommendedGuides.rejected, (state, action) => {
                 state.status.guides = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(Guide.getFavoritesGuides.pending, (state, action) => {
                 state.status.favorites = "pending";
             })
             .addCase(Guide.getFavoritesGuides.fulfilled, (state, action) => {
                 state.status.favorites = "succeed";
+                state.error = null;
                 if (action?.payload) {  
                     const favoritesMap = action.payload.reduce((acc, favorite) => {
                         acc[favorite.id] = true;
@@ -45,13 +49,16 @@ export const recommendedGuidesSlice = createSlice({
             })
             .addCase(Guide.getFavoritesGuides.rejected, (state, action) => {
                 state.status.favorites = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(Guide.toggleFavorite.pending, (state, action) => {
                 state.status.favorites = "pending";
             })
             .addCase(Guide.toggleFavorite.fulfilled, (state, action) => {
                 state.status.favorites = "succeed";
+                state.error = null;
                 if (action?.payload) {
                     const { guideId, isFavorite } = action.payload;
                     state.favorites[guideId] = isFavorite;
@@ -59,7 +66,9 @@ export const recommendedGuidesSlice = createSlice({
             })
             .addCase(Guide.toggleFavorite.rejected, (state, action) => {
                 state.status.favorites = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(RESET_APP_STATE, (state, action) => initialState);
     },
