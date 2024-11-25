@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Text, Container } from '../atoms';
 import { DOM } from '../nanites';
-import { GuideCard } from "../molecules";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';

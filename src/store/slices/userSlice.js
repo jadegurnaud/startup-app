@@ -28,7 +28,6 @@ export const userSlice = createSlice({
       .addCase(User.register.rejected, (state, action) => {
         state.status.register = "failed";
         if(action?.payload?.message){
-          console.log(action.payload.message);
           state.error = action.payload.message;
         }
       })
@@ -45,7 +44,6 @@ export const userSlice = createSlice({
       .addCase(User.login.rejected, (state, action) => {
         state.status.login = "failed";
         if(action?.payload?.message){
-          console.log(action.payload.message);
           state.error = action.payload.message;
         }
       })

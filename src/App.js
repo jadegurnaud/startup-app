@@ -67,7 +67,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("THEME CHANGE");
    
   }, [isNight]);
 

@@ -24,9 +24,9 @@ const Login = () => {
 
   return (
     
-    <Container.Page className="Login" style={{ display: 'flex', flexDirection: "column", justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <DOM.StyledSubContainer style={{ width: '100%', maxWidth: '400px' }}>
-            <Text.Title style={{ textAlign: 'center' }}>Connectez-vous à votre compte</Text.Title>
+    <Container.Page className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px' }}>
+            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Connectez-vous à votre compte</Text.Title>
             <Form onSubmit={handleLogin} style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                 <Text.Paragraph>Identifiant</Text.Paragraph>
                 <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
@@ -45,7 +45,7 @@ const Login = () => {
                 </DOM.StyledSubContainer>
             </Form>
             <Text.Paragraph style={{ textAlign: 'center', marginTop: '10px' }}>Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link></Text.Paragraph>
-        </DOM.StyledSubContainer>
+        </DOM.StyledContainer>
     </Container.Page>
   );
 };

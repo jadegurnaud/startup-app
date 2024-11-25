@@ -28,11 +28,11 @@ const Profile = () => {
   return (
     <Container.Page className="Profil">
         <Text.Title>Profil</Text.Title>
-        <Image.Base $borderRadius="50%" $width="6rem"
+        <Image.Base $borderRadius="50%" $width="110px"
           src={
             user?.image?.url
             ? user.image.url
-            : "https://www.gravatar.com/avatar/?d=identicon"
+            : "/profil.png"
           }
           alt="Avatar"
         />
@@ -40,7 +40,7 @@ const Profile = () => {
         <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
         <Text.Paragraph>{user?.email}</Text.Paragraph>
         <Text.Paragraph>{formattedDate}</Text.Paragraph>
-        <Text.Title>Mes guides</Text.Title>
+        <Text.SubTitle>Mes guides</Text.SubTitle>
         {guides.length > 0 ? (
           <GuidesContainer
             guides={guides}

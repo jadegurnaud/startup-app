@@ -3,8 +3,6 @@ import { DOM } from "../nanites";
 import { GuideCard } from "../molecules";
 
 const GuidesContainer = ({ guides, favorites, handleToggleFavorite, isProfilePage = false }) => {
-    console.log(guides);
-    console.log(favorites);
     return (
         <DOM.StyledContainer
             style={{ 

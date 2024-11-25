@@ -16,7 +16,11 @@ const Guide = () => {
     return (
         <Container.Page className="Guide">
             <Text.Title>{ guide.title }</Text.Title>
-            <Image.Base src={guide.coverImage} $width="100%"/>
+            <Image.Base src={guide?.coverImage
+                        ? guide.coverImage
+                        : "/coverImage.png"
+                      }
+                      alt="Photo de couverture" $width="100%"/>
             <Text.Paragraph>{ guide.description }</Text.Paragraph>
             <Text.Paragraph>Créé par : { guide?.user?.firstName } { guide?.user?.lastName }</Text.Paragraph> 
         </Container.Page>

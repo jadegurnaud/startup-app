@@ -8,10 +8,14 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
   return (
     <DOM.StyledSubContainer style={{ display: "flex", flexDirection: "column", borderRadius: "1.4rem", width: "100%", maxWidth: "13rem", margin: "auto"}}>
                <DOM.StyledSubContainer style={{ position: "relative", borderRadius: "1.4rem" }}>
-                <Link to={`/guides/${guide.id}`} style={{ textDecoration: "none"}}>
+                <Link to={`/guides/${guide.id}`} style={{ }}>
                   <Image.Base
                     $width="100%"
-                    src={guide.coverImage}
+                    src={guide?.coverImage
+                        ? guide.coverImage
+                        : "/coverImage.png"
+                      }
+                      alt="Photo de couverture"
                     style={{
                       objectFit: "cover",
                       height: "10rem",

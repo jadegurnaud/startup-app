@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const StyledContainer = styled.div`
-    background-color: ${(props) => props.$backgroundColor ? props.$backgroundColor + ';' : props.theme.colors.containers.secondary + ';'}
+    background-color: ${(props) => props.$backgroundColor ? props.$backgroundColor : props.theme.colors.containers.secondary};
     color: ${(props) => props.theme.colors.colors.primary};
     ${(props) => props.$position ? 'position:' + props.$position + ';' : ""}
     ${(props) => props.$left ? 'left:' + props.$left + ';' : ""}

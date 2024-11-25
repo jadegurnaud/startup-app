@@ -7,7 +7,7 @@ const StyledInput = styled.input`
     padding: ${(props) => props.$padding ?? "0.6rem"};
     border-radius: ${(props) => props.$borderRadius ?? "0.3rem"};
     font-size: ${(props) => props.$fontSize ?? "1rem"};
-    color: ${(props) => props.$color ?? "#000"};
+    color: ${(props) => props.theme.colors.colors.primary};
     outline: none;
     box-shadow: ${(props) => props.$boxShadow ?? "none"};
     &:focus {

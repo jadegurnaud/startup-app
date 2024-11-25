@@ -35,8 +35,8 @@ const Register = () => {
 
   return (
     
-    <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <DOM.StyledSubContainer style={{ width: '100%', maxWidth: '400px', borderRadius: '10px' }}>
+    <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px', borderRadius: '10px' }}>
             <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Créez-vous un votre compte</Text.Title>
             <Form onSubmit={handleRegister} style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
                 <Text.Paragraph>E-mail</Text.Paragraph>
@@ -70,7 +70,7 @@ const Register = () => {
                     </Button.Base>
                 </DOM.StyledSubContainer>
             </Form>
-        </DOM.StyledSubContainer>
+        </DOM.StyledContainer>
     </Container.Page>
   );
 };

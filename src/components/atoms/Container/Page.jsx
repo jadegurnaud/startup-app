@@ -8,10 +8,12 @@ const Page = ({children, ...props}) => {
       $left= "20vw"
       $height= "100vh"
       $width= "calc(100% - 20vw)"
+      $padding= "10px"
+      style={{ boxSizing: "border-box"}}
       {...props}
     >{children}
     </DOM.StyledContainer>
 );
 }
 
-export default App;
+export default Page;
