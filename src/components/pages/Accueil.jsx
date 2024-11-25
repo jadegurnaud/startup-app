@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Text, Container } from '../atoms';
 import { DOM } from '../nanites';
-import GuideCard from '../organisms/GuideCard';
+import { GuideCard } from "../molecules";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';
+import { GuidesContainer } from '../organisms';
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -47,8 +48,7 @@ const Accueil = () => {
   };
 
   return (
-    <Container.App className="Accueil">
-      <DOM.StyledContainer>
+    <Container.Page className="Accueil">
         <DOM.StyledContainer>
           <Text.Title style={{ textAlign: "center" }}>Parcourez le monde</Text.Title>
           <Text.SubTitle style={{ textAlign: "center" }}>
@@ -56,21 +56,15 @@ const Accueil = () => {
           </Text.SubTitle>
         </DOM.StyledContainer>
       
-      <Text.SubTitle style={{ textAlign: "left" }}>
-        Recommandés pour vous
-      </Text.SubTitle>
-      <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
-        {guides && guides.map((guide, index) => (
-          <GuideCard
-            key={index}
-            guide={guide}
-            isFavorite={favorites[guide.id] || false}
-            toggleFavorite={handleToggleFavorite}
-          />
-        ))}
-      </DOM.StyledContainer>
-    </DOM.StyledContainer>
-    </Container.App>
+        <Text.SubTitle style={{ textAlign: "left" }}>
+          Recommandés pour vous
+        </Text.SubTitle>
+        <GuidesContainer
+          guides={guides}
+          favorites={favorites}
+          handleToggleFavorite={handleToggleFavorite}
+        />
+    </Container.Page>
   );
 };
 

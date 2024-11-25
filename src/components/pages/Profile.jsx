@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Text, Container, Image } from "../atoms";
 import { useSelector } from "react-redux";
-import { DOM } from "../nanites";
+import { format } from "date-fns";
 import { Guide } from "../../store/reducers";
 import { useDispatch } from "react-redux";
+import { GuidesContainer } from "../organisms";
 
 const Profile = () => {
   const { user } = useSelector((state) => {
@@ -22,11 +23,12 @@ const Profile = () => {
 
   }, [login, user, dispatch]);
 
+  const formattedDate = user?.dateOfBirth ? format(new Date(user.dateOfBirth), "dd/MM/yyyy") :  '';
 
   return (
-    <Container.App className="Profil">
+    <Container.Page className="Profil">
         <Text.Title>Profil</Text.Title>
-        <Image.Base $borderRadius="50%" $width="100px"
+        <Image.Base $borderRadius="50%" $width="6rem"
           src={
             user?.image?.url
             ? user.image.url
@@ -34,30 +36,22 @@ const Profile = () => {
           }
           alt="Avatar"
         />
+        <Text.Paragraph>{user?.pseudo}</Text.Paragraph>
         <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
         <Text.Paragraph>{user?.email}</Text.Paragraph>
-        <Text.Paragraph>{user?.biography}</Text.Paragraph>
+        <Text.Paragraph>{formattedDate}</Text.Paragraph>
         <Text.Title>Mes guides</Text.Title>
-        <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
-          {guides?.map((guide, index) => (
-            <DOM.StyledContainer key={index} style={{ display: "flex", flexDirection: "column", borderRadius: "20px" }}>
-              <Image.Base
-                    $width="100%"
-                    src={guide.coverImage}
-                    style={{
-                      objectFit: "cover",
-                      height: "150px",
-                      borderTopLeftRadius: "20px",
-                      borderTopRightRadius: "20px",
-                    }}
-                  />
-              <Text.Paragraph>{guide.title}</Text.Paragraph>
-              <Text.Paragraph>{guide.description}</Text.Paragraph>
-            </DOM.StyledContainer>
-          ))}
-        </DOM.StyledContainer>
-        
-    </Container.App>
+        {guides.length > 0 ? (
+          <GuidesContainer
+            guides={guides}
+            favorites={{}}
+            handleToggleFavorite={() => {}}
+            isProfilePage={true}
+          />
+        ) : (
+          <Text.Paragraph>Vous n'avez pas encore crée de guides.</Text.Paragraph>
+        )}
+    </Container.Page>
   );
 };
 

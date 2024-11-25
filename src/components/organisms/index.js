@@ -1,4 +1,4 @@
 import Aside from "./Aside";
-import GuideCard from "./GuideCard";
+import GuidesContainer from "./GuidesContainer";
 
-export { Aside, GuideCard };
+export { Aside, GuidesContainer };

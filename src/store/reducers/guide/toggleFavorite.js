@@ -12,7 +12,7 @@ export const toggleFavorite = createAsyncThunk('guide/toggleFavorites', async ({
                 "Content-Type": "application/json",
             },
             ...((!isFavorite) && {
-                data: JSON.stringify({ userId, guideId }),
+                data: JSON.stringify({ user: userId, guide: guideId }),
             }),
         };
         const response = await axios(config);

@@ -1,13 +1,13 @@
 import React from "react";
 import { DOM } from "../../nanites";
 
-const App = ({children, ...props}) => {
+const Page = ({children, ...props}) => {
     return  (
     <DOM.StyledContainer
       $position= "absolute"
       $left= "20vw"
-      $width= "calc(100% - 20vw)"
       $height= "100vh"
+      $width= "calc(100% - 20vw)"
       {...props}
     >{children}
     </DOM.StyledContainer>

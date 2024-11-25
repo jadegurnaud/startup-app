@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
     ${(props) => props.$top ? 'top:' + props.$top + ';' : ""}
     ${(props) => props.$bottom ? 'bottom:' + props.$bottom + ';' : ""}
     ${(props) => props.$border ? 'border:' + props.$border + ';' : ""}
-
+    ${(props) => props.$padding ? 'padding:' + props.$padding + ';' : ""}
     ${(props) => props.$height ? 'height:' + props.$height + ';' : ""}
     ${(props) => props.$width ? 'width:' + props.$width + ';' : ""}
 `;
