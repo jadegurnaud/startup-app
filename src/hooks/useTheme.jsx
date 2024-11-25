@@ -2,8 +2,8 @@ import useColor from "./useColor";
 
 const useTheme = ({
   container = {
-    primary: "black",
-    secondary: "withe",
+    primary: "white",
+    secondary: "#D9D9D9",
   },
   colors = {
     primary: "black",

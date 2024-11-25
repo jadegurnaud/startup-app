@@ -2,7 +2,6 @@ import React, {
     useContext,
     useEffect,
     useRef,
-    useState,
     useCallback,
   } from "react";
   import styled from "styled-components";
@@ -17,7 +16,7 @@ import React, {
     }, [nightMode.isNight]);
     useEffect(() => {
       toggleNightMode();
-    }, []);
+    }, [toggleNightMode]);
     return (
       <StyledWrapper>
         <label className="theme-switch">

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuthenticatedUser } from './store/reducers/user/getAuthenticatedUser';
 import { ThemeProvider } from 'styled-components';
 import { NightThemeProvider } from './providers/contexts';
-import useColor from './hooks/useColor';
 import useTheme from './hooks/useTheme';
 import { lightTheme, darkTheme } from './styles/themes';
 import { DOM } from './components/nanites';
@@ -70,15 +69,15 @@ function App() {
   useEffect(() => {
     console.log("THEME CHANGE");
    
-  }, [!isNight]);
+  }, [isNight]);
 
   return (
     <ThemeProvider theme={theme} >
       <NightThemeProvider nightTheme={{ toggleNightMode: changeNightTheme, isNight: isNight }}>
         <DOM.StyledContainer>
-  <Router basename="/">
+          <Router basename="/">
             <AppContent/>
-        </Router>
+          </Router>
         </DOM.StyledContainer>
       </NightThemeProvider>
     </ThemeProvider>

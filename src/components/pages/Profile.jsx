@@ -40,7 +40,7 @@ const Profile = () => {
         <Text.Title>Mes guides</Text.Title>
         <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
           {guides?.map((guide, index) => (
-            <DOM.StyledContainer key={index} style={{ display: "flex", flexDirection: "column", backgroundColor: "#DCDCDC", borderRadius: "20px" }}>
+            <DOM.StyledContainer key={index} style={{ display: "flex", flexDirection: "column", borderRadius: "20px" }}>
               <Image.Base
                     $width="100%"
                     src={guide.coverImage}
