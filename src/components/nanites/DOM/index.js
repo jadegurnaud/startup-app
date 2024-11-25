@@ -1,5 +1,6 @@
 import StyledButton from "./StyledButton";
 import StyledContainer from "./StyledContainer";
+import StyledSubContainer from "./StyledSubContainer";
 import StyledParagraph from "./StyledParagraph";
 import StyledTitle from "./StyledTitle";
 import StyledSubTitle from "./StyledSubTitle";
@@ -10,4 +11,4 @@ import StyledList from "./StyledList";
 import StyledListItem from "./StyledListItem";
 import StyledSpan from "./StyledSpan";
 
-export { StyledButton, StyledContainer, StyledParagraph, StyledTitle, StyledSubTitle, StyledImage, StyledInput, StyledForm, StyledList, StyledListItem, StyledSpan };
+export { StyledButton, StyledContainer, StyledSubContainer, StyledParagraph, StyledTitle, StyledSubTitle, StyledImage, StyledInput, StyledForm, StyledList, StyledListItem, StyledSpan };

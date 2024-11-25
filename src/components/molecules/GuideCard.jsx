@@ -6,8 +6,8 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false }) => {
   return (
-    <DOM.StyledContainer style={{ display: "flex", flexDirection: "column", backgroundColor: "#DCDCDC", borderRadius: "1.4rem", width: "100%", maxWidth: "13rem", margin: "auto"}}>
-               <DOM.StyledContainer style={{ position: "relative" }}>
+    <DOM.StyledSubContainer style={{ display: "flex", flexDirection: "column", borderRadius: "1.4rem", width: "100%", maxWidth: "13rem", margin: "auto"}}>
+               <DOM.StyledSubContainer style={{ position: "relative", borderRadius: "1.4rem" }}>
                 <Link to={`/guides/${guide.id}`} style={{ textDecoration: "none"}}>
                   <Image.Base
                     $width="100%"
@@ -50,12 +50,12 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
                     )}
                   </Icon.Base>
                 )}
-              </DOM.StyledContainer>
-              <DOM.StyledContainer style={{ padding: "0.5rem", display:"flex", flexDirection:"column", gap:"0.4rem" }}>
+              </DOM.StyledSubContainer>
+              <DOM.StyledSubContainer style={{ padding: "0.5rem", display:"flex", flexDirection:"column", gap:"0.4rem", borderRadius: "1.4rem" }}>
                 <Text.Span $fontSize="1rem">{guide.title}</Text.Span>
                 <Text.Span $fontSize="1rem">{guide.description}</Text.Span>
-              </DOM.StyledContainer>
-            </DOM.StyledContainer>
+              </DOM.StyledSubContainer>
+            </DOM.StyledSubContainer>
       
   );
 };

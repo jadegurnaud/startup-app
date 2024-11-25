@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Accueil, Login, Profile, Register, Guide, Favorites } from './components/pages';
 import './App.css';
@@ -6,7 +6,11 @@ import { Aside } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthenticatedUser } from './store/reducers/user/getAuthenticatedUser';
-
+import { ThemeProvider } from 'styled-components';
+import { NightThemeProvider } from './providers/contexts';
+import useTheme from './hooks/useTheme';
+import { lightTheme, darkTheme } from './styles/themes';
+import { DOM } from './components/nanites';
 
 const AppContent = () => {
   const { login } = useSelector((state) => {
@@ -25,19 +29,19 @@ const AppContent = () => {
 
   return (
     <>
-      <Aside />
+      <Aside/>
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
-        <Route path="/accueil" element={<Accueil />} />
-        <Route path='/guides/:id' element={<Guide />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path="/logout" element={<Accueil />} />
+        <Route path="/accueil" element={<Accueil/>} />
+        <Route path='/guides/:id' element={<Guide/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path="/logout" element={<Accueil/>} />
         <Route path="/profil" element={<ProtectedRoute>
-          <Profile />
+          <Profile/>
         </ProtectedRoute>} />
         <Route path="/favorites" element={<ProtectedRoute>
-          <Favorites />
+          <Favorites/>
         </ProtectedRoute>} />
       </Routes>
     </>
@@ -45,11 +49,38 @@ const AppContent = () => {
 };
 
 function App() {
-  return (
+  const [isNight, setIsNight] = useState(false);
+  const [theme, setTheme] = useTheme({
+    container: isNight ? darkTheme.container : lightTheme.container,
+    colors: isNight ? darkTheme.colors : lightTheme.colors,
+  });
+
+  const changeNightTheme = () => {
+    setIsNight(prev => {
+      const newIsNight = !prev;
+      setTheme({
+        colors: newIsNight ? darkTheme.colors : lightTheme.colors,
+        containers: newIsNight ? darkTheme.container : lightTheme.container
+      });
+      return newIsNight;
+    });
+  };
+
+  useEffect(() => {
+    console.log("THEME CHANGE");
    
-      <Router basename="/">
-          <AppContent />
-      </Router>
+  }, [isNight]);
+
+  return (
+    <ThemeProvider theme={theme} >
+      <NightThemeProvider nightTheme={{ toggleNightMode: changeNightTheme, isNight: isNight }}>
+        <DOM.StyledContainer>
+          <Router basename="/">
+            <AppContent/>
+          </Router>
+        </DOM.StyledContainer>
+      </NightThemeProvider>
+    </ThemeProvider>
   );
 }
 
