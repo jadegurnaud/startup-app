@@ -1,14 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getGuide = createAsyncThunk('guide/getGuide', async (guideId, { rejectWithValue }) => {
+export const createGuide = createAsyncThunk('guide/createGuide', async (payload, { rejectWithValue }) => {
+    let data = JSON.stringify({
+        title: payload.title,
+        description: payload.description,
+        user: payload.userId,
+    })
     try {
         const config = {
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/guides/${guideId}`,
+            method: "POST",
+            url: `${process.env.REACT_APP_API_URL}/guides`,
             headers: {
                 "Content-Type": "application/json",
             },
+            data: data,
         }
         const response = await axios(config);
         return response.data;

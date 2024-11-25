@@ -20,13 +20,16 @@ export const userGuidesSlice = createSlice({
             })
             .addCase(Guide.getUserGuides.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
+                state.error = null;
                 if (action?.payload) {  
                     state.guides = action.payload;
                 }
             })
             .addCase(Guide.getUserGuides.rejected, (state, action) => {
                 state.status.guides = "failed";
-                state.error = action.payload;
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
             })
             .addCase(RESET_APP_STATE, (state, action) => initialState);
     },

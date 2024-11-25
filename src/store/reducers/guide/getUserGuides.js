@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getUserGuides = createAsyncThunk('user/getUserGuides', async (userId, { rejectWithValue }) => {
     if (!userId) {
-        return rejectWithValue('User ID is required');
+        return rejectWithValue('L\'id de l\'utilisateur est manquant');
       }
     try {
         
@@ -15,15 +15,11 @@ export const getUserGuides = createAsyncThunk('user/getUserGuides', async (userI
             },
         }
 
-        const response = await axios(config).then((res) => {
-            return res;
-        }).catch((error) => {
-            return error;
-        });
+        const response = await axios(config);
         return response.data;
     }
     catch (error) {
-        console.error(error);
-        return null;
+        console.error(error.response.data, "error");
+        return rejectWithValue(error.response.data);
     }
 });

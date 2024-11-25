@@ -20,7 +20,7 @@ const Guide = () => {
                         ? guide.coverImage
                         : "/coverImage.png"
                       }
-                      alt="Photo de couverture" $width="100%"/>
+                      alt="Photo de couverture" $width="70%"/>
             <Text.Paragraph>{ guide.description }</Text.Paragraph>
             <Text.Paragraph>Créé par : { guide?.user?.firstName } { guide?.user?.lastName }</Text.Paragraph> 
         </Container.Page>
