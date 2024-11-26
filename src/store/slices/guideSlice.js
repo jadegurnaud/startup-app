@@ -44,6 +44,19 @@ export const guideSlice = createSlice({
                 state.error = action.payload.message;
             }
         })
+        .addCase(Guide.deleteGuide.pending, (state, action) => {
+            state.status.guide = "pending";
+        })
+        .addCase(Guide.deleteGuide.fulfilled, (state, action) => {
+            state.status.guide = "succeed";
+            state.error = null;
+        })
+        .addCase(Guide.deleteGuide.rejected, (state, action) => {
+            state.status.guide = "failed";
+            if(action?.payload?.message){
+                state.error = action.payload.message;
+            }
+        })
       .addCase(RESET_APP_STATE, (state, action) => initialState);
   },
 });
