@@ -1,4 +1,4 @@
-import { User } from './UserContext';
+import { NetworkProvider, useNetwork } from './network-context';
 import { NightThemeProviderContext, NightThemeProvider } from './NightThemeProvider';
 
-export { User, NightThemeProviderContext, NightThemeProvider };
+export { NetworkProvider, NightThemeProviderContext, NightThemeProvider, useNetwork };

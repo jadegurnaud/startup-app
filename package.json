@@ -55,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "reactotron-react-js": "^3.3.15",
+    "reactotron-redux": "^3.1.10"
   }
 }

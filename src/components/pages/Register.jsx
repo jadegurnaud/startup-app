@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { User } from "../../store/reducers";
 import { useSelector } from "react-redux";
+import { CgOverflow } from "react-icons/cg";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -35,37 +36,45 @@ const Register = () => {
 
   return (
     
-    <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px', borderRadius: '10px' }}>
-            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Créez-vous un votre compte</Text.Title>
-            <Form onSubmit={handleRegister} style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+    <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', boxSizing: "border-box", overflow: "auto" }}>
+        <DOM.StyledContainer width='400px'>
+            <Text.Title>Créez-vous un votre compte</Text.Title>
+            <Form onSubmit={handleRegister}>
                 <Text.Paragraph>E-mail</Text.Paragraph>
-                <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('email')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('email')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <Text.Paragraph>Mot de passe</Text.Paragraph>
-                <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('password')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('password')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <Text.Paragraph>Confirmer le mot de passe</Text.Paragraph>
-                <Input.Base type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={{ marginBottom: '10px' }} />
-                {localError && <Text.Span style={{ color: 'red' }}>{localError}</Text.Span>}
+                <Input.Base type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} marginBottom='10px' />
+                {localError && <Text.Error>{localError}</Text.Error>}
                 <Text.Paragraph>Pseudo</Text.Paragraph>
-                <Input.Base type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('pseudo')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('pseudo')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <Text.Paragraph>Prénom</Text.Paragraph>
-                <Input.Base type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('firstName')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('firstName')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <Text.Paragraph>Nom</Text.Paragraph>
-                <Input.Base type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} style={{ marginBottom: '10px' }} />
+                <Input.Base type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('lastName')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                ))}
+                <Text.Paragraph>Date de naissance</Text.Paragraph>
+                <Input.Base type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('dateOfBirth')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                ))}
                 <DOM.StyledSubContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                    <Button.Base type="submit" style={{ borderRadius: '5px', cursor: 'pointer' }}>
+                    <Button.Base type="submit">
                         <Text.Paragraph>Créer le compte</Text.Paragraph>
                     </Button.Base>
                 </DOM.StyledSubContainer>

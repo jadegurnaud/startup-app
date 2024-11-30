@@ -1,7 +1,10 @@
 import { styled } from "styled-components";
 
-const StyledSubTitle = styled.h2`
-    background-color: ${(props) => props.$backgroundColor ?? "transparent"};
+const StyledSubTitle = styled.h2.withConfig({
+    shouldForwardProp: (prop) => !['backgroundColor', 'textAlign'].includes(prop),
+    })`
+    background-color: ${(props) => props.backgroundColor ?? "transparent"};
+    ${(props) => props.textAlign ? 'text-align:' + props.textAlign + ';' : ""}
 `;
 
 export default StyledSubTitle;

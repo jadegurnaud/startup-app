@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
-import { userSlice, userGuidesSlice, recommendedGuidesSlice, favoritesGuidesUserSlice, guideSlice } from "./slices/";
+import { userSlice, userGuidesSlice, recommendedGuidesSlice, favoritesGuidesUserSlice, guideSlice } from "./slices";
 
 const persistConfig = {
     key: 'root',
@@ -18,16 +18,15 @@ const rootReducer = combineReducers(
         guide: guideSlice.reducer,
     });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+const middleware = (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    }
+}); 
 
 const store = configureStore({
     reducer:persistedReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        }
-    }),
-    
-
+    middleware:middleware ,
 });
 const persistor = persistStore(store);
 

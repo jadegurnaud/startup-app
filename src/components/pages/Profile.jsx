@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <Container.Page className="Profil">
         <Text.Title>Profil</Text.Title>
-        <Image.Base $borderRadius="50%" $width="110px"
+        <Image.Base borderRadius="50%" width="110px"
           src={
             user?.image?.url
             ? user.image.url
