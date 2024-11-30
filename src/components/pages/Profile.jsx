@@ -1,23 +1,57 @@
-import React from "react";
-import { Aside } from "../organisms";
-import { Text } from "../atoms";
-import {DOM} from "../nanites";
+import React, { useEffect } from "react";
+import { Text, Container, Image } from "../atoms";
+import { useSelector } from "react-redux";
+import { format } from "date-fns";
+import { Guide } from "../../store/reducers";
+import { useDispatch } from "react-redux";
+import { GuidesContainer } from "../organisms";
 
 const Profile = () => {
+  const { user } = useSelector((state) => {
+    return state?.user;
+  });
+  const { guides } = useSelector((state) => {
+    return state?.userGuides;
+  });
+  const login = useSelector((state) => state.user.login);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (login) {    
+      dispatch(Guide.getUserGuides(user?.id));
+    }
+
+  }, [login, user, dispatch]);
+
+  const formattedDate = user?.dateOfBirth ? format(new Date(user.dateOfBirth), "dd/MM/yyyy") :  '';
+
   return (
-    <DOM.StyledContainer className="Profile">
-      <Aside></Aside>
-        <div
-            style={{
-                position: "absolute",
-                left: "20vw",
-                top: 0,
-                height: "100vh",
-                width: "calc(100% - 20vw)",
-            }}>
-            <Text.Title>Profile</Text.Title>
-        </div>
-    </DOM.StyledContainer>
+    <Container.Page className="Profil">
+        <Text.Title>Profil</Text.Title>
+        <Image.Base borderRadius="50%" width="110px"
+          src={
+            user?.image?.url
+            ? user.image.url
+            : "/profil.png"
+          }
+          alt="Avatar"
+        />
+        <Text.Paragraph>{user?.pseudo}</Text.Paragraph>
+        <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
+        <Text.Paragraph>{user?.email}</Text.Paragraph>
+        <Text.Paragraph>{formattedDate}</Text.Paragraph>
+        <Text.SubTitle>Mes guides</Text.SubTitle>
+        {guides.length > 0 ? (
+          <GuidesContainer
+            guides={guides}
+            favorites={{}}
+            handleToggleFavorite={() => {}}
+            isProfilePage={true}
+          />
+        ) : (
+          <Text.Paragraph>Vous n'avez pas encore crée de guides.</Text.Paragraph>
+        )}
+    </Container.Page>
   );
 };
 

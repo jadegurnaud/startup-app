@@ -12,7 +12,7 @@ const Menu = ({ configs }) => {
           style={{ textDecoration: "none", color: "inherit" }}
           onClick={config.onClick}
         >
-          <Text.Paragraph style={{ textAlign: "center" }}>{config.displayName}</Text.Paragraph>
+          <Text.Paragraph textAlign="center">{config.displayName}</Text.Paragraph>
         </Link>
         
       ))}

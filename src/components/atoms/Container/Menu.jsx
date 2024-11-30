@@ -4,11 +4,11 @@ import { DOM } from "../../nanites";
 const Menu = ({ children }) => {
 
   return (
-    <DOM.StyledContainer
-      $width= "100%"
+    <DOM.StyledSubContainer
+      width= "100%"
     >
       {children}
-    </DOM.StyledContainer>
+    </DOM.StyledSubContainer>
   );
 };
 

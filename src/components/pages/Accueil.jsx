@@ -1,41 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { Aside } from "../organisms";
-import { Text, Container, Image } from "../atoms";
-import { DOM } from "../nanites";
+import React, { useEffect } from 'react';
+import { Text, Container } from '../atoms';
+import { DOM } from '../nanites';
+import { useSelector, useDispatch } from "react-redux";
+import { Guide } from '../../store/reducers';
+import { useNavigate } from 'react-router-dom';
+import { GuidesContainer } from '../organisms';
 
 const Accueil = () => {
-  const [images, setImages] = useState([]);
+  const { guides, favorites } = useSelector((state) => {
+    return state?.recommendedGuides;
+  });
+
+  const user = useSelector((state) => state.user.user);
+  const login = useSelector((state) => state.user.login);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchGuides = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/api/guides");
-        const data = await response.json();
-        // Extraire les URLs des images
-        const imageUrls = data.map(guide => guide.image);
-        setImages(imageUrls);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchGuides();
-  }, []);
+    dispatch(Guide.getRecommendedGuides());
+  }, [dispatch, login]);
+
+  useEffect(() => {
+    if (login) {
+      dispatch(Guide.getFavoritesGuides(user.id));
+    }
+  }, [login, user, dispatch]);
+
+  const handleToggleFavorite = (guideId) => {
+    if (!login) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      dispatch(
+        Guide.toggleFavorite({ 
+          userId: user.id,
+          guideId,
+          isFavorite: favorites[guideId] || false
+        })
+      );
+    } catch (error) {
+      console.error("Failed to toggle favorite", error);
+    }
+  };
 
   return (
-    <DOM.StyledContainer className="Accueil">
-      <Container.App>
-        <Image.Base $width="100%"
-          style={{ objectFit: "cover", height: "150px" }} src='/sapins.jpg' />
-        <Text.SubTitle style={{ textAlign: "left" }}>
-          Vos recommandations
-        </Text.SubTitle>
-        <DOM.StyledContainer style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", margin: "0px 10px" }}>
-          {images.map((image, index) => (
-            <Image.Base key={index} src={image.url} $width= "100%" />
-          ))}
+    <Container.Page className="Accueil">
+        <DOM.StyledContainer>
+          <Text.Title>Parcourez le monde</Text.Title>
+          <Text.SubTitle textAlign= "center">
+            Trouver le guide de voyage parfait pour votre prochaine destination
+          </Text.SubTitle>
         </DOM.StyledContainer>
-      </Container.App>
-    </DOM.StyledContainer>
+      
+        <Text.SubTitle>
+          Recommandés pour vous
+        </Text.SubTitle>
+        <GuidesContainer
+          guides={guides}
+          favorites={favorites}
+          handleToggleFavorite={handleToggleFavorite}
+        />
+    </Container.Page>
   );
 };
 
