@@ -49,6 +49,10 @@ npm install
 
 # Lancer l'application
 npm run start
+
+# Builder l'application pour tester le mode hors ligne
+npm run build
+serve -s build
 ```
 
 ## Configuration des variables d'environnement

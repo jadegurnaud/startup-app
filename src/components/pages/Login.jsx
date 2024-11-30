@@ -24,27 +24,27 @@ const Login = () => {
 
   return (
     
-    <Container.Page className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <DOM.StyledContainer style={{ width: '100%', maxWidth: '400px' }}>
-            <Text.Title style={{ textAlign: 'center', marginBottom: '10vh' }}>Connectez-vous à votre compte</Text.Title>
-            <Form onSubmit={handleLogin} style={{ padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+    <Container.Page className="Login" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', boxSizing: "border-box", overflow: "auto" }}>
+        <DOM.StyledContainer width='400px'>
+            <Text.Title style={{ marginBottom: '5vh' }}>Connectez-vous à votre compte</Text.Title>
+            <Form onSubmit={handleLogin}>
                 <Text.Paragraph>Identifiant</Text.Paragraph>
-                <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('email')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('email')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <Text.Paragraph>Mot de passe</Text.Paragraph>
-                <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ marginBottom: '10px' }} />
-                {error && error.filter(err => err.startsWith('password')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} marginBottom='10px' />
+                {Array.isArray(error) && error.filter(err => err.startsWith('password')).map((err, index) => (
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 <DOM.StyledSubContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                    <Button.Base type="submit" style={{ borderRadius: '5px', cursor: 'pointer' }}>
+                    <Button.Base type="submit">
                         <Text.Paragraph>Se connecter</Text.Paragraph>
                     </Button.Base>
                 </DOM.StyledSubContainer>
             </Form>
-            <Text.Paragraph style={{ textAlign: 'center', marginTop: '10px' }}>Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link></Text.Paragraph>
+            <Text.Paragraph textAlign= 'center' style={{ marginTop: '10px' }}>Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link></Text.Paragraph>
         </DOM.StyledContainer>
     </Container.Page>
   );

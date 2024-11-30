@@ -49,13 +49,13 @@ const Accueil = () => {
   return (
     <Container.Page className="Accueil">
         <DOM.StyledContainer>
-          <Text.Title style={{ textAlign: "center" }}>Parcourez le monde</Text.Title>
-          <Text.SubTitle style={{ textAlign: "center" }}>
+          <Text.Title>Parcourez le monde</Text.Title>
+          <Text.SubTitle textAlign= "center">
             Trouver le guide de voyage parfait pour votre prochaine destination
           </Text.SubTitle>
         </DOM.StyledContainer>
       
-        <Text.SubTitle style={{ textAlign: "left" }}>
+        <Text.SubTitle>
           Recommandés pour vous
         </Text.SubTitle>
         <GuidesContainer

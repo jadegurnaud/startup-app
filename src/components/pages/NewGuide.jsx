@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Container, Input, Button } from "../atoms";
+import { Text, Container, Input, Button, Image } from "../atoms";
 import { DOM } from "../nanites";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,35 +53,37 @@ const NewGuide = () => {
             <Button.Base onClick={() => handleCreateGuide()} style={{ position: "absolute", top: 10, right: 10 }}><Text.Paragraph>Publier</Text.Paragraph></Button.Base>
             <DOM.StyledContainer style={{ display:"flex", flexDirection:"column"}}>
             <Text.Paragraph>Choisissez une image de couverture pour votre guide</Text.Paragraph>
-            <Input.Base style={{ border: "none" }} type="file" onChange={handleUploadImage} />
+            <Input.Base border= "none" type="file" onChange={handleUploadImage} />
                 {coverImage && (
-                    <img
+                    <Image.Base
+                        width= '100px'
+                        height= '100px' objectFit= 'cover'
                         src={URL.createObjectURL(coverImage)}
                         alt="Cover"
-                        style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                     />
                 )}
-                <Input.Base style={{ border: "none", fontSize: "2rem" }} type="text" placeholder="Titre" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <Input.Base fontSize="2rem" border="none" type="text" placeholder="Titre" value={title} onChange={(e) => setTitle(e.target.value)} />
                 {Array.isArray(error) && error.filter(err => err.startsWith('title')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
-                <Input.Base style={{ border: "none" }} type="text" placeholder="Description" value={description} onChange={(e) => setDescritption(e.target.value)} />
+                <Input.Base border="none" type="text" placeholder="Description" value={description} onChange={(e) => setDescritption(e.target.value)} />
                {Array.isArray(error) && error.filter(err => err.startsWith('description')).map((err, index) => (
-                    <Text.Span key={index} style={{ color: 'red' }}>{err.split(': ')[1]}</Text.Span>
+                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
                 ))}
                 
-                <Input.Base style={{ border: "none" }} type="file" multiple onChange={handleUploadImages} />
+                <Input.Base border="none" type="file" multiple onChange={handleUploadImages} />
                 {images.length > 0 && (
-                    <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         {images.map((image, index) => (
-                            <img 
+                            <Image.Base 
+                                width= '100px'
+                                height= '100px' objectFit= 'cover'
                                 key={index} 
                                 src={URL.createObjectURL(image)} 
-                                alt={`Preview ${index}`} 
-                                style={{ width: '100px', height: '100px', objectFit: 'cover' }} 
+                                alt={`Preview ${index}`}  
                             />
                         ))}
-                    </div>
+                    </DOM.StyledContainer>
                 )}
             </DOM.StyledContainer>
         </Container.Page>
