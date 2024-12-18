@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import AccessDenied from "./AccessDenied";
 import Guide from "./Guide";
 import Favorites from "./Favorites";
+import NewGuideHome from "./NewGuideHome";
 import NewGuide from "./NewGuide";
 
-export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuide };
+export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuideHome, NewGuide };
