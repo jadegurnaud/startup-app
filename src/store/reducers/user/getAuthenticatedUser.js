@@ -1,28 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import apiClient from "../../../api/apiClient";
+import { logout } from "./logout";
 
-export const getAuthenticatedUser = createAsyncThunk('user/getAuthenticatedUser', async (payload, { rejectWithValue }) => {
+export const getAuthenticatedUser = createAsyncThunk('user/getAuthenticatedUser', async (payload, { dispatch, rejectWithValue }) => {
     try {
-        const token = localStorage.getItem("token");
-        if (!token || token === undefined) {
-            console.error("Token is missing");
-            return null;
-        }
-
-        
-        let config = {
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/auth`,
-
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-        }
-        const response = await axios(config);
+        const response = await apiClient.get("/auth");
         return response.data;
     } catch (error) {
-        console.error(error.response.data, "error");
+        if(error.response.data.error === "Invalid or expired refresh token") {
+            dispatch(logout());
+        }
         return rejectWithValue(error.response.data);
     }
 });
