@@ -58,7 +58,7 @@ const Accueil = () => {
 
   return (
     <Container.Page className="Accueil">
-        <Text.Heading1>Accueil</Text.Heading1>
+        <Text.Title>Accueil</Text.Title>
         <Button.Base onClick={handleVueListe}>
             <Text.Paragraph>
                 Vue liste
