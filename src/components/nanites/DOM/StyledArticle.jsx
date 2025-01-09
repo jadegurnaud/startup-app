@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-const StyledContainer = styled.div.withConfig({
+const StyledArticle = styled.article.withConfig({
     shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
     })`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
@@ -15,18 +15,6 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
 
-    #infosProfile {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        article {
-            display: flex;
-            flex-direction: column;
-            span:first-child {
-                color: #8E8E8E;
-            }
-        } 
-    }
 `;
 
-export default StyledContainer;
+export default StyledArticle;

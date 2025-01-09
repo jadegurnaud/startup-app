@@ -5,6 +5,8 @@ import { format } from "date-fns";
 import { Guide } from "../../store/reducers";
 import { useDispatch } from "react-redux";
 import { GuidesContainer } from "../organisms";
+import { DOM } from "../nanites";
+import { InfosProfile, GuidesPublies } from "../molecules";
 
 const Profile = () => {
   const { user } = useSelector((state) => {
@@ -27,20 +29,36 @@ const Profile = () => {
 
   return (
     <Container.Page className="Profil">
-        <Text.Title>Profil</Text.Title>
+      <DOM.StyledContainer style={{ width: "100%", maxWidth: "800px", margin: "auto" }}>
+      <DOM.StyledContainer
+        height="402px"
+        width="100%"
+      >
+      <Image.Base borderRadius="7%" width="100%" height="100%"
+        src={user?.coverImage
+          ? user.coverImage
+          : "/coverImage.png"
+        }
+        alt="Image de couverture"
+      />
+      </DOM.StyledContainer>
         <Image.Base borderRadius="50%" width="110px"
           src={
-            user?.image?.url
-            ? user.image.url
+            user?.profileImage
+            ? user.image
             : "/profil.png"
           }
-          alt="Avatar"
+          alt="Photo de profil"
         />
         <Text.Paragraph>{user?.pseudo}</Text.Paragraph>
-        <Text.Paragraph>{user?.firstName} {user?.lastName}</Text.Paragraph>
-        <Text.Paragraph>{user?.email}</Text.Paragraph>
-        <Text.Paragraph>{formattedDate}</Text.Paragraph>
-        <Text.SubTitle>Mes guides</Text.SubTitle>
+        <Text.Paragraph>{user?.firstName}</Text.Paragraph>
+        <InfosProfile></InfosProfile>
+        <GuidesPublies></GuidesPublies>
+        <DOM.StyledSection id="descriptionProfile">
+          <Text.SubTitle>Description</Text.SubTitle>
+          <Text.Paragraph>{user?.description}</Text.Paragraph>
+        </DOM.StyledSection>
+        <Text.SubTitle>Mes guides publiés</Text.SubTitle>
         {guides.length > 0 ? (
           <GuidesContainer
             guides={guides}
@@ -51,6 +69,7 @@ const Profile = () => {
         ) : (
           <Text.Paragraph>Vous n'avez pas encore crée de guides.</Text.Paragraph>
         )}
+        </DOM.StyledContainer>
     </Container.Page>
   );
 };
