@@ -5,6 +5,7 @@ const StyledParagraph = styled.p.withConfig({
     })`
     background-color: ${(props) => props.backgroundColor ?? "transparent"};
     ${(props) => props.textAlign ? 'text-align:' + props.textAlign + ';' : ""}
+    font-size: ${(props) => props.fontSizes ?? "14px"};
 `;
 
 export default StyledParagraph;

@@ -1,19 +1,17 @@
 import React from "react";
 import { DOM } from "../../nanites";
 
-const Menu = ({ children }) => {
+const RowContainer = ({children, ...props }) => {
+  console.log(props);
   return (
     <DOM.StyledSubContainer
-      width="100%"
-      height="100%"
       flex
       flexDirection="row"
-      justifyContent="space-between"
-      alignItems="center"
+      {...props}
     >
       {children}
     </DOM.StyledSubContainer>
   );
-};
+}
 
-export default Menu;
+export default RowContainer;
