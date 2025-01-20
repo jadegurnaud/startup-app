@@ -19,7 +19,6 @@ const InfosProfile = () => {
             <Text.Span>Abonnés</Text.Span>
             <Text.Span>*</Text.Span>
           </DOM.StyledArticle>
-          <Text.Span>*</Text.Span>
         </DOM.StyledSection>
       
   );

@@ -27,6 +27,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
                       borderTopRightRadius: "1.4rem",
                     }}
                   />
+                  </Link>
                   {!isProfilePage && (
                     <Text.Span
                       fontSize="0.7rem"
@@ -40,10 +41,19 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
                         borderRadius: "0.3rem",
                       }}
                     >
-                      {guide.user.firstName} {guide.user.lastName}
+                      <Link
+                        to={`/users/${guide.user.id}`}
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                          fontWeight: "bold",
+                        }}
+                        
+                      >
+                        {guide.user.firstName} {guide.user.lastName}
+                      </Link>
                     </Text.Span>
                   )}
-                </Link>
                 {!isProfilePage && (
                   <Icon.Base
                     position="absolute"
