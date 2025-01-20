@@ -14,6 +14,14 @@ const StyledSubContainer = styled.div.withConfig({
     ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
+    overflow: ${(props) => props.overflow ? props.overflow : "hidden"};
+    ${(props) => props.flexDirection ? 'flex-direction:' + props.flexDirection + ';' : ""}
+    ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
+    ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
+    ${(props) => props.flex ? 'display:flex;' : ""}
+    ${(props) => props.gap ? 'gap:' + props.gap + 'px;' : ""}
+    ${(props) => props.paddingHorizontal ? 'padding-left:' + props.paddingHorizontal + 'px; padding-right:' + props.paddingHorizontal + 'px;' : ""}
+    
 `;
 
 export default StyledSubContainer;
