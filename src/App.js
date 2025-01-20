@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide } from './components/pages';
+import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser } from './components/pages';
 import './App.css';
 import { Aside } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -37,6 +37,7 @@ const AppContent = () => {
         <Route path="/login" element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path="/logout" element={<Accueil/>} />
+        <Route path="/users/:userId" element={<ProfileOtherUser />} />
         <Route path="/profil" element={<ProtectedRoute>
           <Profile/>
         </ProtectedRoute>} />

@@ -7,5 +7,6 @@ import Guide from "./Guide";
 import Favorites from "./Favorites";
 import NewGuideHome from "./NewGuideHome";
 import NewGuide from "./NewGuide";
+import ProfileOtherUser from "./ProfileOtherUser";
 
-export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuideHome, NewGuide };
+export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser };

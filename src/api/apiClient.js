@@ -1,7 +1,4 @@
 import axios from "axios";
-import { User } from "../store/reducers";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 // Crée une instance Axios centralisée
 const apiClient = axios.create({
@@ -12,6 +9,7 @@ const apiClient = axios.create({
   },
   withCredentials: true,
 });
+
 
 // Middleware de réponse pour gérer les erreurs 401
 apiClient.interceptors.response.use(

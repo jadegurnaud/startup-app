@@ -17,10 +17,12 @@ const StyledContainer = styled.div.withConfig({
 
     #infosProfile {
         display: flex;
-        justify-content: space-between;
         margin-top: 20px;
+        gap: 10px;
         article {
             display: flex;
+
+            width: 202px;
             flex-direction: column;
             span:first-child {
                 color: #8E8E8E;
