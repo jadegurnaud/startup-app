@@ -49,7 +49,7 @@ const Aside = () => {
     //   slug: "logout",
     //   onClick: handleLogout,
     // });
-    menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome" });
+    menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome", onClick: () => navigate("/newGuideHome") });
   } else {
     
     menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome", onClick: () => navigate("/newGuideHome") });

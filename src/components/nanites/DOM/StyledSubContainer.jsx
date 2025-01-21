@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const StyledSubContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'borderRadius', 'height', 'width'].includes(prop),
+    shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'borderRadius', 'height', 'width', 'flexDirection', 'flex', 'justifyContent', 'alignItems', 'gap', 'paddingHorizontal', 'zIndex'].includes(prop),
     })`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.secondary};
     color: ${(props) => props.theme.colors.colors.primary};
@@ -21,7 +21,7 @@ const StyledSubContainer = styled.div.withConfig({
     ${(props) => props.flex ? 'display:flex;' : ""}
     ${(props) => props.gap ? 'gap:' + props.gap + 'px;' : ""}
     ${(props) => props.paddingHorizontal ? 'padding-left:' + props.paddingHorizontal + 'px; padding-right:' + props.paddingHorizontal + 'px;' : ""}
-    
+    ${(props) => props.zIndex ? 'z-index:' + props.zIndex + ';' : ""}
 `;
 
 export default StyledSubContainer;

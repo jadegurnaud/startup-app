@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Text, Container, Image, Button } from "../atoms";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { Guide } from "../../store/reducers";
+import { Guide, User } from "../../store/reducers";
 import { useDispatch } from "react-redux";
 import { GuidesContainer } from "../organisms";
 import { DOM } from "../nanites";
 import { InfosProfile, GuidesPublies, ImageUpload } from "../molecules";
+import { ReactComponent as Vector } from "../../assets/Vector.svg";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useSelector((state) => {
@@ -17,6 +19,7 @@ const Profile = () => {
   });
   const login = useSelector((state) => state.user.login);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [coverImage, setCoverImage] = useState(user?.coverImage || "/coverImage-Profil.png");
 
   useEffect(() => {
@@ -32,6 +35,17 @@ const Profile = () => {
     setCoverImage(newImage);
     // Ici, vous pouvez ajouter la logique pour sauvegarder l'image dans votre backend
   };
+
+  const handleLogout = async () => {
+      try {
+        const result = await dispatch(User.logout()).unwrap();
+        if (result) {
+          navigate("/accueil");
+        }
+      } catch (error) {
+        console.error("Failed to logout", error);
+      }
+    };
 
   return (
     <Container.Page className="Profil">
@@ -51,8 +65,10 @@ const Profile = () => {
                 />
                 <Text.Span>{user?.pseudo}</Text.Span>
               </DOM.StyledContainer>
+              <DOM.StyledContainer style={{ backgroundColor: "transparent", display: "flex", alignItems: "center", gap: "10px" }}>
               <Button.Base>Modifier le profil</Button.Base>
-
+              <Vector onClick={handleLogout}/>
+              </DOM.StyledContainer>
             </DOM.StyledContainer>
             <DOM.StyledContainer style={{ padding: "10px" }}>
               <Text.Paragraph>{user?.firstName}</Text.Paragraph>

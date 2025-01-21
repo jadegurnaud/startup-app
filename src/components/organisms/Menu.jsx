@@ -24,30 +24,30 @@ const Menu = ({ configs }) => {
       </Container.RowContainer>
       <Container.RowContainer gap={40}>
         <Container.RowContainer gap={20}>
-          {configs.map((config, i) =>
+          {configs.map((config) =>
             config.slug !== "specialOffers" &&
             config.slug !== "login" &&
             config.slug !== "profil" &&
             config.slug !== "newGuideHome" ? (
-              <MenuItemIcon config={config} key={i} />
+              <MenuItemIcon config={config} key={config.slug} />
             ) : null
           )}
         </Container.RowContainer>
         <Container.RowContainer gap={10}>
-          {configs.map((config, i) =>
+          {configs.map((config) =>
             config.slug === "login" ? (
-              <Button.Base key={i} onClick={config.onClick}>
+              <Button.Base key={config.slug} onClick={config.onClick}>
                 {config.displayName}
               </Button.Base>
             ) : config.slug === "profil" ? (
-              <Container.RowContainer gap={20}>
-                <MenuItemIcon config={config} key={i} />
+              <Container.RowContainer key={config.slug} gap={20}>
+                <MenuItemIcon config={config} />
                 <Button.Base onClick={config.onClick}>
                   <Notif />
                 </Button.Base>
               </Container.RowContainer>
             ) : config.slug === "newGuideHome" ? (
-              <Button.Base key={i} onClick={config.onClick}>
+              <Button.Base key={config.slug} onClick={config.onClick}>
                 {config.displayName}
               </Button.Base>
             ) : null
