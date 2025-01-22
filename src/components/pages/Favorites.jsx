@@ -3,6 +3,7 @@ import { Text, Container } from "../atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from "../../store/reducers";
 import { GuidesContainer } from "../organisms";
+import "../../styles/favorites.css";
 
 const Favorites = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -11,7 +12,6 @@ const Favorites = () => {
   const {user, login} = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     if (login) {
@@ -34,7 +34,8 @@ const Favorites = () => {
     };
 
     return (
-        <Container.Page className="Favorites">
+        <Container.Page id="favorites">
+          
             <Text.Title>Favoris</Text.Title>
             {guides.length > 0 ? (
                 <GuidesContainer
