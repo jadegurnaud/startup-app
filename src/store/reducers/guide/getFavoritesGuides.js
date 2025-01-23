@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import apiClient from "../../../api/apiClient";
 
 export const getFavoritesGuides = createAsyncThunk('guide/getFavoritesGuides', async (userId, {rejectWithValue}) => {
     if (!userId) {
@@ -7,15 +8,16 @@ export const getFavoritesGuides = createAsyncThunk('guide/getFavoritesGuides', a
     }
     try {
         
-        const config = {
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/favorites/user/${userId}`,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
+        // const config = {
+        //     method: "GET",
+        //     url: `${process.env.REACT_APP_API_URL}/favorites/user/${userId}`,
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        // }
 
-        const response = await axios(config);
+        // const response = await axios(config);
+        const response = await apiClient.get(`/favorites/user/${userId}`);
         return response.data;
     }
     catch (error) {

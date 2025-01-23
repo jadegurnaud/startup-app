@@ -14,6 +14,27 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.padding ? 'padding:' + props.padding + ';' : ""}
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
+    ${(props) => props.display ? 'display:' + props.display + ';' : ""}
+    ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
+    ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
+
+    ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
+
+
+    #infosProfile {
+        display: flex;
+        margin-top: 20px;
+        gap: 10px;
+        article {
+            display: flex;
+
+            width: 202px;
+            flex-direction: column;
+            span:first-child {
+                color: #8E8E8E;
+            }
+        } 
+    }
 `;
 
 export default StyledContainer;

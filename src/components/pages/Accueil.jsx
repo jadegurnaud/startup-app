@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { Text, Container } from '../atoms';
+import React, { useEffect, useState } from 'react';
+import { Text, Container, Button, Input } from '../atoms';
 import { DOM } from '../nanites';
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';
-import { GuidesContainer } from '../organisms';
+import { ViewMap, ViewList } from '../templates';
+import { SearchBar } from '../molecules';
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -14,6 +15,7 @@ const Accueil = () => {
   const user = useSelector((state) => state.user.user);
   const login = useSelector((state) => state.user.login);
 
+  const [isVueListe, setIsVueListe] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,23 +48,34 @@ const Accueil = () => {
     }
   };
 
+  const handleVueListe = () => {
+    setIsVueListe(true);
+  };
+
+  const handleVueMap = () => {
+    setIsVueListe(false);
+  };
+
   return (
     <Container.Page className="Accueil">
-        <DOM.StyledContainer>
-          <Text.Title>Parcourez le monde</Text.Title>
-          <Text.SubTitle textAlign= "center">
-            Trouver le guide de voyage parfait pour votre prochaine destination
-          </Text.SubTitle>
-        </DOM.StyledContainer>
-      
-        <Text.SubTitle>
-          Recommandés pour vous
-        </Text.SubTitle>
-        <GuidesContainer
-          guides={guides}
-          favorites={favorites}
-          handleToggleFavorite={handleToggleFavorite}
-        />
+      <SearchBar />
+        <Button.Base onClick={handleVueListe}>
+            <Text.Paragraph>
+                Vue liste
+            </Text.Paragraph>
+        </Button.Base>
+        <Button.Base onClick={handleVueMap}>
+            <Text.Paragraph>
+                Vue carte
+            </Text.Paragraph>
+        </Button.Base>
+        {isVueListe ? (
+            <ViewList guides={guides} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
+        
+        ) : (
+            <ViewMap/>
+        )}
+        
     </Container.Page>
   );
 };

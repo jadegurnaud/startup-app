@@ -3,7 +3,7 @@ import { resetAppState } from '../../../actions/resetState';
 
 export const logout = createAsyncThunk('user/logout', async (_, {dispatch, rejectWithValue}) => {
     try {
-        localStorage.removeItem('token');
+        localStorage.removeItem('accessToken');
         dispatch(resetAppState());
         return true;
     } catch (error) {

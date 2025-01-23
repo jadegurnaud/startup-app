@@ -1,4 +1,6 @@
 import Menu from "./Menu";
 import Page from "./Page";
 import Aside from "./Aside";
-export { Menu, Page, Aside };
+import RowContainer from "./RowContainer";
+import SearchContainer from "./SearchContainer";
+export { Menu, Page, Aside, RowContainer, SearchContainer };

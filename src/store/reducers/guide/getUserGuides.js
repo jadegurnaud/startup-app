@@ -1,25 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import apiClient from "../../../api/apiClient";
 
-export const getUserGuides = createAsyncThunk('user/getUserGuides', async (userId, { rejectWithValue }) => {
+export const getUserGuides = createAsyncThunk(
+  "user/getUserGuides",
+  async (userId, { rejectWithValue }) => {
     if (!userId) {
-        return rejectWithValue('L\'id de l\'utilisateur est manquant');
-      }
+      return rejectWithValue("L'id de l'utilisateur est manquant");
+    }
     try {
-        
-        const config = {
-            method: "GET",
-            url: `${process.env.REACT_APP_API_URL}/guides/user/${userId}`,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }
-
-        const response = await axios(config);
-        return response.data;
+      const response = await apiClient.get(`/guides/user/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error(error.response.data, "error");
+      return rejectWithValue(error.response.data);
     }
-    catch (error) {
-        console.error(error.response.data, "error");
-        return rejectWithValue(error.response.data);
-    }
-});
+  }
+);
