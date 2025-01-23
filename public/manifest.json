@@ -1,6 +1,6 @@
 {
-  "short_name": "Guidely",
-  "name": "Guidely",
+  "short_name": "Voyco",
+  "name": "Voyco",
   "icons": [
     {
       "src": "favicon.ico",
@@ -31,7 +31,7 @@
       "sizes": "1502x2254",
       "type": "image/jpeg",
       "form_factor": "narrow",
-      "label": "Guidely Mobile"
+      "label": "Voyco Mobile"
     }
   ],
   "start_url": ".",

@@ -1,8 +1,8 @@
-# Guidely
+# Voyco
 
 Ce projet est réalisé dans le cadre de la startup qui se déroule tout au long de l'année.
 
-Guidely est une Progressive web app (PWA) dédiée à la création et au partage de guides de voyage.
+Voyco est une Progressive web app (PWA) dédiée à la création et au partage de guides de voyage.
 Elle permet aux voyageurs de créer des guides de voyage grâce à leurs expériences et de les partager avec la communauté.
 Les utilisateurs peuvent également consulter les guides de voyage créés par d'autres utilisateurs et les enregistrer pour les consulter.
 

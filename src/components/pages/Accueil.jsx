@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Container, Button } from '../atoms';
+import { Text, Container, Button, Input } from '../atoms';
 import { DOM } from '../nanites';
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';
 import { ViewMap, ViewList } from '../templates';
-import { se } from 'date-fns/locale';
+import { SearchBar } from '../molecules';
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -58,6 +58,7 @@ const Accueil = () => {
 
   return (
     <Container.Page className="Accueil">
+      <SearchBar />
         <Button.Base onClick={handleVueListe}>
             <Text.Paragraph>
                 Vue liste
