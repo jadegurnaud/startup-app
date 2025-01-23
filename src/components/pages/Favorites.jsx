@@ -3,7 +3,6 @@ import { Text, Container } from "../atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from "../../store/reducers";
 import { GuidesContainer } from "../organisms";
-import "../../styles/favorites.css";
 
 const Favorites = () => {
   const { guides, favorites } = useSelector((state) => {
