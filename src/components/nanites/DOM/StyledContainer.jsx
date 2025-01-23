@@ -14,6 +14,12 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.padding ? 'padding:' + props.padding + ';' : ""}
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
+    ${(props) => props.display ? 'display:' + props.display + ';' : ""}
+    ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
+    ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
+
+    ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
+
 
     #infosProfile {
         display: flex;

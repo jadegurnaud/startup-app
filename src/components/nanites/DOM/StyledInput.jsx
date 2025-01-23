@@ -7,6 +7,7 @@ const StyledInput = styled.input.withConfig({
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
     border: ${(props) => props.border ?? "1px solid #ccc"};
     padding: ${(props) => props.$padding ?? "0.6rem"};
+    ${(props) => props.paddingLeft ? 'padding-left:' + props.paddingLeft + ';' : ""}
     border-radius: ${(props) => props.borderRadius ?? "0.3rem"};
     font-size: ${(props) => props.fontSize ?? "1rem"};
     color: ${(props) => props.theme.colors.colors.primary};
@@ -17,6 +18,7 @@ const StyledInput = styled.input.withConfig({
         border-color: ${(props) => props.focusBorderColor ?? "#007BFF"};
         box-shadow: ${(props) => props.focusBoxShadow ?? "0 0 0.5rem rgba(0, 123, 255, 0.5)"};
     }
+
 `;
 
 export default StyledInput;
