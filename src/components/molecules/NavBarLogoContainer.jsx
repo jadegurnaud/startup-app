@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Container } from "../atoms";
 
-export default function NavLinkContainer() {
+export default function NavLogoContainer() {
     const navigate = useNavigate();
 
     return (
@@ -9,6 +9,7 @@ export default function NavLinkContainer() {
             //changement de page :
             onClick={() => navigate("/accueil")}
             //style :
+            id="navLogoContainer"
             cursor="pointer"
             position="absolute"
             left="40px"

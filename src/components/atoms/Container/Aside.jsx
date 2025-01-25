@@ -4,6 +4,7 @@ import { DOM } from "../../nanites";
 const Aside = ({ children, ...props }) => {
     return (
         <DOM.StyledContainer
+            id="navBarMainContainer"
             display="flex"
             height="90px"
             padding="22px 40px"

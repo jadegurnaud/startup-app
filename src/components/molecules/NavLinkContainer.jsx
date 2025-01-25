@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function NavLinkContainer() {
     const navigate = useNavigate();
     return (
-        <Container.RowContainer>
+        <Container.RowContainer id="mainNavLinkContainer" gap="48px">
             <Container.NavLinkContainer onClick={() => navigate("/accueil")}>
                 <Text.NavSpanLink >Offres spéciales</Text.NavSpanLink>
                 <Gift />
@@ -22,11 +22,10 @@ export default function NavLinkContainer() {
                 <Text.NavSpanLink >Mes guides</Text.NavSpanLink>
                 <BookOpenText />
             </Container.NavLinkContainer>
-            <Container.NavLinkContainer onClick={() => navigate("/favorites")} >
-                <Text.NavSpanLink >Mes favoris</Text.NavSpanLink>
+            <Container.NavLinkContainer id="heartSVGText" display="flex" onClick={() => navigate("/favorites")} >
+                <Text.NavSpanLink id="mesFavText" >Mes favoris</Text.NavSpanLink>
                 <Heart />
             </Container.NavLinkContainer>
-
         </Container.RowContainer>
     );
 }

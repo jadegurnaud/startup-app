@@ -7,8 +7,6 @@ const NavLinkContainer = ({ children, ...props }) => {
             display="flex"
             flexDirection="row"
             alignItems="center"
-            height="38px"
-            padding="10px 14px"
             gap="10px"
             borderRadius="4px"
             cursor="pointer"
