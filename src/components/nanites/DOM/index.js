@@ -12,5 +12,7 @@ import StyledListItem from "./StyledListItem";
 import StyledSpan from "./StyledSpan";
 import StyledSection from "./StyledSection";
 import StyledArticle from "./StyledArticle";
+import StyledSelect from "./StyledSelect";
+import StyledOption from "./StyledOption";
 
-export { StyledButton, StyledContainer, StyledSubContainer, StyledParagraph, StyledTitle, StyledSubTitle, StyledImage, StyledInput, StyledForm, StyledList, StyledListItem, StyledSpan, StyledSection, StyledArticle };
+export { StyledButton, StyledSelect, StyledContainer, StyledSubContainer, StyledParagraph, StyledTitle, StyledSubTitle, StyledImage, StyledInput, StyledForm, StyledList, StyledListItem, StyledSpan, StyledSection, StyledArticle, StyledOption };

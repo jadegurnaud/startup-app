@@ -6,6 +6,8 @@ import { Guide } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';
 import { ViewMap, ViewList } from '../templates';
 import { SearchBar } from '../molecules';
+import { ReactComponent as GridFour } from '../../assets/GridFour.svg';
+import { ReactComponent as MapTrifold } from '../../assets/MapTrifold.svg';
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => {
@@ -37,7 +39,7 @@ const Accueil = () => {
 
     try {
       dispatch(
-        Guide.toggleFavorite({ 
+        Guide.toggleFavorite({
           userId: user.id,
           guideId,
           isFavorite: favorites[guideId] || false
@@ -59,23 +61,27 @@ const Accueil = () => {
   return (
     <Container.Page className="Accueil">
       <SearchBar />
-        <Button.Base onClick={handleVueListe}>
-            <Text.Paragraph>
-                Vue liste
-            </Text.Paragraph>
-        </Button.Base>
-        <Button.Base onClick={handleVueMap}>
-            <Text.Paragraph>
-                Vue carte
-            </Text.Paragraph>
-        </Button.Base>
-        {isVueListe ? (
-            <ViewList guides={guides} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
-        
-        ) : (
-            <ViewMap/>
-        )}
-        
+      <DOM.StyledContainer backgroundColor="#F2F2F2" padding="5px" style={{ display: "inline-block", borderRadius: "6px" }}>
+        <Container.RowContainer backgroundColor="transparent" >
+          <Button.Switch onClick={handleVueListe} style={{
+            backgroundColor: isVueListe ? "white" : "transparent",
+          }}>
+            <GridFour />
+          </Button.Switch>
+          <Button.Switch onClick={handleVueMap} style={{
+            backgroundColor: !isVueListe ? "white" : "transparent",
+          }}>
+            <MapTrifold />
+          </Button.Switch>
+        </Container.RowContainer>
+      </DOM.StyledContainer>
+      {isVueListe ? (
+        <ViewList guides={guides} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
+
+      ) : (
+        <ViewMap guides={guides} />
+      )}
+
     </Container.Page>
   );
 };

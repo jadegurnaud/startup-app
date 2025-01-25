@@ -5,7 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 
-const ViewMap = () => {
+const ViewMap = ({guides}) => {
     const mapRef = useRef(null);
     const mapInstanceRef = useRef(null);
 
@@ -17,10 +17,13 @@ const ViewMap = () => {
                 attribution: "© OpenStreetMap contributors",
             }).addTo(mapInstanceRef.current);
 
-            L.marker([48.8566, 2.3522])
-                .addTo(mapInstanceRef.current)
-                .bindPopup("Paris")
-                .openPopup();
+            guides.forEach((guide) => {
+                if (!guide.address) return;
+                console.log(guide.address);
+                L.marker([guide.address.latitude, guide.address.longitude])
+                    .addTo(mapInstanceRef.current)
+                    .bindPopup(guide.title);
+            });
         }
 
         

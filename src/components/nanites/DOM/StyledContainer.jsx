@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
+    shouldForwardProp: (prop) => !['backgroundColor', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
 })`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
     color: ${(props) => props.theme.colors.colors.primary};
@@ -26,23 +26,6 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
     ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
     ${(props) => props.overflow ? 'overflow:' + props.overflow + ';' : ""}
-
-
-
-    #infosProfile {
-        display: flex;
-        margin-top: 20px;
-        gap: 10px;
-        article {
-            display: flex;
-
-            width: 202px;
-            flex-direction: column;
-            span:first-child {
-                color: #8E8E8E;
-            }
-        } 
-    }
 `;
 
 export default StyledContainer;
