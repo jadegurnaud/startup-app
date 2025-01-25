@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Container, Button, Input } from '../atoms';
+import { Container, Button } from '../atoms';
 import { DOM } from '../nanites';
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from '../../store/reducers';

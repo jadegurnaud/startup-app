@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
+    shouldForwardProp: (prop) => !['backgroundColor', 'borderBottom', 'borderRadius', 'flexDirection', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
 })`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
     color: ${(props) => props.theme.colors.colors.primary};

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, Container } from "../atoms";
+import { Text } from "../atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from "../../store/reducers";
 import { GuidesContainer } from "../organisms";
