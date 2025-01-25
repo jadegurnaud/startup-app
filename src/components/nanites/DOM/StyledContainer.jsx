@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
     shouldForwardProp: (prop) => !['backgroundColor', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
-    })`
+})`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
     color: ${(props) => props.theme.colors.colors.primary};
     ${(props) => props.position ? 'position:' + props.position + ';' : ""}
@@ -19,22 +19,13 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
     ${(props) => props.flexDirection ? 'flex-direction:' + props.flexDirection + ';' : ""}
     ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
-
-
-    #infosProfile {
-        display: flex;
-        margin-top: 20px;
-        gap: 10px;
-        article {
-            display: flex;
-
-            width: 202px;
-            flex-direction: column;
-            span:first-child {
-                color: #8E8E8E;
-            }
-        } 
-    }
+    ${(props) => props.gap ? 'gap:' + props.gap + ';' : ""}
+    ${(props) => props.backgroundColor ? 'background-color:' + props.backgroundColor + ';' : ""}
+    ${(props) => props.borderBottom ? 'border-bottom:' + props.borderBottom + ';' : ""}
+    ${(props) => props.background ? 'background:' + props.background + ';' : ""}
+    ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
+    ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
+    ${(props) => props.overflow ? 'overflow:' + props.overflow + ';' : ""}
 `;
 
 export default StyledContainer;

@@ -9,7 +9,6 @@ const Page = ({children, ...props}) => {
       height= "calc(100vh - 74px)"
       width= "100%"
       padding= "20px 40px"
-      style={{ boxSizing: "border-box" }}
       {...props}
     >{children}
     </DOM.StyledContainer>
