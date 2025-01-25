@@ -14,7 +14,7 @@ const Aside = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.user.token);
+  const { login, user } = useSelector((state) => state.user);
 
   const handleLogout = async () => {
     try {
@@ -42,7 +42,7 @@ const Aside = () => {
     { displayName: "Favoris", slug: "favorites", iconSource: <Heart /> },
   ];
 
-  if (token) {
+  if (login) {
     menuConfigs.push({ displayName: "Mon profil", slug: "profil", imageSource: "https://via.placeholder.com/150" });
     menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome", onClick: () => navigate("/newGuideHome") });
   } else {
@@ -55,7 +55,7 @@ const Aside = () => {
     <Container.Aside >
       <NavBarLogoContainer />
       <NavLinkContainer />
-      <NavBarButtonContainer />
+      <NavBarButtonContainer isLogin={login} user={user} />
     </Container.Aside >
   );
 };

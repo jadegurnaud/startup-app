@@ -21,9 +21,11 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
     ${(props) => props.gap ? 'gap:' + props.gap + ';' : ""}
     ${(props) => props.backgroundColor ? 'background-color:' + props.backgroundColor + ';' : ""}
-    ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
     ${(props) => props.borderBottom ? 'border-bottom:' + props.borderBottom + ';' : ""}
     ${(props) => props.background ? 'background:' + props.background + ';' : ""}
+    ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
+    ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
+    ${(props) => props.overflow ? 'overflow:' + props.overflow + ';' : ""}
 
 
 
