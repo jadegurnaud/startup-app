@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser } from './components/pages';
 import './App.css';
-import { Aside } from './components/organisms';
+import { NavBar } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthenticatedUser } from './store/reducers/user/getAuthenticatedUser';
@@ -29,7 +29,7 @@ const AppContent = () => {
 
   return (
     <>
-      <Aside/>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
         <Route path="/accueil" element={<Accueil/>} />

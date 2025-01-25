@@ -1,5 +1,5 @@
-import Aside from "./Aside";
+import NavBar from "./NavBar";
 import GuidesContainer from "./GuidesContainer";
 
 
-export { Aside, GuidesContainer };
+export { NavBar, GuidesContainer };
