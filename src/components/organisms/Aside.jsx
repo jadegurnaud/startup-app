@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Menu from './Menu';
-import { Button, Container } from "../atoms";
+import { Container } from "../atoms";
+import { NavBarLogoContainer, NavLinkContainer, NavBarButtonContainer } from "../molecules";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { User } from "../../store/reducers";
@@ -43,24 +43,20 @@ const Aside = () => {
   ];
 
   if (token) {
-    menuConfigs.push({ displayName: "Mon profil", slug: "profil" , imageSource: "https://via.placeholder.com/150" });
-    // menuConfigs.push({
-    //   displayName: "Deconnexion",
-    //   slug: "logout",
-    //   onClick: handleLogout,
-    // });
+    menuConfigs.push({ displayName: "Mon profil", slug: "profil", imageSource: "https://via.placeholder.com/150" });
     menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome", onClick: () => navigate("/newGuideHome") });
   } else {
-    
+
     menuConfigs.push({ displayName: "Créer un guide", slug: "newGuideHome", onClick: () => navigate("/newGuideHome") });
     menuConfigs.push({ displayName: "Se connecter / Créer un compte", slug: "login", onClick: () => navigate("/login") });
   }
 
   return (
-    <Container.Aside>
-      <Menu configs={menuConfigs} />
-      {/* <Button.NightSwitch /> */}
-    </Container.Aside>
+    <Container.Aside >
+      <NavBarLogoContainer />
+      <NavLinkContainer />
+      <NavBarButtonContainer />
+    </Container.Aside >
   );
 };
 

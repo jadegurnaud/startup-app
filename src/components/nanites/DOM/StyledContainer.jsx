@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
     shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
-    })`
+})`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
     color: ${(props) => props.theme.colors.colors.primary};
     ${(props) => props.position ? 'position:' + props.position + ';' : ""}
@@ -17,8 +17,14 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.display ? 'display:' + props.display + ';' : ""}
     ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
     ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
-
+    ${(props) => props.flexDirection ? 'flex-direction:' + props.flexDirection + ';' : ""}
     ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
+    ${(props) => props.gap ? 'gap:' + props.gap + ';' : ""}
+    ${(props) => props.backgroundColor ? 'background-color:' + props.backgroundColor + ';' : ""}
+    ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
+    ${(props) => props.borderBottom ? 'border-bottom:' + props.borderBottom + ';' : ""}
+    ${(props) => props.background ? 'background:' + props.background + ';' : ""}
+
 
 
     #infosProfile {

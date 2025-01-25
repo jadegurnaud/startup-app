@@ -26,9 +26,9 @@ const Menu = ({ configs }) => {
         <Container.RowContainer gap={20}>
           {configs.map((config) =>
             config.slug !== "specialOffers" &&
-            config.slug !== "login" &&
-            config.slug !== "profil" &&
-            config.slug !== "newGuideHome" ? (
+              config.slug !== "login" &&
+              config.slug !== "profil" &&
+              config.slug !== "newGuideHome" ? (
               <MenuItemIcon config={config} key={config.slug} />
             ) : null
           )}
