@@ -6,5 +6,6 @@ import * as Input from "./Input";
 import * as Form from "./Form";
 import * as List from "./List";
 import * as Icon from "./Icon";
+import * as Select from "./Select";
 
-export { Button, Container, Text, Image, Input, Form, List, Icon };
+export { Button, Container, Text, Image, Input, Form, List, Icon, Select };

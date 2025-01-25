@@ -3,13 +3,13 @@ import { DOM } from "../../nanites";
 
 const RowContainer = ({children, ...props }) => {
   return (
-    <DOM.StyledSubContainer
-      flex="true"
+    <DOM.StyledContainer
+      display="flex"
       flexDirection="row"
       {...props}
     >
       {children}
-    </DOM.StyledSubContainer>
+    </DOM.StyledContainer>
   );
 }
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledInput = styled.input.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'border', 'padding', 'borderRadius', 'fontSize', 'color', 'boxShadow', 'focusBorderColor', 'focusBoxShadow', 'width', 'marginBottom'].includes(prop),
+    shouldForwardProp: (prop) => !['backgroundColor', 'border', 'padding', 'paddingLeft', 'borderRadius', 'fontSize', 'color', 'boxShadow', 'focusBorderColor', 'focusBoxShadow', 'width', 'marginBottom'].includes(prop),
     })`
     background-color: ${(props) => props.backgroundColor ?? "transparent"};
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
