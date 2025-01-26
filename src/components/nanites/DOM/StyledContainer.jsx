@@ -4,7 +4,7 @@ const StyledContainer = styled.div.withConfig({
     shouldForwardProp: (prop) => !['backgroundColor', 'borderBottom', 'borderRadius', 'flexDirection', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
 })`
     background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
-    color: ${(props) => props.theme.colors.colors.primary};
+    color: ${(props) => props.color ?? props.theme.colors.colors.primary};
     ${(props) => props.position ? 'position:' + props.position + ';' : ""}
     ${(props) => props.left ? 'left:' + props.left + ';' : ""}
     ${(props) => props.right ? 'right:' + props.right + ';' : ""}
@@ -26,6 +26,7 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
     ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
     ${(props) => props.overflow ? 'overflow:' + props.overflow + ';' : ""}
+    ${(props) => props.boxShadow ? 'box-shadow:' + props.boxShadow + ';' : ""}
 `;
 
 export default StyledContainer;

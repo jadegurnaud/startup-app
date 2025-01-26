@@ -9,10 +9,14 @@ const SearchBar = () => {
   
   return (
     <Container.SearchContainer>
-        <DOM.StyledContainer position="relative" left="35px">
+        <Container.ColumnContainer>
+          <Input.Label>Rechercher un pays, une ville</Input.Label>
+          <Input.Search placeholder="ex : Paris" />
+        </Container.ColumnContainer>
+        
+        <DOM.StyledContainer backgroundColor="#3E5544" padding= "10px" borderRadius= "999px" display= "flex" alignItems= "center" justifyContent= "center">
             <Search />
         </DOM.StyledContainer>
-        <Input.Search placeholder="Rechercher un pays, une ville..." />
     </Container.SearchContainer>
       
   );
