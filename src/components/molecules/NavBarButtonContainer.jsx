@@ -5,12 +5,13 @@ import { ReactComponent as Notif } from "../../assets/notif.svg";
 import { useNavigate } from "react-router-dom";
 
 
-export default function NavLinkContainer({ isLogin, user }) {
+export default function NavBarButtonContainer({ isLogin, user }) {
     const navigate = useNavigate();
     return (
 
         <Container.RowContainer
-            gap={isLogin ? "10px" : "18px"}
+            id="NavBarButtonContainer"
+            gap={isLogin ? "28px" : "10px"}
             position="absolute"
             right="40px"
         >
@@ -22,7 +23,7 @@ export default function NavLinkContainer({ isLogin, user }) {
             </Button.MainButton>
             {isLogin ?
                 <Container.RowContainer
-                    gap="18px">
+                    gap="28px">
                     <DOM.StyledContainer cursor="pointer" >
                         <Notif />
                     </DOM.StyledContainer>

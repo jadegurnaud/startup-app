@@ -1,0 +1,95 @@
+@media (max-width: 1440px) {
+  #navLogoContainer {
+    width: 26px;
+    background-color: orange;
+    position: relative;
+    left: 0;
+  }
+
+  #NavBarButtonContainer {
+    position: relative;
+    right: 0;
+  }
+
+  #navBarMainContainer {
+    justify-content: space-between;
+  }
+
+  #mesFavText {
+    display: flex;
+  }
+
+  #heartSVGText {
+    display: flex;
+  }
+
+  #heartSVGnoText {
+    display: none;
+    cursor: pointer;
+    width: 24px;
+  }
+
+  #mainNavLinkContainer {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  #mesFavText {
+    display: none;
+  }
+
+  #heartSVGText {
+    display: none;
+  }
+
+  #heartSVGnoText {
+    display: flex;
+  }
+}
+
+@media (max-width: 900px) {
+  #navLogoContainerMain {
+    gap: 24px;
+  }
+
+  #mainNavLinkContainer {
+    display: none;
+  }
+
+  #menuBurgerContainer {
+    display: flex;
+  }
+
+  #heartSVGnoText {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  #menuBurgerContainer {
+    position: relative;
+    right: 0;
+  }
+
+  #navBarMainContainer {
+    padding: 22px 20px;
+  }
+
+  #navLogoContainerMain {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #NavBarButtonContainer {
+    display: none;
+  }
+
+  #heartSVGnoText {
+    display: none;
+  }
+}
