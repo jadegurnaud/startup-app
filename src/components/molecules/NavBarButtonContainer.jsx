@@ -5,12 +5,12 @@ import { ReactComponent as Notif } from "../../assets/notif.svg";
 import { useNavigate } from "react-router-dom";
 
 
-export default function NavLinkContainer({ isLogin, user }) {
+export default function NavBarButtonContainer({ isLogin, user }) {
     const navigate = useNavigate();
     return (
 
         <Container.RowContainer
-            id="navLinkContainer"
+            id="NavBarButtonContainer"
             gap={isLogin ? "28px" : "10px"}
             position="absolute"
             right="40px"

@@ -13,9 +13,8 @@ const NavBar = () => {
   const { login, user } = useSelector((state) => state.user);
 
   return (
-    <Container.Aside >
+    <Container.Aside>
       <NavBarLogoContainer />
-      <NavBarMenuBurger />
       <NavLinkContainer />
       <DOM.StyledContainer id="heartSVGnoText" display="none" onClick={() => navigate("/favorites")} >
         <Heart />

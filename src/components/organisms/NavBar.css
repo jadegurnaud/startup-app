@@ -6,7 +6,7 @@
     left: 0;
   }
 
-  #navLinkContainer {
+  #NavBarButtonContainer {
     position: relative;
     right: 0;
   }
@@ -35,6 +35,7 @@
 }
 
 @media (max-width: 1024px) {
+
   #mesFavText {
     display: none;
   }
@@ -49,11 +50,46 @@
 }
 
 @media (max-width: 900px) {
+  #navLogoContainerMain {
+    gap: 24px;
+  }
+
   #mainNavLinkContainer {
     display: none;
   }
 
   #menuBurgerContainer {
     display: flex;
+  }
+
+  #heartSVGnoText {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  #menuBurgerContainer {
+    position: relative;
+    right: 0;
+  }
+
+  #navBarMainContainer {
+    padding: 22px 20px;
+  }
+
+  #navLogoContainerMain {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #NavBarButtonContainer {
+    display: none;
+  }
+
+  #heartSVGnoText {
+    display: none;
   }
 }
