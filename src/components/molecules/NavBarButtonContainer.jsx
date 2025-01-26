@@ -18,6 +18,7 @@ export default function NavBarButtonContainer({ isLogin, user }) {
             <Button.MainButton
                 onClick={() => navigate("/newGuideHome")}
                 backgroundColor="#3E5544"
+                hoverBackgroundColor="#56735D"
                 color="white">
                 <Plus /> Crée un guide
             </Button.MainButton>
@@ -42,6 +43,7 @@ export default function NavBarButtonContainer({ isLogin, user }) {
                 <Button.MainButton
                     onClick={() => navigate("/login")}
                     backgroundColor="#F0EFEB"
+                    hoverBackgroundColor="#DAD7CE"
                     color="#3E5544">
                     Se connecter</Button.MainButton>
             }

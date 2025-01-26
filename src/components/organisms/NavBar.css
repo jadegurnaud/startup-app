@@ -26,12 +26,8 @@
   #heartSVGnoText {
     display: none;
     cursor: pointer;
-    width: 24px;
   }
 
-  #mainNavLinkContainer {
-    gap: 28px;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -47,9 +43,13 @@
   #heartSVGnoText {
     display: flex;
   }
+
+  #mainNavLinkContainer {
+    gap: 0;
+  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   #navLogoContainerMain {
     gap: 24px;
   }
