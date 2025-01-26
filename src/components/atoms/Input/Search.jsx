@@ -3,11 +3,7 @@ import { DOM } from "../../nanites";
 
 const Search = (props) => {
     return <DOM.StyledInput
-    width="485px"
-    padding="12px"
-    paddingLeft="40px"
-    borderRadius= "999px"
-backgroundColor= "#F2F2F2"
+    border="none"
     {...props}></DOM.StyledInput>;
 }
 
