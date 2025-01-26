@@ -6,14 +6,15 @@ const GuidesFilter = () => {
  
   
   return (
-    <Container.RowContainer>
+    <Container.RowContainer gap="20px">
         <Text.SubTitle>
             Guides
         </Text.SubTitle>
         <Select.Base>
-            <Select.Option value="all">Guides les plus aimés</Select.Option>
-            <Select.Option value="favorites">Guides récents</Select.Option>
-            <Select.Option value="favorites">Abonnements</Select.Option>
+            <Select.Option value="plusAimes">Les plus aimés</Select.Option>
+            <Select.Option value="ajoutsRecents">Ajouts récents</Select.Option>
+            <Select.Option value="abonnements">Abonnements</Select.Option>
+            <Select.Option value="plusConsultes">Les plus consultés</Select.Option>
         </Select.Base>
     </Container.RowContainer>
       

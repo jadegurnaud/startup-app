@@ -7,12 +7,11 @@ import { useNetwork } from '../../providers/contexts';
 import Reactotron from 'reactotron-react-js';
 
 const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false }) => {
-  const {isOnline} = useNetwork();
-  const srcImage = isOnline && guide?.coverImage ? guide.coverImage : "/coverImage.png";
+
+  const srcImage = guide?.coverImage ? guide.coverImage : "/coverImage.png";
   
   
   return (
-    Reactotron.log(isOnline, "Online"),
     <DOM.StyledSubContainer style={{ display: "flex", flexDirection: "column", borderRadius: "1.4rem", width: "100%", maxWidth: "13rem", margin: "auto"}}>
                <DOM.StyledSubContainer position= "relative" borderRadius= "1.4rem">
                 <Link to={`/guides/${guide.id}`} style={{ }}>
