@@ -16,8 +16,8 @@ const Aside = ({ children, ...props }) => {
             left="0"
             top="0"
             right="0"
-            paddingHorizontal={20}
-            zIndex={100}
+            zIndex="100"
+            backdropFilter="blur(10px)"
             {...props}
         >{children}
         </DOM.StyledContainer>
