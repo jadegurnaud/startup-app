@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Select, Container, Text} from "../atoms";
-import { DOM } from "../nanites";
 
-const GuidesFilter = () => {
- 
+const GuidesFilter = ({ onFilterChange }) => {
+  const [selectedFilter, setSelectedFilter] = useState('plusAimes');
+
+  const handleFilterChange = (event) => {
+    const newFilter = event.target.value;
+    setSelectedFilter(newFilter);
+    onFilterChange(newFilter);
+  };
   
   return (
     <Container.RowContainer gap="20px">
         <Text.SubTitle>
             Guides
         </Text.SubTitle>
-        <Select.Base>
+        <Select.Base value={selectedFilter} 
+          onChange={handleFilterChange}>
             <Select.Option value="plusAimes">Les plus aimés</Select.Option>
             <Select.Option value="ajoutsRecents">Ajouts récents</Select.Option>
             <Select.Option value="abonnements">Abonnements</Select.Option>

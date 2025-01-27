@@ -11,23 +11,73 @@ const initialState = {
     },
     error: null,
 };
-export const recommendedGuidesSlice = createSlice({
-    name: 'recommendedGuides',
+export const guidesSlice = createSlice({
+    name: 'guides',
     initialState,
     reducers: {},
     extraReducers(builder) {
         builder
-            .addCase(Guide.getRecommendedGuides.pending, (state, action) => {
+            .addCase(Guide.getAjoutsRecentsGuides.pending, (state, action) => {
                 state.status.guides = "pending";
             })
-            .addCase(Guide.getRecommendedGuides.fulfilled, (state, action) => {
+            .addCase(Guide.getAjoutsRecentsGuides.fulfilled, (state, action) => {
+                state.status.guides = "succeed";
+                state.error = null;
+                console.log("Ajouts recents guides");
+                console.log(action.payload);
+                if (action?.payload) {  
+                    state.guides = action.payload;
+                }
+            })
+            .addCase(Guide.getAjoutsRecentsGuides.rejected, (state, action) => {
+                state.status.guides = "failed";
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
+            })
+            .addCase(Guide.getPlusAimesGuides.pending, (state, action) => {
+                state.status.guides = "pending";
+            })
+            .addCase(Guide.getPlusAimesGuides.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
                 state.error = null;
                 if (action?.payload) {  
                     state.guides = action.payload;
                 }
             })
-            .addCase(Guide.getRecommendedGuides.rejected, (state, action) => {
+            .addCase(Guide.getPlusAimesGuides.rejected, (state, action) => {
+                state.status.guides = "failed";
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
+            })
+            .addCase(Guide.getAbonnementsGuides.pending, (state, action) => {
+                state.status.guides = "pending";
+            })
+            .addCase(Guide.getAbonnementsGuides.fulfilled, (state, action) => {
+                state.status.guides = "succeed";
+                state.error = null;
+                if (action?.payload) {  
+                    state.guides = action.payload;
+                }
+            })
+            .addCase(Guide.getAbonnementsGuides.rejected, (state, action) => {
+                state.status.guides = "failed";
+                if(action?.payload?.message){
+                    state.error = action.payload.message;
+                }
+            })
+            .addCase(Guide.getPlusConsultesGuides.pending, (state, action) => {
+                state.status.guides = "pending";
+            })
+            .addCase(Guide.getPlusConsultesGuides.fulfilled, (state, action) => {
+                state.status.guides = "succeed";
+                state.error = null;
+                if (action?.payload) {  
+                    state.guides = action.payload;
+                }
+            })
+            .addCase(Guide.getPlusConsultesGuides.rejected, (state, action) => {
                 state.status.guides = "failed";
                 if(action?.payload?.message){
                     state.error = action.payload.message;

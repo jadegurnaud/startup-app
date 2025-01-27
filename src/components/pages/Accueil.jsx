@@ -11,26 +11,42 @@ import { ReactComponent as MapTrifold } from '../../assets/MapTrifold.svg';
 
 
 const Accueil = () => {
-  const { guides, favorites } = useSelector((state) => {
-    return state?.recommendedGuides;
-  });
-
-  const user = useSelector((state) => state.user.user);
-  const login = useSelector((state) => state.user.login);
+  const { guides, favorites } = useSelector((state) => state?.guides);
+  const { user, login} = useSelector((state) => state?.user);
 
   const [isVueListe, setIsVueListe] = useState(true);
+  const [currentFilter, setCurrentFilter] = useState('plusAimes');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(Guide.getRecommendedGuides());
-  }, [dispatch, login]);
+    switch(currentFilter) {
+      case 'plusAimes':
+        dispatch(Guide.getPlusAimesGuides());
+        break;
+      case 'ajoutsRecents':
+        console.log('ajoutsRecents');
+        dispatch(Guide.getAjoutsRecentsGuides());
+        break;
+      case 'abonnements':
+        dispatch(Guide.getAbonnementsGuides());
+        break;
+      case 'plusConsultes':
+        dispatch(Guide.getPlusConsultesGuides());
+        break;
+    }
+  }, [dispatch, login, currentFilter]);
 
   useEffect(() => {
     if (login) {
       dispatch(Guide.getFavoritesGuides(user.id));
     }
   }, [login, user, dispatch]);
+
+  const handleFilterChange = (filter) => {
+    console.log(filter);
+    setCurrentFilter(filter);
+  };
 
   const handleToggleFavorite = (guideId) => {
     if (!login) {
@@ -64,8 +80,8 @@ const Accueil = () => {
       <SearchBar />
       <Container.RowContainer justifyContent="space-between">
                 
-        <GuidesFilter />
-                <DOM.StyledContainer backgroundColor="#F2F2F2" padding="5px" style={{ display: "inline-block", borderRadius: "6px" }}>
+        <GuidesFilter onFilterChange={handleFilterChange} />
+        <DOM.StyledContainer backgroundColor="#F2F2F2" padding="5px" style={{ display: "inline-block", borderRadius: "6px" }}>
         <Container.RowContainer backgroundColor="transparent" >
           <Button.Switch onClick={handleVueListe} style={{
             backgroundColor: isVueListe ? "white" : "transparent",
