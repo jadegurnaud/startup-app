@@ -11,26 +11,42 @@ import { ReactComponent as MapTrifold } from '../../assets/MapTrifold.svg';
 
 
 const Accueil = () => {
-  const { guides, favorites } = useSelector((state) => {
-    return state?.recommendedGuides;
-  });
-
-  const user = useSelector((state) => state.user.user);
-  const login = useSelector((state) => state.user.login);
+  const { guides, favorites } = useSelector((state) => state?.guides);
+  const { user, login} = useSelector((state) => state?.user);
 
   const [isVueListe, setIsVueListe] = useState(true);
+  const [currentFilter, setCurrentFilter] = useState('plusAimes');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(Guide.getRecommendedGuides());
-  }, [dispatch, login]);
+    switch(currentFilter) {
+      case 'plusAimes':
+        dispatch(Guide.getPlusAimesGuides());
+        break;
+      case 'ajoutsRecents':
+        console.log('ajoutsRecents');
+        dispatch(Guide.getAjoutsRecentsGuides());
+        break;
+      case 'abonnements':
+        dispatch(Guide.getAbonnementsGuides());
+        break;
+      case 'plusConsultes':
+        dispatch(Guide.getPlusConsultesGuides());
+        break;
+    }
+  }, [dispatch, login, currentFilter]);
 
   useEffect(() => {
     if (login) {
       dispatch(Guide.getFavoritesGuides(user.id));
     }
   }, [login, user, dispatch]);
+
+  const handleFilterChange = (filter) => {
+    console.log(filter);
+    setCurrentFilter(filter);
+  };
 
   const handleToggleFavorite = (guideId) => {
     if (!login) {
@@ -61,15 +77,17 @@ const Accueil = () => {
 
   return (
     <Container.Page className="Accueil">
+
       <DOM.StyledContainer height="auto" padding="68px 100px" gap="30px" borderBottom="2px solid #F1F1F1" width="100%" >
         <SearchBar />
+
       </DOM.StyledContainer>
 
       <HomeCategorieFilter />
 
       <DOM.StyledContainer padding="20px 20px 40px 20px" display="flex" flexDirection="column" gap="20px" >
         <Container.RowContainer display="flex" justifyContent="space-between" alignItems="center" padding="0px 12px" >
-          <GuidesFilter />
+          <GuidesFilter onFilterChange={handleFilterChange}/>
           <DOM.StyledContainer backgroundColor="#F2F2F2" padding="4px" borderRadius="6px" flexDirection="row" display="flex" >
 
             <Button.Switch onClick={handleVueListe} style={{
