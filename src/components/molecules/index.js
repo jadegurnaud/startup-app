@@ -10,6 +10,7 @@ import NavBarLogoContainer from "./NavBarLogoContainer"
 import NavBarButtonContainer from "./NavBarButtonContainer"
 import NavLinkContainer from "./NavLinkContainer"
 import NavBarMenuBurger from "./NavBarMenuBurger"
+import HomeCategorieFilter from "./HomeCategorieFilter"
 
 
-export { Form, GuideCard, InfosProfile, GuidesPublies, MenuItemIcon, ImageUpload, SearchBar, NavLinkContainer, NavBarLogoContainer, NavBarButtonContainer, GuidesFilter, NavBarMenuBurger };
+export { Form, GuideCard, InfosProfile, GuidesPublies, MenuItemIcon, ImageUpload, SearchBar, NavLinkContainer, NavBarLogoContainer, NavBarButtonContainer, GuidesFilter, NavBarMenuBurger, HomeCategorieFilter };

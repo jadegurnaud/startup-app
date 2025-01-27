@@ -16,6 +16,9 @@ const StyledButton = styled.button.withConfig({
   font-weight: ${(props) => props.fontWeight ?? ""};
   font-size: ${(props) => props.fontSize ?? ""};
   border: ${(props) => props.border ?? "none"};
+  &:hover {
+    background-color: ${(props) => props.hoverBackgroundColor ?? ""};
+  };
 
   border-radius: 4px;
   cursor: pointer;

@@ -16,7 +16,7 @@ const NavBar = () => {
     <Container.Aside>
       <NavBarLogoContainer />
       <NavLinkContainer />
-      <DOM.StyledContainer id="heartSVGnoText" display="none" onClick={() => navigate("/favorites")} >
+      <DOM.StyledContainer width="auto" padding="10px 14px" borderRadius="4px" hoverBackgroundColor="#F3F6F4" id="heartSVGnoText" display="none" onClick={() => navigate("/favorites")} >
         <Heart />
       </DOM.StyledContainer>
       <NavBarButtonContainer isLogin={login} user={user} />
