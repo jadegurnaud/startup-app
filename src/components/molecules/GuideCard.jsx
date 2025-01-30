@@ -22,10 +22,10 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
         padding="12px"
         gap="10px"
         boxShadow="0px 4px 15px 0px rgba(0, 0, 0, 0.25)"
-        backgroundImage={srcImage}
+        // backgroundImage={srcImage}
         backgroundSize="cover"
+        background={`linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${srcImage}) lightgray 50% / cover no-repeat`}
       >
-
         <DOM.StyledContainer display="flex" height="36px" padding="0 6px" alignItems="center" gap="10px" >
           <Link to={`/guides/${guide.id}`} style={{}}>
           </Link>
