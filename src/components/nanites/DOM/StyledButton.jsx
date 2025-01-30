@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
 
 const StyledButton = styled.button.withConfig({
-  shouldForwardProp: (prop) => isPropValid(prop) && !['backgroundColor', 'width', 'borderRadius', 'height', 'objectFit'].includes(prop),
+  shouldForwardProp: (prop) => isPropValid(prop) && !['hoverBackgroundColor' ,'backgroundColor', 'width', 'borderRadius', 'height', 'objectFit'].includes(prop),
 })`
   background-color: ${(props) => props.backgroundColor ?? "transparent"};
   padding: ${(props) => props.padding ?? ""};

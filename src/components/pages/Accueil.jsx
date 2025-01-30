@@ -75,11 +75,17 @@ const Accueil = () => {
     setIsVueListe(false);
   };
 
+  const handleLocationSelect = (location) => {
+    console.log('Location sélectionnée:', location);
+    // Envoi au backend via Redux
+    dispatch(Guide.getGuidesBySearch(location));
+  };
+
   return (
     <Container.Page className="Accueil">
 
       <DOM.StyledContainer height="auto" padding="68px 100px" gap="30px" borderBottom="2px solid #F1F1F1" width="100%" >
-        <SearchBar />
+        <SearchBar onLocationSelect={handleLocationSelect} />
 
       </DOM.StyledContainer>
 

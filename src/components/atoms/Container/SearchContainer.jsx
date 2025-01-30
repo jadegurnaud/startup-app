@@ -9,6 +9,7 @@ const SearchContainer = ({children, ...props }) => {
     margin="0px auto"
     justifyContent="space-between"
     width="60%"
+    minWidth="300px"
     padding="12px 17px 12px 33px"
     borderRadius= "999px"
 backgroundColor= "#FFF"

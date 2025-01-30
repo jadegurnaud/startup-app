@@ -6,7 +6,7 @@ const Label = (props) => {
 fontSize= "12px"
 fontStyle= "normal"
 fontWeight= "600"
-lineHeight= "normal"
+//lineHeight= "normal"
     {...props}></DOM.StyledLabel>;
 }
 

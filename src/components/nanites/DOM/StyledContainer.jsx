@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'borderBottom', 'borderRadius', 'flexDirection', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
+    shouldForwardProp: (prop) => !['boxShadow', 'backdropFilter', 'hoverBackgroundColor', 'zIndex' ,'backgroundColor', 'backgroundImage', 'backgroundSize', 'borderBottom', 'borderRadius', 'flexDirection', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
 })`
     color: ${(props) => props.color ?? props.theme.colors.colors.primary};
     ${(props) => props.position ? 'position:' + props.position + ';' : ""}
@@ -13,6 +13,7 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.padding ? 'padding:' + props.padding + ';' : ""}
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
+    ${(props) => props.minWidth ? 'min-width:' + props.minWidth + ';' : ""}
     ${(props) => props.display ? 'display:' + props.display + ';' : ""}
     ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
     ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
@@ -20,6 +21,8 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
     ${(props) => props.gap ? 'gap:' + props.gap + ';' : ""}
     ${(props) => props.backgroundColor ? 'background-color:' + props.backgroundColor + ';' : ""}
+    ${(props) => props.backgroundImage ? `background-image: url(${props.backgroundImage});` : ""}
+    ${(props) => props.backgroundSize ? 'background-size:' + props.backgroundSize + ';' : ""}
     ${(props) => props.borderBottom ? 'border-bottom:' + props.borderBottom + ';' : ""}
     ${(props) => props.background ? 'background:' + props.background + ';' : ""}
     ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}

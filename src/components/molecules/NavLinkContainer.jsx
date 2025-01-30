@@ -10,15 +10,15 @@ export default function NavLinkContainer() {
     const navigate = useNavigate();
     return (
         <Container.RowContainer id="mainNavLinkContainer" >
-            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/accueil")}>
+            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/offresSpeciales")}>
                 <Text.NavSpanLink >Offres spéciales</Text.NavSpanLink>
                 <Gift />
             </Container.NavLinkContainer>
-            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/accueil")}>
+            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/planMyTravel")}>
                 <Text.NavSpanLink >Planifier mon voyage</Text.NavSpanLink>
                 <Path />
             </Container.NavLinkContainer>
-            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/accueil")}>
+            <Container.NavLinkContainer hoverBackgroundColor="#F3F6F4" onClick={() => navigate("/myGuides")}>
                 <Text.NavSpanLink >Mes guides</Text.NavSpanLink>
                 <BookOpenText />
             </Container.NavLinkContainer>

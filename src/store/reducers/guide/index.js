@@ -8,5 +8,6 @@ import { getAjoutsRecentsGuides } from "./getAjoutsRecentsGuides";
 import { getPlusConsultesGuides } from "./getPlusConsultesGuides";
 import { getPlusAimesGuides } from "./getPlusAimesGuides";
 import { getAbonnementsGuides } from "./getAbonnementsGuides";
+import { getGuidesBySearch } from "./getGuidesBySearch";
 
-export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides };
+export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides, getGuidesBySearch };

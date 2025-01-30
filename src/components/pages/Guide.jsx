@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DOM } from "../nanites";
 import { useNetwork } from "../../providers/contexts";
 import Reactotron from "reactotron-react-js";
+import { BandeauGuide } from "../molecules";
 
 const Guide = () => {
     const { guide } = useSelector((state) => state.guide);
@@ -31,12 +32,48 @@ const Guide = () => {
       
     return (
         Reactotron.log(isOnline, "Online"),
-        <Container.Page className="Guide">   
-            <Image.Base src={srcCoverImage}
-                      alt="Photo de couverture" width="70%"/>
-            <Text.Title>{ guide.title }</Text.Title>
-            <Text.Paragraph>{ guide.description }</Text.Paragraph>
-            <Text.Paragraph>Créé par : { guide?.user?.firstName } { guide?.user?.lastName }</Text.Paragraph> 
+        <Container.Page className="Guide">  
+            <BandeauGuide srcCoverImage={srcCoverImage} guideTitle={ guide.title } guideCountry={ guide.address.country} />
+            <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px', padding: '12px', alignItems: 'center' }}>
+                <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                        <Image.Base width="100%"
+                            src={
+                                guide.user?.profileImage
+                                    ? guide.user.image
+                                    : "/profil.png"
+                            }
+                            alt="Photo de profil"
+                        />
+                    </DOM.StyledContainer>
+                <Text.Paragraph>{ guide?.user?.firstName } { guide?.user?.lastName }</Text.Paragraph> 
+                <Button.Base>Suivre</Button.Base>
+            </DOM.StyledContainer>
+            <DOM.StyledContainer style={{ display: 'flex', gap: '10px' }}>
+            { guide?.categories?.map((category, index) => (
+                <Text.Span key={index}>{ category.name }</Text.Span>
+            ))}
+            </DOM.StyledContainer>
+            <Text.Span>{ guide.category }</Text.Span>
+            <DOM.StyledContainer style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', marginTop: '10px' }}>
+                <DOM.StyledContainer display= "flex"
+                    width= "439px"
+                    padding= "20px"
+                    flexDirection= "column"
+                    alignItems= "flex-start"
+                    >
+                        <Text.SubTitle>Description</Text.SubTitle>
+                        <Text.Paragraph>{ guide.description }</Text.Paragraph>
+                </DOM.StyledContainer>
+                <DOM.StyledContainer display= "flex"
+                    width= "439px"
+                    padding= "20px"
+                    flexDirection= "column"
+                    alignItems= "flex-start"
+                    gap= "20px" borderRadius= "12px"
+                        border= "1px solid #E5E5E5">
+                    <Text.Paragraph>Budget Total</Text.Paragraph>
+                </DOM.StyledContainer>
+            </DOM.StyledContainer>
             {guide.images?.length > 0 && (
                     <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         {guide.images.map((image, index) => (
