@@ -73,7 +73,30 @@ const Guide = () => {
                         border= "1px solid #E5E5E5">
                     <Text.Paragraph>Budget Total</Text.Paragraph>
                 </DOM.StyledContainer>
+            
+
             </DOM.StyledContainer>
+
+            {guide.guideType === "itinerary" && (
+                
+                <DOM.StyledContainer display= 'flex' gap= '10px' flexDirection= 'column'>
+                    <DOM.StyledContainer display= "flex" alignItems= "center" gap= "40px">
+                        <Text.SubTitle>Itinéraire</Text.SubTitle>
+                        <Text.Span> Du { guide.startDate } au { guide.endDate }</Text.Span>
+                    </DOM.StyledContainer>
+                    <DOM.StyledContainer display= "flex"
+                        width= "100%"
+                        height= "300px"
+                        padding= "20px"
+                        flexDirection= "column"
+                        alignItems= "flex-start"
+                        backgroundColor= "#F5F5F5"
+                        >
+                            
+                            
+                    </DOM.StyledContainer>
+                </DOM.StyledContainer>
+            )}
             {guide.images?.length > 0 && (
                     <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         {guide.images.map((image, index) => (
