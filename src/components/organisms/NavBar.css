@@ -1,9 +1,17 @@
-@media (max-width: 1440px) {
+@media (max-width: 1300px) {
   #navLogoContainer {
-    width: 26px;
-    background-color: orange;
+    width: 36px;
     position: relative;
     left: 0;
+
+    #FullLogo {
+      display: none;
+    }
+
+    #IconLogo {
+      display: flex;
+      height: 100%;
+    }
   }
 
   #NavBarButtonContainer {
@@ -27,7 +35,6 @@
     display: none;
     cursor: pointer;
   }
-
 }
 
 @media (max-width: 1024px) {

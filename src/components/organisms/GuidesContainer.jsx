@@ -7,7 +7,7 @@ const GuidesContainer = ({ guides, favorites, handleToggleFavorite, isProfilePag
         <DOM.StyledContainer
             style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(13rem, 1fr))",
+                gridTemplateColumns: "repeat(auto-fill, minmax(20rem, 1fr))",
                 gap: "1rem",
 
             }}>
