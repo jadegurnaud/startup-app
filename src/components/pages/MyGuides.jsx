@@ -1,11 +1,29 @@
-import { Text, Container } from "../atoms";
-import { MyFav } from "../templates"
+import { useEffect } from "react";
+import { Container } from "../atoms";
+import { HeaderMyGuides, MesBrouillonsMyGuides, MesGuidesPubliesMyGuides } from "../molecules";
+import { useSelector, useDispatch } from "react-redux";
+import { Guide } from "../../store/reducers";
 
 const MyGuides = () => {
+    const { guidesPublies, guidesBrouillons } = useSelector((state) => state?.myGuides);
+    const { user } = useSelector((state) => state?.user);
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(Guide.getGuidesPublies(user?.id));
+        dispatch(Guide.getMyGuidesBrouillons(user?.id));
+    }, [dispatch]);
+
     return (
         <Container.Page>
-            <Text.Title style={{ marginBottom: "60px" }}>Mes Guides</Text.Title>
-           
+            <HeaderMyGuides />
+            {guidesBrouillons.length > 0 && 
+                <MesBrouillonsMyGuides guides={guidesBrouillons}/>
+            }
+            {guidesPublies.length > 0 &&
+                <MesGuidesPubliesMyGuides guides={guidesPublies}/>
+            }
         </Container.Page>
 
     );

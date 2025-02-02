@@ -9,5 +9,8 @@ import { getPlusConsultesGuides } from "./getPlusConsultesGuides";
 import { getPlusAimesGuides } from "./getPlusAimesGuides";
 import { getAbonnementsGuides } from "./getAbonnementsGuides";
 import { getGuidesBySearch } from "./getGuidesBySearch";
+import { getGuidesPublies } from "./getGuidesPublies";
+import { getMyGuidesBrouillons } from "./getMyGuidesBrouillons";
+import { incrementConsultations } from "./incrementConsultationsGuide";
 
-export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides, getGuidesBySearch };
+export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides, getGuidesBySearch, getGuidesPublies, getMyGuidesBrouillons, incrementConsultations };

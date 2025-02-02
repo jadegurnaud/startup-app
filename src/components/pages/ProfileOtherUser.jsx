@@ -13,14 +13,18 @@ const ProfileOtherUser = () => {
     const { user } = useSelector((state) => {
         return state?.otherUser;
     });
-    const { guides } = useSelector((state) => {
-        return state?.userGuides;
+    const { guidesPublies: guides } = useSelector((state) => {
+        return state?.otherUserGuides;
+    });
+    const { followers } = useSelector((state) => {
+        return state?.userFollowers;
     });
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(User.getUser(userId));
-        dispatch(Guide.getUserGuides(userId));
+        dispatch(User.getFollowers(userId));
+        dispatch(Guide.getGuidesPublies(userId));
 
     }, [userId, dispatch]);
 
@@ -52,7 +56,7 @@ const ProfileOtherUser = () => {
             </DOM.StyledContainer>
             <DOM.StyledContainer style={{ padding: "10px" }}>
               <Text.Paragraph>{user?.firstName}</Text.Paragraph>
-              <InfosProfile></InfosProfile>
+              <InfosProfile followers={followers} nbGuidesPublies={ guides.length }></InfosProfile>
               <GuidesPublies></GuidesPublies>
               <DOM.StyledSection id="descriptionProfile">
                 <Text.SubTitle>Description</Text.SubTitle>

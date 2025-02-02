@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import apiClient from "../../../api/apiClient";
 
-export const getAbonnementsGuides = createAsyncThunk('guide/getAbonnementsGuides', async (payload, { rejectWithValue }) => {
+export const getAbonnementsGuides = createAsyncThunk('guide/getAbonnementsGuides', async (userId, { rejectWithValue }) => {
    
     try {
-        const response = await apiClient.get("/guides/abonnements");
+        const response = await apiClient.get(`/guides/abonnements/user/${userId}`);
         return response.data;
     }
     catch (error) {

@@ -25,17 +25,16 @@ const Accueil = () => {
         dispatch(Guide.getPlusAimesGuides());
         break;
       case 'ajoutsRecents':
-        console.log('ajoutsRecents');
         dispatch(Guide.getAjoutsRecentsGuides());
         break;
       case 'abonnements':
-        dispatch(Guide.getAbonnementsGuides());
+        dispatch(Guide.getAbonnementsGuides(user.id));
         break;
       case 'plusConsultes':
         dispatch(Guide.getPlusConsultesGuides());
         break;
     }
-  }, [dispatch, login, currentFilter]);
+  }, [dispatch,user, login, currentFilter]);
 
   useEffect(() => {
     if (login) {
@@ -44,7 +43,6 @@ const Accueil = () => {
   }, [login, user, dispatch]);
 
   const handleFilterChange = (filter) => {
-    console.log(filter);
     setCurrentFilter(filter);
   };
 
@@ -76,7 +74,6 @@ const Accueil = () => {
   };
 
   const handleLocationSelect = (location) => {
-    console.log('Location sélectionnée:', location);
     // Envoi au backend via Redux
     dispatch(Guide.getGuidesBySearch(location));
   };

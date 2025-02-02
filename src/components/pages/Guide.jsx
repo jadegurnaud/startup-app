@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Image, Container, Button } from "../atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide as GuideReducers } from "../../store/reducers";
@@ -15,6 +15,7 @@ const Guide = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { isOnline } = useNetwork();
+    const [ hasIncremented, setHasIncremented ] = useState(false);
 
     const handleDeleteGuide = () => {
         dispatch(GuideReducers.deleteGuide(id)).then((result) => {
@@ -26,7 +27,13 @@ const Guide = () => {
 
     useEffect(() => {
         dispatch(GuideReducers.getGuide(id));
-    }, [id, dispatch]);
+        console.log("Getting guide");
+        if (!hasIncremented) {
+            console.log("Incrementing consultations");
+            dispatch(GuideReducers.incrementConsultations(id));
+            setHasIncremented(true);
+        }
+    }, [id, dispatch, hasIncremented]);
 
     const srcCoverImage = isOnline && guide?.coverImage ? guide.coverImage : "/coverImage.png";
       

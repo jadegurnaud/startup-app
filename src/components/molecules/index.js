@@ -12,6 +12,8 @@ import NavLinkContainer from "./NavLinkContainer"
 import NavBarMenuBurger from "./NavBarMenuBurger"
 import HomeCategorieFilter from "./HomeCategorieFilter"
 import BandeauGuide from "./BandeauGuide";
+import HeaderMyGuides from "./HeaderMyGuides";
+import MesBrouillonsMyGuides from "./MesBrouillonsMyGuides";
+import MesGuidesPubliesMyGuides from "./MesGuidesPubliesMyGuides";
 
-
-export { Form, GuideCard, InfosProfile, GuidesPublies, MenuItemIcon, ImageUpload, SearchBar, NavLinkContainer, NavBarLogoContainer, NavBarButtonContainer, GuidesFilter, NavBarMenuBurger, HomeCategorieFilter, BandeauGuide };
+export { Form, GuideCard, InfosProfile, GuidesPublies, MenuItemIcon, ImageUpload, SearchBar, NavLinkContainer, NavBarLogoContainer, NavBarButtonContainer, GuidesFilter, NavBarMenuBurger, HomeCategorieFilter, BandeauGuide, HeaderMyGuides, MesBrouillonsMyGuides, MesGuidesPubliesMyGuides };

@@ -23,8 +23,6 @@ export const guidesSlice = createSlice({
             .addCase(Guide.getAjoutsRecentsGuides.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
                 state.error = null;
-                console.log("Ajouts recents guides");
-                console.log(action.payload);
                 if (action?.payload) {  
                     state.guides = action.payload;
                 }
@@ -126,8 +124,6 @@ export const guidesSlice = createSlice({
             .addCase(Guide.getGuidesBySearch.fulfilled, (state, action) => {
                 state.status.guides = "succeed";
                 state.error = null;
-                console.log("Guides by search");
-                console.log(action.payload);
                 if (action?.payload) {  
                     state.guides = action.payload;
                 }

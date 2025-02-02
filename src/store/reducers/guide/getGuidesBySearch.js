@@ -5,8 +5,6 @@ export const getGuidesBySearch = createAsyncThunk('guide/search', async (payload
    
     try {
         const response = await apiClient.post("guides/search", payload);
-        console.log("Guides by search");
-        console.log(response.data);
         return response.data;
     }
     catch (error) {
