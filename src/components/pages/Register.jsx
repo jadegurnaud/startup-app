@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Text, Container, Input, Button } from "../atoms";
 import { Form } from "../molecules";
 import {DOM} from "../nanites";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { User } from "../../store/reducers";
 import { useSelector } from "react-redux";
-import { CgOverflow } from "react-icons/cg";
+import { ReactComponent as LogoVvoycoVert } from "../../assets/LogoVertical/LogoVvoycoVert.svg";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -37,49 +37,72 @@ const Register = () => {
   return (
     
     <Container.Page className="Register" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', boxSizing: "border-box", overflow: "auto" }}>
-        <DOM.StyledContainer width='400px'>
-            <Text.Title>Créez-vous un votre compte</Text.Title>
+        <Container.ColumnContainer gap='30px' width='534px' padding='20px' borderRadius= '8px' border= '2px solid #EFEFEF'>
+        
+            <Text.Title style={{ fontSize: '16px', fontStyle: 'normal', fontWeight: '600', lineHeight: 'normal' }}>Créer un compte</Text.Title>
+            <DOM.StyledContainer width= '100%' style={{ display: 'flex', justifyContent: 'center' }}>
+                <LogoVvoycoVert style={{ width: '116px'}}/>
+            </DOM.StyledContainer>
             <Form onSubmit={handleRegister}>
-                <Text.Paragraph>E-mail</Text.Paragraph>
-                <Input.Base type="email" value={email} onChange={(e) => setEmail(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('email')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <Text.Paragraph>Mot de passe</Text.Paragraph>
-                <Input.Base type="password" value={password} onChange={(e) => setPassword(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('password')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <Text.Paragraph>Confirmer le mot de passe</Text.Paragraph>
-                <Input.Base type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} marginBottom='10px' />
-                {localError && <Text.Error>{localError}</Text.Error>}
-                <Text.Paragraph>Pseudo</Text.Paragraph>
-                <Input.Base type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('pseudo')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <Text.Paragraph>Prénom</Text.Paragraph>
-                <Input.Base type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('firstName')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <Text.Paragraph>Nom</Text.Paragraph>
-                <Input.Base type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('lastName')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <Text.Paragraph>Date de naissance</Text.Paragraph>
-                <Input.Base type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} marginBottom='10px' />
-                {Array.isArray(error) && error.filter(err => err.startsWith('dateOfBirth')).map((err, index) => (
-                    <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
-                ))}
-                <DOM.StyledSubContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                    <Button.Base type="submit">
-                        <Text.Paragraph>Créer le compte</Text.Paragraph>
-                    </Button.Base>
-                </DOM.StyledSubContainer>
+                <Container.ColumnContainer gap='12px'>
+                    <Input.Label>E-mail</Input.Label>
+                    <Input.InputForm type="email" value={email} onChange={(e) => setEmail(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('email')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer gap='12px'>
+                    <Input.Label>Mot de passe</Input.Label>
+                    <Input.InputForm type="password" value={password} onChange={(e) => setPassword(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('password')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer>
+                    <Input.Label>Confirmer le mot de passe</Input.Label>
+                    <Input.InputForm type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} marginBottom='10px' />
+                    {localError && <Text.Error>{localError}</Text.Error>}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer>
+                    <Input.Label>Pseudo</Input.Label>
+                    <Input.InputForm type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('pseudo')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer>
+                    <Input.Label>Prénom</Input.Label>
+                    <Input.InputForm type="text" value={firstName} onChange={(e) => setFistName(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('firstName')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer>
+                    <Input.Label>Nom</Input.Label>
+                    <Input.InputForm type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('lastName')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <Container.ColumnContainer>
+                    <Input.Label>Date de naissance</Input.Label>
+                    <Input.InputForm type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} marginBottom='10px' />
+                    {Array.isArray(error) && error.filter(err => err.startsWith('dateOfBirth')).map((err, index) => (
+                        <Text.Error key={index}>{err.split(': ')[1]}</Text.Error>
+                    ))}
+                </Container.ColumnContainer>
+                <DOM.StyledContainer style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                    <Button.MainButton type="submit" backgroundColor="#3E5544"
+                                    hoverBackgroundColor="#56735D">
+                        Créer mon compte
+                    </Button.MainButton>
+                </DOM.StyledContainer>
             </Form>
-        </DOM.StyledContainer>
+            <Container.ColumnContainer textAlign= 'center' gap='10px'>
+                <Text.Paragraph style={{ marginTop: '10px' }}>Vous avez déjà un compte compte ? </Text.Paragraph>
+                <Link to="/login" style={{ textDecoration: 'none', color: '#000' }}>Se connecter</Link>
+            </Container.ColumnContainer>
+        </Container.ColumnContainer>
     </Container.Page>
   );
 };

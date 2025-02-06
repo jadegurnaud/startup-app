@@ -4,7 +4,6 @@ import {Text} from "../atoms";
 
 const InfosProfile = ({ followers, nbGuidesPublies }) => {
  
-  console.log(followers);
   return (
     <DOM.StyledSection>
           <DOM.StyledArticle>

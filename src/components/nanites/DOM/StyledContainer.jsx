@@ -34,6 +34,7 @@ const StyledContainer = styled.div.withConfig({
 &:hover {
     ${(props) => props.hoverBackgroundColor ? 'background-color:' + props.hoverBackgroundColor + ';' : ""}
     }
+    ${(props) => props.textAlign ? 'text-align:' + props.textAlign + ';' : ""}
 `;
 
 export default StyledContainer;

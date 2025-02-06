@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Container, Button } from '../atoms';
 import { DOM } from '../nanites';
 import { useSelector, useDispatch } from "react-redux";
-import { Guide } from '../../store/reducers';
+import { Guide, Category } from '../../store/reducers';
 import { useNavigate } from 'react-router-dom';
 import { ViewMap, ViewList } from '../templates';
 import { SearchBar, GuidesFilter, HomeCategorieFilter } from '../molecules';
 import { ReactComponent as GridFour } from '../../assets/GridFour.svg';
 import { ReactComponent as MapTrifold } from '../../assets/MapTrifold.svg';
+import { ca } from 'date-fns/locale';
 
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => state?.guides);
+  const { categories } = useSelector((state) => state?.categories);
   const { user, login} = useSelector((state) => state?.user);
 
   const [isVueListe, setIsVueListe] = useState(true);
@@ -41,6 +43,11 @@ const Accueil = () => {
       dispatch(Guide.getFavoritesGuides(user.id));
     }
   }, [login, user, dispatch]);
+
+  useEffect(() => {
+    
+    dispatch(Category.getCategories());
+  }, [dispatch]);
 
   const handleFilterChange = (filter) => {
     setCurrentFilter(filter);
@@ -74,8 +81,11 @@ const Accueil = () => {
   };
 
   const handleLocationSelect = (location) => {
-    // Envoi au backend via Redux
     dispatch(Guide.getGuidesBySearch(location));
+  };
+
+  const handleCategorySelect = (categoryId) => {
+    dispatch(Guide.getGuidesByCategory(categoryId));
   };
 
   return (
@@ -86,7 +96,7 @@ const Accueil = () => {
 
       </DOM.StyledContainer>
 
-      <HomeCategorieFilter />
+      <HomeCategorieFilter categories={categories} onCategorySelect={handleCategorySelect}/>
 
       <DOM.StyledContainer padding="20px 20px 40px 20px" display="flex" flexDirection="column" gap="20px" >
         <Container.RowContainer display="flex" justifyContent="space-between" alignItems="center" padding="0px 12px" >

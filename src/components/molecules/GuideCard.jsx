@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Image, Text, Icon } from '../atoms';
+import { Container, Text, Icon, Image } from '../atoms';
 import { DOM } from "../nanites";
 import { ReactComponent as WhiteHeart } from "../../assets/Heart_white.svg";
 import { ReactComponent as RedHeart } from "../../assets/HeartFillRed.svg";
@@ -15,7 +15,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
 
 
   return (
-    <DOM.StyledContainer onClick={() => navigate(`/guides/${guide.id}`)} style={{ display: "flex", flexDirection: "column", borderRadius: "12px", width: "304px", maxWidth: "328px", margin: "auto", gap: "8px", aligneItems: "center", padding: "12px" }}>
+    <DOM.StyledContainer onClick={() => navigate(`/guides/${guide.id}`)} style={{ display: "flex", flexDirection: "column", borderRadius: "12px", width: "304px", maxWidth: "328px", margin: "auto", gap: "8px", aligneItems: "center", padding: "12px", backgroundColor: "white" }}>
       <DOM.StyledContainer
         position="relative"
         borderRadius="6px"
@@ -30,27 +30,28 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
       >
         <DOM.StyledContainer display="flex" height="36px" padding="0 6px" alignItems="center" gap="10px" >
           {!isProfilePage && (
+            <Container.RowContainer gap="10px">
+            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                <Image.Base width="100%"
+                    src={
+                        guide.user?.profileImage
+                            ? guide.user.image
+                            : "/profil.png"
+                    }
+                    alt="Photo de profil"
+                />
+            </DOM.StyledContainer>
             <Text.Span
               fontSize="0.75rem"
               color="white"
               fontWeight="500"
-              width="189px"
+              width="160px"
+              
+              onClick={(e) => {navigate("/profil"); e.stopPropagation()}}
             >
-              <Link
-                to={`/users/${guide.user.id}`}
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  fontWeight: "bold",
-                }}
-                onClick={(e) => e.stopPropagation()}
-
-              >
                 {guide.user.firstName} {guide.user.lastName}
-              </Link>
+              
             </Text.Span>
-          )}
-          {!isProfilePage && (
             <Icon.Base
               style={{ cursor: "pointer" }}
               onClick={() => toggleFavorite(guide.id)}
@@ -61,11 +62,17 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
                 <WhiteHeart />
               )}
             </Icon.Base>
+            </Container.RowContainer>
           )}
         </DOM.StyledContainer>
       </DOM.StyledContainer>
-      <DOM.StyledContainer style={{ padding: "0.5rem", display: "flex", flexDirection: "column", fontWeight: "700" }}>
-        <Text.Span>{guide.title}</Text.Span>
+      <DOM.StyledContainer style={{ padding: "0.5rem", display: "flex", flexDirection: "column",  }}>
+        <Text.Span style={{ fontWeight: "700" }}>{guide.title}</Text.Span>
+        <Container.RowContainer gap= '10px'>
+            { guide?.categories?.map((category, index) => (
+                <Text.Span key={index}>{ category.name }</Text.Span>
+            ))}
+        </Container.RowContainer>
       </DOM.StyledContainer>
     </DOM.StyledContainer>
 

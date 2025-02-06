@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
-import { userSlice, userGuidesSlice, guidesSlice, favoritesGuidesUserSlice, guideSlice, myGuidesSlice, newGuideSlice, otherUserSlice, userFollowersSlice, otherUserGuidesSlice } from "./slices";
+import { userSlice, userGuidesSlice, guidesSlice, favoritesGuidesUserSlice, guideSlice, myGuidesSlice, newGuideSlice, otherUserSlice, userFollowersSlice, otherUserGuidesSlice, userFollowingSlice, categoriesSlice } from "./slices";
 
 const persistConfig = {
     key: 'root',
@@ -21,6 +21,8 @@ const rootReducer = combineReducers(
         newGuide: newGuideSlice.reducer,
         otherUser: otherUserSlice.reducer,
         userFollowers: userFollowersSlice.reducer,
+        userFollowing: userFollowingSlice.reducer,
+        categories : categoriesSlice.reducer,
     });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const middleware = (getDefaultMiddleware) => getDefaultMiddleware({
