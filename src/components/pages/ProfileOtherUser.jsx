@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Container, Image, Button } from "../atoms";
 import { useSelector } from "react-redux";
 import { Guide, User } from "../../store/reducers";
@@ -10,20 +10,28 @@ import { useParams } from "react-router-dom";
 
 const ProfileOtherUser = () => {
     const { userId } = useParams();
-    const { user } = useSelector((state) => {
-        return state?.otherUser;
-    });
-    const { guides } = useSelector((state) => {
-        return state?.userGuides;
-    });
+    const { user } = useSelector((state) => state?.otherUser);
+    const { user: currentUser } = useSelector((state) => state?.user);
+    const { guidesPublies: guides } = useSelector((state) => state?.otherUserGuides);
+    const { followers } = useSelector((state) => state?.userFollowers);
+    const { isFollowing } = useSelector((state) => state?.userFollowing);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(User.getUser(userId));
-        dispatch(Guide.getUserGuides(userId));
+        dispatch(User.getFollowers(userId));
+        dispatch(Guide.getGuidesPublies(userId));
+        dispatch(User.checkIfFollowing({ userId: currentUser.id, followerId: user.id }));
 
     }, [userId, dispatch]);
 
+    const handleFollowUser = () => {
+        dispatch(User.followUser({ userId: currentUser.id, followerId: user.id }));
+    };
+
+    const handleUnfollowUser = () => {
+        dispatch(User.unfollowUser({ userId: currentUser.id, followerId: user.id }));
+    };
   
 
   return (
@@ -47,12 +55,16 @@ const ProfileOtherUser = () => {
                 />
                 <Text.Span>{user?.pseudo}</Text.Span>
               </DOM.StyledContainer>
-              <Button.Base>Suivre</Button.Base>
+              { isFollowing ? (
+                <Button.Base onClick={() => handleUnfollowUser()}>Ne plus suivre</Button.Base>
+              ) : ( 
+                <Button.Base onClick={() => handleFollowUser()}>Suivre</Button.Base>
+              )}
 
             </DOM.StyledContainer>
             <DOM.StyledContainer style={{ padding: "10px" }}>
               <Text.Paragraph>{user?.firstName}</Text.Paragraph>
-              <InfosProfile></InfosProfile>
+              <InfosProfile followers={followers} nbGuidesPublies={ guides.length }></InfosProfile>
               <GuidesPublies></GuidesPublies>
               <DOM.StyledSection id="descriptionProfile">
                 <Text.SubTitle>Description</Text.SubTitle>

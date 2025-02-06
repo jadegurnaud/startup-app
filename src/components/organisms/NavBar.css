@@ -1,0 +1,102 @@
+@media (max-width: 1300px) {
+  #navLogoContainer {
+    width: 36px;
+    position: relative;
+    left: 0;
+
+    #FullLogo {
+      display: none;
+    }
+
+    #IconLogo {
+      display: flex;
+      height: 100%;
+    }
+  }
+
+  #NavBarButtonContainer {
+    position: relative;
+    right: 0;
+  }
+
+  #navBarMainContainer {
+    justify-content: space-between;
+  }
+
+  #mesFavText {
+    display: flex;
+  }
+
+  #heartSVGText {
+    display: flex;
+  }
+
+  #heartSVGnoText {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  #mesFavText {
+    display: none;
+  }
+
+  #heartSVGText {
+    display: none;
+  }
+
+  #heartSVGnoText {
+    display: flex;
+  }
+
+  #mainNavLinkContainer {
+    gap: 0;
+  }
+}
+
+@media (max-width: 920px) {
+  #navLogoContainerMain {
+    gap: 24px;
+  }
+
+  #mainNavLinkContainer {
+    display: none;
+  }
+
+  #menuBurgerContainer {
+    display: flex;
+  }
+
+  #heartSVGnoText {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  #menuBurgerContainer {
+    position: relative;
+    right: 0;
+  }
+
+  #navBarMainContainer {
+    padding: 22px 20px;
+  }
+
+  #navLogoContainerMain {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #NavBarButtonContainer {
+    display: none;
+  }
+
+  #heartSVGnoText {
+    display: none;
+  }
+}

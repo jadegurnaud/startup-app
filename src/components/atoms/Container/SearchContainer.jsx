@@ -6,7 +6,14 @@ const SearchContainer = ({children, ...props }) => {
     <DOM.StyledContainer
     display="flex"
     alignItems="center"
-    justifyContent="center"
+    margin="0px auto"
+    justifyContent="space-between"
+    width="60%"
+    minWidth="300px"
+    padding="12px 17px 12px 33px"
+    borderRadius= "999px"
+backgroundColor= "#FFF"
+boxShadow= "0px 0px 20px 0px rgba(0, 0, 0, 0.10)"
       {...props}
     >
       {children}

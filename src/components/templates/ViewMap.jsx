@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { DOM } from "../nanites";
-import { Text } from "../atoms";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import {GuideCard} from "../molecules";
 
 
-const ViewMap = () => {
+const ViewMap = ({guides}) => {
     const mapRef = useRef(null);
+    const guideCardRef = useRef(null);
     const mapInstanceRef = useRef(null);
+    const [selectedGuide, setSelectedGuide] = useState(null);
 
     useEffect(() => {
         if (mapRef.current && !mapInstanceRef.current) {
@@ -17,20 +19,42 @@ const ViewMap = () => {
                 attribution: "© OpenStreetMap contributors",
             }).addTo(mapInstanceRef.current);
 
-            L.marker([48.8566, 2.3522])
-                .addTo(mapInstanceRef.current)
-                .bindPopup("Paris")
-                .openPopup();
+            guides.forEach((guide) => {
+                if (!guide.address) return;
+                const marker = L.marker([guide.address.latitude, guide.address.longitude])
+                    .addTo(mapInstanceRef.current);
+
+                marker.on('click', () => {
+                    setSelectedGuide(guide);
+                });
+            });
         }
 
+        const handleClickOutside = () => {
+           setSelectedGuide(null);
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
         
-    }, [mapRef, mapInstanceRef]);
+    }, [mapRef, mapInstanceRef, guides, selectedGuide]);
     return (
         <DOM.StyledContainer>
-            <Text.Paragraph>MAP</Text.Paragraph>
-            <DOM.StyledContainer ref={mapRef} style={{ height: '400px', width: '90%' }}/>
-            
-           
+            <DOM.StyledContainer ref={mapRef} style={{ height: '400px', width: '100%' }}>
+            {selectedGuide && (
+                <DOM.StyledContainer style={{  position: 'absolute', marginTop: '80px', marginLeft: '20px' ,zIndex: 100000000, backgroundColor:'transparent' }}>
+                    <GuideCard 
+                        guide={selectedGuide} 
+                        // You might need to pass additional props like isFavorite, toggleFavorite, etc.
+                        // For example:
+                        // isFavorite={false}
+                        // toggleFavorite={() => {}}
+                    />
+                </DOM.StyledContainer>
+            )}
+            </DOM.StyledContainer>
         </DOM.StyledContainer>
     );
 };

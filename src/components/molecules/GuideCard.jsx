@@ -1,81 +1,81 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Image, Text, Icon } from '../atoms';
-import {DOM} from "../nanites";
-import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import { useNetwork } from '../../providers/contexts';
-import Reactotron from 'reactotron-react-js';
+import { Link, useNavigate } from 'react-router-dom';
+import { Container, Text, Icon, Image } from '../atoms';
+import { DOM } from "../nanites";
+import { ReactComponent as WhiteHeart } from "../../assets/Heart_white.svg";
+import { ReactComponent as RedHeart } from "../../assets/HeartFillRed.svg";
+
 
 const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false }) => {
-  const {isOnline} = useNetwork();
-  const srcImage = isOnline && guide?.coverImage ? guide.coverImage : "/coverImage.png";
-  
-  
+
+  const navigate = useNavigate();
+
+
+  const srcImage = guide?.coverImage ? guide.coverImage : "/coverImage.png";
+
+
   return (
-    Reactotron.log(isOnline, "Online"),
-    <DOM.StyledSubContainer style={{ display: "flex", flexDirection: "column", borderRadius: "1.4rem", width: "100%", maxWidth: "13rem", margin: "auto"}}>
-               <DOM.StyledSubContainer position= "relative" borderRadius= "1.4rem">
-                <Link to={`/guides/${guide.id}`} style={{ }}>
-                  <Image.Base
-                    width="100%"
-                    height="150px"
-                    objectFit= "cover"
-                    src={srcImage}
-                      alt="Photo de couverture"
-                    style={{
-                      borderTopLeftRadius: "1.4rem",
-                      borderTopRightRadius: "1.4rem",
-                    }}
-                  />
-                  </Link>
-                  {!isProfilePage && (
-                    <Text.Span
-                      fontSize="0.7rem"
-                      backgroundColor= "rgba(0, 0, 0, 0.5)"
-                      style={{
-                        position: "absolute",
-                        top: "0.6rem",
-                        left: "0.5rem",
-                        color: "white",
-                        padding: "0.3rem",
-                        borderRadius: "0.3rem",
-                      }}
-                    >
-                      <Link
-                        to={`/users/${guide.user.id}`}
-                        style={{
-                          color: "white",
-                          textDecoration: "none",
-                          fontWeight: "bold",
-                        }}
-                        
-                      >
-                        {guide.user.firstName} {guide.user.lastName}
-                      </Link>
-                    </Text.Span>
-                  )}
-                {!isProfilePage && (
-                  <Icon.Base
-                    position="absolute"
-                    top="0.5rem"
-                    right="0.5rem"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => toggleFavorite(guide.id)}
-                  >
-                    {isFavorite ? (
-                      <MdFavorite />
-                    ) : (
-                      <MdFavoriteBorder />
-                    )}
-                  </Icon.Base>
-                )}
-              </DOM.StyledSubContainer>
-              <DOM.StyledSubContainer style={{ padding: "0.5rem", display:"flex", flexDirection:"column", gap:"0.4rem", borderRadius: "1.4rem" }}>
-                <Text.Span>{guide.title}</Text.Span>
-                <Text.Span>{guide.description}</Text.Span>
-              </DOM.StyledSubContainer>
-            </DOM.StyledSubContainer>
-      
+    <DOM.StyledContainer onClick={() => navigate(`/guides/${guide.id}`)} style={{ display: "flex", flexDirection: "column", borderRadius: "12px", width: "304px", maxWidth: "328px", margin: "auto", gap: "8px", aligneItems: "center", padding: "12px", backgroundColor: "white" }}>
+      <DOM.StyledContainer
+        position="relative"
+        borderRadius="6px"
+        overflow="hidden"
+        height="204px"
+        padding="12px"
+        gap="10px"
+        boxShadow="0px 4px 15px 0px rgba(0, 0, 0, 0.25)"
+        // backgroundImage={srcImage}
+        backgroundSize="cover"
+        background={`linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${srcImage}) lightgray 50% / cover no-repeat`}
+      >
+        <DOM.StyledContainer display="flex" height="36px" padding="0 6px" alignItems="center" gap="10px" >
+          {!isProfilePage && (
+            <Container.RowContainer gap="10px">
+            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                <Image.Base width="100%"
+                    src={
+                        guide.user?.profileImage
+                            ? guide.user.image
+                            : "/profil.png"
+                    }
+                    alt="Photo de profil"
+                />
+            </DOM.StyledContainer>
+            <Text.Span
+              fontSize="0.75rem"
+              color="white"
+              fontWeight="500"
+              width="160px"
+              
+              onClick={(e) => {navigate("/profil"); e.stopPropagation()}}
+            >
+                {guide.user.firstName} {guide.user.lastName}
+              
+            </Text.Span>
+            <Icon.Base
+              style={{ cursor: "pointer" }}
+              onClick={() => toggleFavorite(guide.id)}
+            >
+              {isFavorite ? (
+                <RedHeart />
+              ) : (
+                <WhiteHeart />
+              )}
+            </Icon.Base>
+            </Container.RowContainer>
+          )}
+        </DOM.StyledContainer>
+      </DOM.StyledContainer>
+      <DOM.StyledContainer style={{ padding: "0.5rem", display: "flex", flexDirection: "column",  }}>
+        <Text.Span style={{ fontWeight: "700" }}>{guide.title}</Text.Span>
+        <Container.RowContainer gap= '10px'>
+            { guide?.categories?.map((category, index) => (
+                <Text.Span key={index}>{ category.name }</Text.Span>
+            ))}
+        </Container.RowContainer>
+      </DOM.StyledContainer>
+    </DOM.StyledContainer>
+
   );
 };
 

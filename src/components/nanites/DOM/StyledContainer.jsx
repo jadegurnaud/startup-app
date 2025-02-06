@@ -1,10 +1,9 @@
 import { styled } from "styled-components";
 
 const StyledContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['backgroundColor', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
-    })`
-    background-color: ${(props) => props.backgroundColor ? props.backgroundColor : props.theme.colors.containers.primary};
-    color: ${(props) => props.theme.colors.colors.primary};
+    shouldForwardProp: (prop) => !['boxShadow', 'backdropFilter', 'hoverBackgroundColor', 'zIndex' ,'backgroundColor', 'backgroundImage', 'backgroundSize', 'borderBottom', 'borderRadius', 'flexDirection', 'justifyContent', 'alignItems', 'position', 'left', 'right', 'top', 'bottom', 'border', 'padding', 'height', 'width'].includes(prop),
+})`
+    color: ${(props) => props.color ?? props.theme.colors.colors.primary};
     ${(props) => props.position ? 'position:' + props.position + ';' : ""}
     ${(props) => props.left ? 'left:' + props.left + ';' : ""}
     ${(props) => props.right ? 'right:' + props.right + ';' : ""}
@@ -14,27 +13,28 @@ const StyledContainer = styled.div.withConfig({
     ${(props) => props.padding ? 'padding:' + props.padding + ';' : ""}
     ${(props) => props.height ? 'height:' + props.height + ';' : ""}
     ${(props) => props.width ? 'width:' + props.width + ';' : ""}
+    ${(props) => props.minWidth ? 'min-width:' + props.minWidth + ';' : ""}
     ${(props) => props.display ? 'display:' + props.display + ';' : ""}
     ${(props) => props.alignItems ? 'align-items:' + props.alignItems + ';' : ""}
     ${(props) => props.margin ? 'margin:' + props.margin + ';' : ""}
-
+    ${(props) => props.flexDirection ? 'flex-direction:' + props.flexDirection + ';' : ""}
     ${(props) => props.justifyContent ? 'justify-content:' + props.justifyContent + ';' : ""}
-
-
-    #infosProfile {
-        display: flex;
-        margin-top: 20px;
-        gap: 10px;
-        article {
-            display: flex;
-
-            width: 202px;
-            flex-direction: column;
-            span:first-child {
-                color: #8E8E8E;
-            }
-        } 
+    ${(props) => props.gap ? 'gap:' + props.gap + ';' : ""}
+    ${(props) => props.backgroundColor ? 'background-color:' + props.backgroundColor + ';' : ""}
+    ${(props) => props.backgroundImage ? `background-image: url(${props.backgroundImage});` : ""}
+    ${(props) => props.backgroundSize ? 'background-size:' + props.backgroundSize + ';' : ""}
+    ${(props) => props.borderBottom ? 'border-bottom:' + props.borderBottom + ';' : ""}
+    ${(props) => props.background ? 'background:' + props.background + ';' : ""}
+    ${(props) => props.borderRadius ? 'border-radius:' + props.borderRadius + ';' : ""}
+    ${(props) => props.cursor ? 'cursor:' + props.cursor + ';' : ""}
+    ${(props) => props.overflow ? 'overflow:' + props.overflow + ';' : ""}
+    ${(props) => props.boxShadow ? 'box-shadow:' + props.boxShadow + ';' : ""}
+    ${(props) => props.zIndex ? 'z-index:' + props.zIndex + ';' : ""}
+    ${(props) => props.backdropFilter ? 'backdrop-filter:' + props.backdropFilter + ';' : ""}
+&:hover {
+    ${(props) => props.hoverBackgroundColor ? 'background-color:' + props.hoverBackgroundColor + ';' : ""}
     }
+    ${(props) => props.textAlign ? 'text-align:' + props.textAlign + ';' : ""}
 `;
 
 export default StyledContainer;

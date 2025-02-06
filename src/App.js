@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser } from './components/pages';
+import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser, MyGuides, OffresSpeciales, PlanMyTravel } from './components/pages';
 import './App.css';
-import { Aside } from './components/organisms';
+import { NavBar } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthenticatedUser } from './store/reducers/user/getAuthenticatedUser';
@@ -29,7 +29,7 @@ const AppContent = () => {
 
   return (
     <>
-      <Aside/>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
         <Route path="/accueil" element={<Accueil/>} />
@@ -37,6 +37,7 @@ const AppContent = () => {
         <Route path="/login" element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path="/logout" element={<Accueil/>} />
+        <Route path="/offresSpeciales" element={<OffresSpeciales/>} />
         <Route path="/users/:userId" element={<ProfileOtherUser />} />
         <Route path="/profil" element={<ProtectedRoute>
           <Profile/>
@@ -49,6 +50,12 @@ const AppContent = () => {
         </ProtectedRoute>} />
         <Route path="/newGuide" element={<ProtectedRoute>
           <NewGuide/>
+        </ProtectedRoute>} />
+        <Route path="/myGuides" element={<ProtectedRoute>
+          <MyGuides/>
+        </ProtectedRoute>} />
+        <Route path="/planMyTravel" element={<ProtectedRoute>
+          <PlanMyTravel/>
         </ProtectedRoute>} />
       </Routes>
     </>

@@ -3,35 +3,19 @@
   "name": "Voyco",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "Icône voyco - Blanc.svg",
+      "type": "image/svg+xml",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "Icône voyco - Blanc.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "sapins.jpg",
-      "sizes": "1502x2254",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Wonder Widgets"
     },
     {
-      "src": "sapins.jpg",
-      "sizes": "1502x2254",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "Voyco Mobile"
+      "src": "Icône voyco - Blanc.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
     }
   ],
   "start_url": ".",

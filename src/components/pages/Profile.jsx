@@ -14,8 +14,11 @@ const Profile = () => {
   const { user } = useSelector((state) => {
     return state?.user;
   });
-  const { guides } = useSelector((state) => {
-    return state?.userGuides;
+  const { guidesPublies: guides } = useSelector((state) => {
+    return state?.myGuides
+  });
+  const { followers } = useSelector((state) => {
+    return state?.userFollowers;
   });
   const login = useSelector((state) => state.user.login);
   const dispatch = useDispatch();
@@ -24,7 +27,8 @@ const Profile = () => {
 
   useEffect(() => {
     if (login) {    
-      dispatch(Guide.getUserGuides(user?.id));
+      dispatch(Guide.getGuidesPublies(user?.id));
+      dispatch(User.getFollowers(user?.id));
     }
 
   }, [login, user, dispatch]);
@@ -72,7 +76,7 @@ const Profile = () => {
             </DOM.StyledContainer>
             <DOM.StyledContainer style={{ padding: "10px" }}>
               <Text.Paragraph>{user?.firstName}</Text.Paragraph>
-              <InfosProfile></InfosProfile>
+              <InfosProfile followers={followers} nbGuidesPublies={ guides.length }></InfosProfile>
               <GuidesPublies></GuidesPublies>
               <DOM.StyledSection id="descriptionProfile">
                 <Text.SubTitle>Description</Text.SubTitle>

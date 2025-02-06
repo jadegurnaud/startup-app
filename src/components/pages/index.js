@@ -8,5 +8,8 @@ import Favorites from "./Favorites";
 import NewGuideHome from "./NewGuideHome";
 import NewGuide from "./NewGuide";
 import ProfileOtherUser from "./ProfileOtherUser";
+import MyGuides from "./MyGuides";
+import PlanMyTravel from "./PlanMyTravel";
+import OffresSpeciales from "./OffresSpeciales";
 
-export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser };
+export { Accueil, Login, Register, Profile, AccessDenied, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser, MyGuides, PlanMyTravel, OffresSpeciales };
