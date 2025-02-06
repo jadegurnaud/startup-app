@@ -6,7 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DOM } from "../nanites";
 import { useNetwork } from "../../providers/contexts";
 import Reactotron from "reactotron-react-js";
-import { BandeauGuide } from "../molecules";
+import { BandeauGuide, GuideStay, GuideStays } from "../molecules";
+import { format } from "date-fns";
 
 const Guide = () => {
     const { favorites } = useSelector((state) => state?.guides);
@@ -18,6 +19,10 @@ const Guide = () => {
     const { isOnline } = useNetwork();
     const [ hasIncremented, setHasIncremented ] = useState(false);
     const { isFollowing } = useSelector((state) => state.userFollowing);
+
+    const formatDate = (date) => {
+        return format(new Date(date), "dd/MM/yyyy");
+    }
 
     const handleDeleteGuide = () => {
         dispatch(GuideReducers.deleteGuide(id)).then((result) => {
@@ -65,7 +70,13 @@ const Guide = () => {
             } catch (error) {
               console.error("Failed to toggle favorite", error);
             }
-          };
+        };
+
+        const [selectedStay, setSelectedStay] = useState(guide.stays[0]);
+
+        const handleStayClick = (stay) => {
+            setSelectedStay(stay);
+        };
 
     return (
         Reactotron.log(isOnline, "Online"),
@@ -127,25 +138,22 @@ const Guide = () => {
             </Container.RowContainer>
 
             {guide.guideType === "itinerary" && (
-                
-                <DOM.StyledContainer display= 'flex' gap= '10px' flexDirection= 'column'>
-                    <DOM.StyledContainer display= "flex" alignItems= "center" gap= "40px">
+                <Container.ColumnContainer  backgroundColor= "#F5F5F5" padding= "40px" gap= "40px">
+                    <Container.RowContainer>
                         <Text.SubTitle>Itinéraire</Text.SubTitle>
-                        <Text.Span> Du { guide.startDate } au { guide.endDate }</Text.Span>
-                    </DOM.StyledContainer>
-                    <DOM.StyledContainer display= "flex"
-                        width= "100%"
-                        height= "300px"
-                        padding= "20px"
-                        flexDirection= "column"
-                        alignItems= "flex-start"
-                        backgroundColor= "#F5F5F5"
-                        >
-                            
-                            
-                    </DOM.StyledContainer>
-                </DOM.StyledContainer>
+                        <Text.Span> Du { formatDate(guide.startDate) } au { formatDate(guide.endDate) }</Text.Span>
+                    </Container.RowContainer>
+                    <Container.RowContainer gap= "20px"  alignItems= "top">
+                        <GuideStays stays={guide.stays} selectedStayId={selectedStay?.id} onsStaySelect={handleStayClick}/>
+                        <GuideStay stay={selectedStay} />
+                    </Container.RowContainer>
+                </Container.ColumnContainer>
+                
             )}
+
+        
+            
+
             {guide.images?.length > 0 && (
                     <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         {guide.images.map((image, index) => (
