@@ -4,12 +4,22 @@ import { Container, Text, Icon, Image } from '../atoms';
 import { DOM } from "../nanites";
 import { ReactComponent as WhiteHeart } from "../../assets/Heart_white.svg";
 import { ReactComponent as RedHeart } from "../../assets/HeartFillRed.svg";
-
+import { useSelector } from 'react-redux';
 
 const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false }) => {
 
   const navigate = useNavigate();
 
+  const { user } = useSelector((state) => state.user);
+
+  const handleProfileClick = (e) => {
+    e.stopPropagation();
+    if (guide.user.id !== user.id) {
+      navigate(`/users/${guide.user.id}`);
+    } else {
+      navigate("/profil");
+    }
+  };
 
   const srcImage = guide?.coverImage ? guide.coverImage : "/coverImage.png";
 
@@ -31,7 +41,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
         <DOM.StyledContainer display="flex" height="36px" padding="0 6px" alignItems="center" gap="10px" >
           {!isProfilePage && (
             <Container.RowContainer gap="10px">
-            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={handleProfileClick} >
                 <Image.Base width="100%"
                     src={
                         guide.user?.profileImage
@@ -46,9 +56,9 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
               color="white"
               fontWeight="500"
               width="160px"
-              
-              onClick={(e) => {navigate("/profil"); e.stopPropagation()}}
-            >
+              cursor="pointer"
+              onClick={handleProfileClick}
+                          >
                 {guide.user.firstName} {guide.user.lastName}
               
             </Text.Span>

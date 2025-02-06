@@ -121,7 +121,7 @@ const Accueil = () => {
           <ViewList guides={guides} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
 
         ) : (
-          <ViewMap guides={guides} handleToggleFavorite={handleToggleFavorite} />
+          <ViewMap guides={guides} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
         )}
       </DOM.StyledContainer>
     </Container.Page>
