@@ -3,7 +3,7 @@ import { ReactComponent as Heart } from "../../assets/Heart.svg";
 import { Container } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import { DOM } from "../nanites";
-import { NavBarLogoContainer, NavBarButtonContainer, NavBarMenuBurger, NavLinkContainer } from "../molecules";
+import { NavBarLogoContainer, NavBarButtonContainer, NavLinkContainer } from "../molecules";
 import { useSelector } from "react-redux";
 
 import "./NavBar.css";
@@ -14,7 +14,7 @@ const NavBar = () => {
 
   return (
     <Container.Aside>
-      <NavBarLogoContainer />
+      <NavBarLogoContainer isLogin={login} user={user} />
       <NavLinkContainer />
       <DOM.StyledContainer width="auto" padding="10px 14px" borderRadius="4px" hoverBackgroundColor="#F3F6F4" id="heartSVGnoText" display="none" onClick={() => navigate("/favorites")} >
         <Heart />
