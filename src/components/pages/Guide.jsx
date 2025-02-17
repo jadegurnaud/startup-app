@@ -19,7 +19,7 @@ const Guide = () => {
     const { isOnline } = useNetwork();
     const [ hasIncremented, setHasIncremented ] = useState(false);
     const { isFollowing } = useSelector((state) => state.userFollowing);
-
+    
     const formatDate = (date) => {
         return format(new Date(date), "dd/MM/yyyy");
     }
@@ -40,7 +40,16 @@ const Guide = () => {
             dispatch(GuideReducers.incrementConsultations(id));
             setHasIncremented(true);
         }
+        console.log(guide);
     }, [id, dispatch, hasIncremented]);
+
+    const [selectedStay, setSelectedStay] = useState(guide?.stays?.[0]);
+
+    useEffect(() => {
+        if (guide?.stays?.length > 0) {
+            setSelectedStay(guide.stays[0]);
+        }
+    }, [guide]);
 
     const srcCoverImage = isOnline && guide?.coverImage ? guide.coverImage : "/coverImage.png";
       
@@ -72,8 +81,7 @@ const Guide = () => {
             }
         };
 
-        const [selectedStay, setSelectedStay] = useState(guide.stays[0]);
-
+       
         const handleStayClick = (stay) => {
             setSelectedStay(stay);
         };

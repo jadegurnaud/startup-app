@@ -2,7 +2,7 @@ import { getUserGuides } from "./getUserGuides";
 import { getFavoritesGuides } from "./getFavoritesGuides";
 import { toggleFavorite } from "./toggleFavorite";
 import { getGuide } from "./getGuide";
-import { createGuide } from "./createGuide";
+import { createGuide, newGuide, createGuideDirect, createGuideItinerary } from "./createGuide";
 import { deleteGuide } from "./deleteGuide";
 import { getAjoutsRecentsGuides } from "./getAjoutsRecentsGuides";
 import { getPlusConsultesGuides } from "./getPlusConsultesGuides";
@@ -14,4 +14,4 @@ import { getMyGuidesBrouillons } from "./getMyGuidesBrouillons";
 import { incrementConsultations } from "./incrementConsultationsGuide";
 import { getGuidesByCategory } from "./getGuidesByCategory";
 
-export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides, getGuidesBySearch, getGuidesPublies, getMyGuidesBrouillons, incrementConsultations, getGuidesByCategory };
+export { getUserGuides, getFavoritesGuides, toggleFavorite, getGuide, createGuide, createGuideDirect, createGuideItinerary, newGuide, deleteGuide, getAjoutsRecentsGuides, getPlusConsultesGuides, getPlusAimesGuides, getAbonnementsGuides, getGuidesBySearch, getGuidesPublies, getMyGuidesBrouillons, incrementConsultations, getGuidesByCategory };

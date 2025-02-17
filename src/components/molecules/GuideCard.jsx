@@ -64,7 +64,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
             </Text.Span>
             <Icon.Base
               style={{ cursor: "pointer" }}
-              onClick={() => toggleFavorite(guide.id)}
+              onClick={(e) => { e.stopPropagation();toggleFavorite(guide.id)}}
             >
               {isFavorite ? (
                 <RedHeart />
