@@ -10,7 +10,6 @@ import GuidesFilter from "./GuidesFilter";
 import NavBarLogoContainer from "./NavBarLogoContainer"
 import NavBarButtonContainer from "./NavBarButtonContainer"
 import NavLinkContainer from "./NavLinkContainer"
-import NavBarMenuBurger from "./NavBarMenuBurger"
 import HomeCategorieFilter from "./HomeCategorieFilter"
 import BandeauGuide from "./BandeauGuide";
 import HeaderMyGuides from "./HeaderMyGuides";
@@ -20,6 +19,7 @@ import GuideStays from "./GuideStays";
 import GuideStay from "./GuideStay";
 import ModalNewGuide from "./ModalNewGuide";
 import TagMultiSelect from "./TagMultiSelect";
+
 
 export {
     Form,
