@@ -5,8 +5,10 @@ const StyledParagraph = styled.span.withConfig({
 })`
     background-color: ${(props) => props.backgroundColor ?? "transparent"};
     color: ${(props) => props.color ?? props.theme.colors.colors.primary};
-    font-size: ${(props) => props.fontSize ?? "1rem"};
-    font-weight: ${(props) => props.fontWeight ?? ""};
+    font-size: ${(props) => props.fontSize ?? "12px"};
+    font-style: ${(props) => props.fontStyle ?? "normal"};
+    font-weight: ${(props) => props.fontWeight ?? "600"};
+    line-height: ${(props) => props.lineHeight ?? "24px"};
     margin: ${(props) => props.margin ?? ""};
     padding: ${(props) => props.padding ?? ""};
     width: ${(props) => props.width ?? ""};

@@ -34,7 +34,7 @@ export default function GuideStay({stay}) {
       };
 
     useEffect(() => {
-        setSelectedDay(stay.days[0]);
+        setSelectedDay(stay?.days?.[0]);
     }, [stay]);
 
     return (
