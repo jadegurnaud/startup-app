@@ -4,6 +4,7 @@ import InfosProfile from "./InfosProfile";
 import GuidesPublies from "./GuidesPublies";
 import MenuItemIcon from "./MenuItemIcon";
 import ImageUpload from "./ImageUpload";
+import GuideCoverImageUpload from "./GuideCoverImageUpload";
 import SearchBar from "./SearchBar";
 import GuidesFilter from "./GuidesFilter";
 import NavBarLogoContainer from "./NavBarLogoContainer"
@@ -17,5 +18,30 @@ import MesBrouillonsMyGuides from "./MesBrouillonsMyGuides";
 import MesGuidesPubliesMyGuides from "./MesGuidesPubliesMyGuides";
 import GuideStays from "./GuideStays";
 import GuideStay from "./GuideStay";
+import ModalNewGuide from "./ModalNewGuide";
+import TagMultiSelect from "./TagMultiSelect";
 
-export { Form, GuideCard, InfosProfile, GuidesPublies, MenuItemIcon, ImageUpload, SearchBar, NavLinkContainer, NavBarLogoContainer, NavBarButtonContainer, GuidesFilter, NavBarMenuBurger, HomeCategorieFilter, BandeauGuide, HeaderMyGuides, MesBrouillonsMyGuides, MesGuidesPubliesMyGuides, GuideStay, GuideStays };
+export {
+    Form,
+    GuideCard,
+    InfosProfile,
+    GuidesPublies,
+    MenuItemIcon,
+    ImageUpload,
+    GuideCoverImageUpload,
+    SearchBar,
+    GuidesFilter,
+    NavBarLogoContainer,
+    NavBarButtonContainer,
+    NavLinkContainer,
+    NavBarMenuBurger,
+    HomeCategorieFilter,
+    BandeauGuide,
+    HeaderMyGuides,
+    MesBrouillonsMyGuides,
+    MesGuidesPubliesMyGuides,
+    GuideStays,
+    GuideStay,
+    ModalNewGuide,
+    TagMultiSelect,
+    };

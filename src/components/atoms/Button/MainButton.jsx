@@ -4,7 +4,7 @@ import { DOM } from "../../nanites";
 const MainButton = ({ ...props }) => {
     return <DOM.StyledButton
         padding="10px 14px"
-        width="141px"
+        minWidth="146px"
         height="38px"
         gap="10px"
         color="white"
