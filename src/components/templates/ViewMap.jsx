@@ -3,13 +3,15 @@ import { DOM } from "../nanites";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {GuideCard} from "../molecules";
+import { useNavigate } from "react-router-dom";
 
 
-const ViewMap = ({guides}) => {
+const ViewMap = ({ guides, favorites, handleToggleFavorite}) => {
     const mapRef = useRef(null);
     const guideCardRef = useRef(null);
     const mapInstanceRef = useRef(null);
     const [selectedGuide, setSelectedGuide] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (mapRef.current && !mapInstanceRef.current) {
@@ -30,8 +32,9 @@ const ViewMap = ({guides}) => {
             });
         }
 
-        const handleClickOutside = () => {
-           setSelectedGuide(null);
+        const handleClickOutside = (event) => {
+            if (event.target.closest('.guide-card')) return;
+            setSelectedGuide(null);
         };
 
         document.addEventListener('mousedown', handleClickOutside);
@@ -44,13 +47,14 @@ const ViewMap = ({guides}) => {
         <DOM.StyledContainer>
             <DOM.StyledContainer ref={mapRef} style={{ height: '400px', width: '100%' }}>
             {selectedGuide && (
-                <DOM.StyledContainer style={{  position: 'absolute', marginTop: '80px', marginLeft: '20px' ,zIndex: 100000000, backgroundColor:'transparent' }}>
+                <DOM.StyledContainer 
+                cursor="pointer"
+                className="guide-card" style={{  position: 'absolute', marginTop: '80px', marginLeft: '20px' ,zIndex: 100000000, backgroundColor:'transparent' }} onClick={(e) => e.stopPropagation()}>
                     <GuideCard 
-                        guide={selectedGuide} 
-                        // You might need to pass additional props like isFavorite, toggleFavorite, etc.
-                        // For example:
-                        // isFavorite={false}
-                        // toggleFavorite={() => {}}
+                        guide={selectedGuide}
+                        isFavorite={favorites[selectedGuide.id]}
+                        toggleFavorite={handleToggleFavorite}
+                        onClick={() => navigate(`/guides/${selectedGuide.id}`)}
                     />
                 </DOM.StyledContainer>
             )}

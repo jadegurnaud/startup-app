@@ -1,0 +1,28 @@
+.label-desktop {
+    display: flex;
+  }
+  
+  .label-mobile {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .label-desktop {
+      display: none;
+    }
+  
+    .label-mobile {
+      display: flex;
+    }
+    .search-input {
+      width: 50px;
+    }
+    .searchContainer {
+          width: 60% !important;
+   
+          padding: 10px 15px 10px 25px !important;
+        }
+    .containerSearchBarContainer {
+      padding: 30px !important;
+    }    
+  }

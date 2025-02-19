@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, ProfileOtherUser, MyGuides, OffresSpeciales, PlanMyTravel } from './components/pages';
+import { Accueil, Login, Profile, Register, Guide, Favorites, NewGuideHome, NewGuide, NewTravel, ProfileOtherUser, MyGuides, OffresSpeciales, PlanMyTravel } from './components/pages';
 import './App.css';
 import { NavBar } from './components/organisms';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -50,6 +50,9 @@ const AppContent = () => {
         </ProtectedRoute>} />
         <Route path="/newGuide" element={<ProtectedRoute>
           <NewGuide/>
+        </ProtectedRoute>} />
+        <Route path="/newTravel" element={<ProtectedRoute>
+          <NewTravel/>
         </ProtectedRoute>} />
         <Route path="/myGuides" element={<ProtectedRoute>
           <MyGuides/>

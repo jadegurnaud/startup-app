@@ -12,10 +12,10 @@ const GuidesFilter = ({ onFilterChange }) => {
   
   return (
     <Container.RowContainer gap="20px">
-        <Text.SubTitle>
+        <Text.SubTitle className="accueilTitle">
             Guides
         </Text.SubTitle>
-        <Select.Base value={selectedFilter} 
+        <Select.Base className="guidesFilter" value={selectedFilter} 
           onChange={handleFilterChange}>
             <Select.Option value="plusAimes">Les plus aimés</Select.Option>
             <Select.Option value="ajoutsRecents">Ajouts récents</Select.Option>

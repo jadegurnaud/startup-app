@@ -16,11 +16,11 @@ export default function NavBarButtonContainer({ isLogin, user }) {
             right="40px"
         >
             <Button.MainButton
-                onClick={() => navigate("/newGuideHome")}
+                onClick={() => navigate("/myGuides")}
                 backgroundColor="#3E5544"
                 hoverBackgroundColor="#56735D"
                 color="white">
-                <Plus /> Crée un guide
+                <Plus /> Créer un guide
             </Button.MainButton>
             {isLogin ?
                 <Container.RowContainer
@@ -28,7 +28,7 @@ export default function NavBarButtonContainer({ isLogin, user }) {
                     <DOM.StyledContainer cursor="pointer" >
                         <Notif />
                     </DOM.StyledContainer>
-                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={() => navigate("/profil")} >
                         <Image.Base width="100%"
                             src={
                                 user?.profileImage

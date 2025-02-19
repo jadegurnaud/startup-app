@@ -6,7 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { DOM } from "../nanites";
 import { useNetwork } from "../../providers/contexts";
 import Reactotron from "reactotron-react-js";
-import { BandeauGuide } from "../molecules";
+import { BandeauGuide, GuideStay, GuideStays } from "../molecules";
+import { format } from "date-fns";
 
 const Guide = () => {
     const { favorites } = useSelector((state) => state?.guides);
@@ -18,6 +19,10 @@ const Guide = () => {
     const { isOnline } = useNetwork();
     const [ hasIncremented, setHasIncremented ] = useState(false);
     const { isFollowing } = useSelector((state) => state.userFollowing);
+    
+    const formatDate = (date) => {
+        return format(new Date(date), "dd/MM/yyyy");
+    }
 
     const handleDeleteGuide = () => {
         dispatch(GuideReducers.deleteGuide(id)).then((result) => {
@@ -35,7 +40,16 @@ const Guide = () => {
             dispatch(GuideReducers.incrementConsultations(id));
             setHasIncremented(true);
         }
+        console.log(guide);
     }, [id, dispatch, hasIncremented]);
+
+    const [selectedStay, setSelectedStay] = useState(guide?.stays?.[0]);
+
+    useEffect(() => {
+        if (guide?.stays?.length > 0) {
+            setSelectedStay(guide.stays[0]);
+        }
+    }, [guide]);
 
     const srcCoverImage = isOnline && guide?.coverImage ? guide.coverImage : "/coverImage.png";
       
@@ -65,7 +79,12 @@ const Guide = () => {
             } catch (error) {
               console.error("Failed to toggle favorite", error);
             }
-          };
+        };
+
+       
+        const handleStayClick = (stay) => {
+            setSelectedStay(stay);
+        };
 
     return (
         Reactotron.log(isOnline, "Online"),
@@ -73,7 +92,7 @@ const Guide = () => {
             <BandeauGuide srcCoverImage={srcCoverImage} guideTitle={ guide.title } guideCountry={ guide?.address?.country} />
             <Container.RowContainer style={{ justifyContent: 'space-between', margin: '20px 40px' }}>
                 <Container.RowContainer style={{ gap: '10px', padding: '12px', borderRadius: '6px', backgroundColor: '#F6F6F6' }}>
-                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={() => navigate("/profil")} >
                             <Image.Base width="100%"
                                 src={
                                     guide.user?.profileImage
@@ -115,11 +134,11 @@ const Guide = () => {
                     width= "439px"
                     padding= "20px"
                     gap= "20px">
-                    <Text.Paragraph>Budget global : </Text.Paragraph>
+                    <Text.Paragraph>Budget global : {guide.price} €</Text.Paragraph>
                     <Container.ColumnContainer gap= "20px" borderRadius= "12px" padding= "20px"
                         border= "1px solid #E5E5E5">
                             <Text.Paragraph>Informations pratiques : </Text.Paragraph>
-                        <Text.Span>BLABLABLAAAAA</Text.Span>
+                        <Text.Span>Mes infos</Text.Span>
                     </Container.ColumnContainer>
                 </Container.ColumnContainer>
             
@@ -127,25 +146,22 @@ const Guide = () => {
             </Container.RowContainer>
 
             {guide.guideType === "itinerary" && (
-                
-                <DOM.StyledContainer display= 'flex' gap= '10px' flexDirection= 'column'>
-                    <DOM.StyledContainer display= "flex" alignItems= "center" gap= "40px">
+                <Container.ColumnContainer  backgroundColor= "#F5F5F5" padding= "40px" gap= "40px">
+                    <Container.RowContainer>
                         <Text.SubTitle>Itinéraire</Text.SubTitle>
-                        <Text.Span> Du { guide.startDate } au { guide.endDate }</Text.Span>
-                    </DOM.StyledContainer>
-                    <DOM.StyledContainer display= "flex"
-                        width= "100%"
-                        height= "300px"
-                        padding= "20px"
-                        flexDirection= "column"
-                        alignItems= "flex-start"
-                        backgroundColor= "#F5F5F5"
-                        >
-                            
-                            
-                    </DOM.StyledContainer>
-                </DOM.StyledContainer>
+                        <Text.Span> Du { formatDate(guide.startDate) } au { formatDate(guide.endDate) }</Text.Span>
+                    </Container.RowContainer>
+                    <Container.RowContainer gap= "20px"  alignItems= "top">
+                        <GuideStays stays={guide.stays} selectedStayId={selectedStay?.id} onsStaySelect={handleStayClick}/>
+                        <GuideStay stay={selectedStay} />
+                    </Container.RowContainer>
+                </Container.ColumnContainer>
+                
             )}
+
+        
+            
+
             {guide.images?.length > 0 && (
                     <DOM.StyledContainer style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                         {guide.images.map((image, index) => (

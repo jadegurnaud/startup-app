@@ -5,7 +5,6 @@ import { ReactComponent as Path } from "../../assets/Path.svg";
 import { ReactComponent as BookOpenText } from "../../assets/BookOpenText.svg";
 import { useNavigate } from "react-router-dom";
 
-
 export default function NavLinkContainer() {
     const navigate = useNavigate();
     return (

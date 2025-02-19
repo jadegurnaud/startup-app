@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Container } from "../atoms";
 import { DOM } from "../nanites";
 import { ReactComponent as Search } from '../../assets/Search.svg';
+import './SearchBar.css';
 
 const SearchBar = ({ onLocationSelect }) => {
   const [query, setQuery] = useState('');
@@ -105,11 +106,15 @@ const SearchBar = ({ onLocationSelect }) => {
     }
   };
 
+
   return (
-    <Container.SearchContainer>
+    <Container.SearchContainer 
+    className="searchContainer">
       <Container.ColumnContainer style={{ position: 'relative', flex: 1 }}>
-        <Input.Label>Rechercher un pays, une ville</Input.Label>
-        <Input.Search
+      <Input.Label className="label-desktop">Rechercher un pays, une ville</Input.Label>
+        <Input.Label className="label-mobile">Rechercher</Input.Label>
+        
+        <Input.Search className="search-input"
           placeholder="ex : Paris"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
