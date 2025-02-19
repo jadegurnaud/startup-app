@@ -19,6 +19,10 @@ import GuideStays from "./GuideStays";
 import GuideStay from "./GuideStay";
 import ModalNewGuide from "./ModalNewGuide";
 import TagMultiSelect from "./TagMultiSelect";
+import HeaderMyTravels from "./HeaderMyTravels";
+import MyTravelsInProgress from "./MyTravelsInProgress";
+import MyTravelsPast from "./MyTravelsPast";
+import ModalNewTravel from "./ModalNewTravel";
 
 
 export {
@@ -34,7 +38,6 @@ export {
     NavBarLogoContainer,
     NavBarButtonContainer,
     NavLinkContainer,
-    NavBarMenuBurger,
     HomeCategorieFilter,
     BandeauGuide,
     HeaderMyGuides,
@@ -44,4 +47,8 @@ export {
     GuideStay,
     ModalNewGuide,
     TagMultiSelect,
+    HeaderMyTravels,
+    MyTravelsInProgress,
+    MyTravelsPast,
+    ModalNewTravel
     };

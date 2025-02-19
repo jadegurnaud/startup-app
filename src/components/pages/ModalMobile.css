@@ -1,0 +1,14 @@
+@media (max-width: 450px) {
+    
+    .modalMobile {
+    
+        display: flex !important;
+    };
+}
+@media (max-width: 450px) {
+    
+    
+    .modalNewGuide {
+        display: none !important;
+    };
+}

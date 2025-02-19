@@ -34,8 +34,8 @@ const MyFav = () => {
   };
 
   return (
-    <DOM.StyledContainer>
-      <Text.SubTitle style={{ marginBottom: "20px" }} >Mes favoris</Text.SubTitle>
+    <DOM.StyledContainer margin="40px">
+      <Text.Paragraph style={{ marginBottom: "20px" }} >Mes favoris</Text.Paragraph>
       {guides.length > 0 ? (
         <GuidesContainer
           guides={guides}

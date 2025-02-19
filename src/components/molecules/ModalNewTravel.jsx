@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setGuideData } from "../../store/slices/newGuideSlice";
 
-export default function ModalNewGuide({onNewGuideClick}) {
+export default function ModalNewTravel({onNewTravelClick}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [isNewGuideDirect, setIsNewGuideDirect] = useState(true);
+    const [isNewTravelDirect, setIsNewTravelDirect] = useState(true);
     const [loading, setLoading] = useState(false);
-    const [newGuideData, setNewGuideData] = useState({
+    const [newTravelData, setNewTravelData] = useState({
       title: "",
       description: "",
       guideType: "direct",
@@ -25,7 +25,7 @@ export default function ModalNewGuide({onNewGuideClick}) {
       categories: [],
       address: {},
       user: null,
-      isTravel: false
+      isTravel: true
     });
 
     const [countries, setCountries] = useState([]);
@@ -83,8 +83,8 @@ export default function ModalNewGuide({onNewGuideClick}) {
   
 
     const onDirect = () => {
-        setIsNewGuideDirect(true);
-        setNewGuideData(prev => ({
+        setIsNewTravelDirect(true);
+        setNewTravelData(prev => ({
           ...prev,
           guideType: "direct",
           startDate: null,
@@ -93,35 +93,35 @@ export default function ModalNewGuide({onNewGuideClick}) {
     }
 
     const onItineraire = () => {
-        setIsNewGuideDirect(false);
-        setNewGuideData(prev => ({
+        setIsNewTravelDirect(false);
+        setNewTravelData(prev => ({
           ...prev,
           guideType: "itinerary"
       }));
     }
 
-    const handleNewGuideClick = () => {
-        const initializedGuideData = {
-            ...newGuideData,
+    const handleNewTravelClick = () => {
+        const initializedTravelData = {
+            ...newTravelData,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             views: 0
         };
 
-        if (!isNewGuideDirect) {
-            initializedGuideData.stays = [{
+        if (!isNewTravelDirect) {
+            initializedTravelData.stays = [{
                 order: 1,
-                startDate: newGuideData.startDate,
-                endDate: newGuideData.endDate,
+                startDate: newTravelData.startDate,
+                endDate: newTravelData.endDate,
                 description: "",
                 address: {
-                    city: newGuideData.address.city,
-                    country: newGuideData.address.country,
-                    longitude: newGuideData.address.longitude,
-                    latitude: newGuideData.address.latitude
+                    city: newTravelData.address.city,
+                    country: newTravelData.address.country,
+                    longitude: newTravelData.address.longitude,
+                    latitude: newTravelData.address.latitude
                 },
                 days: [{
-                    date: newGuideData.startDate,
+                    date: newTravelData.startDate,
                     description: "Premier jour",
                     sections: []
                 }],
@@ -129,9 +129,9 @@ export default function ModalNewGuide({onNewGuideClick}) {
                 arrivingTransports: []
             }];
         }
-        dispatch(setGuideData(initializedGuideData));
-        onNewGuideClick();
-        window.open("/newGuide", "_blank");
+        dispatch(setGuideData(initializedTravelData));
+        onNewTravelClick();
+        window.open("/newTravel", "_blank");
     };
 
     const handleInputChange = (e) => {
@@ -139,10 +139,10 @@ export default function ModalNewGuide({onNewGuideClick}) {
         if (name === "country") {
             const selectedCountry = countries.find(country => country.name === value);
             if (selectedCountry) {
-                setNewGuideData({
-                    ...newGuideData,
+                setNewTravelData({
+                    ...newTravelData,
                     address: {
-                        ...newGuideData.address,
+                        ...newTravelData.address,
                         country: value,
                         countryCode: selectedCountry.code
                     },
@@ -152,11 +152,11 @@ export default function ModalNewGuide({onNewGuideClick}) {
         } else if (name === "city") {
           const selectedCity = cities.find(city => city.name === value);
           if (selectedCity) {
-              setNewGuideData({
-                  ...newGuideData,
+              setNewTravelData({
+                  ...newTravelData,
                   startCity: value,
                   address: {
-                      ...newGuideData.address,
+                      ...newTravelData.address,
                       city: value,
                       latitude: selectedCity.latitude,
                       longitude: selectedCity.longitude
@@ -164,15 +164,15 @@ export default function ModalNewGuide({onNewGuideClick}) {
               });
           }
         } else {
-            setNewGuideData({
-                ...newGuideData,
+            setNewTravelData({
+                ...newTravelData,
                 [name]: value,
             });
         }
     };
 
     return (
-        <Container.ColumnContainer gap="40px"
+        <Container.ColumnContainer className="modalNewGuide" gap="40px"
             style={{
               backgroundColor: 'white',
               padding: '20px',
@@ -180,29 +180,28 @@ export default function ModalNewGuide({onNewGuideClick}) {
               width: '534px',
               maxWidth: '90%',
             }}
-            className='modalNewGuide'
         >
             <Container.RowContainer justifyContent="space-between">
-                <Text.Paragraph style={{ fontSize: "16px", fontWeight: "600"}}>Nouveau guide</Text.Paragraph>
-                <Button.Base onClick={onNewGuideClick}>X</Button.Base>
+                <Text.Paragraph style={{ fontSize: "16px", fontWeight: "600"}}>Nouveau voyage</Text.Paragraph>
+                <Button.Base onClick={onNewTravelClick}>X</Button.Base>
             </Container.RowContainer>
 
             <Container.ColumnContainer gap="20px">
-                <Text.Paragraph>Choisissez le type de guide</Text.Paragraph>
+                <Text.Paragraph>Choisissez le type de voyage</Text.Paragraph>
                 <Container.RowContainer gap="10px">
                     <Button.Base 
                         onClick={onDirect} 
                         padding="10px 14px" 
-                        backgroundColor={isNewGuideDirect ? "#3E5544" : "#F0EFEB"}
-                        color={isNewGuideDirect ? "#FFF" : "#000"}
+                        backgroundColor={isNewTravelDirect ? "#3E5544" : "#F0EFEB"}
+                        color={isNewTravelDirect ? "#FFF" : "#000"}
                     >
                         Direct
                     </Button.Base>
                     <Button.Base 
                         onClick={onItineraire} 
                         padding="10px 14px" 
-                        backgroundColor={!isNewGuideDirect ? "#3E5544" : "#F0EFEB"}
-                        color={!isNewGuideDirect ? "#FFF" : "#000"}
+                        backgroundColor={!isNewTravelDirect ? "#3E5544" : "#F0EFEB"}
+                        color={!isNewTravelDirect ? "#FFF" : "#000"}
                     >
                         En itinéraire
                     </Button.Base>
@@ -211,11 +210,11 @@ export default function ModalNewGuide({onNewGuideClick}) {
 
             <Container.ColumnContainer gap="20px">
                 <Container.ColumnContainer gap="10px">
-                    <Input.Label>Nom de votre guide</Input.Label>
+                    <Input.Label>Nom de votre voyage</Input.Label>
                     <Input.InputForm type="text" name="title" onChange={handleInputChange}/>
                 </Container.ColumnContainer>
                 <Container.ColumnContainer gap="10px">
-                    <Input.Label>Quel pays avez-vous visité ?</Input.Label>
+                    <Input.Label>Quel pays allez-vous visiter ?</Input.Label>
                     <select 
                         name="country" 
                         onChange={handleInputChange} 
@@ -233,7 +232,7 @@ export default function ModalNewGuide({onNewGuideClick}) {
                     <select 
                         name="city" 
                         onChange={handleInputChange} 
-                        disabled={!newGuideData.address.country || loading}
+                        disabled={!newTravelData.address.country || loading}
                         style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
                     >
                         <option value="">Sélectionnez une ville</option>
@@ -244,7 +243,7 @@ export default function ModalNewGuide({onNewGuideClick}) {
                     {loading && <Text.Paragraph style={{ fontSize: "14px", color: "#666" }}>Chargement des villes...</Text.Paragraph>}
                 </Container.ColumnContainer>
 
-                {!isNewGuideDirect && (
+                {!isNewTravelDirect && (
                     <Container.RowContainer gap="10px">
                         <Container.ColumnContainer gap="10px" width="50%">
                             <Input.Label>Date de départ</Input.Label>
@@ -259,17 +258,17 @@ export default function ModalNewGuide({onNewGuideClick}) {
             </Container.ColumnContainer>
 
             <Container.RowContainer justifyContent="center" gap="10px">
-                <Button.Base onClick={onNewGuideClick} padding="10px 14px" backgroundColor="#F0EFEB">
+                <Button.Base onClick={onNewTravelClick} padding="10px 14px" backgroundColor="#F0EFEB">
                     Annuler
                 </Button.Base>
                 <Button.Base 
-                    onClick={handleNewGuideClick} 
+                    onClick={handleNewTravelClick} 
                     padding="10px 14px" 
                     color="#FFF" 
                     backgroundColor="#3E5544"
-                    disabled={!newGuideData.title || !newGuideData.address.city}
+                    disabled={!newTravelData.title || !newTravelData.address.city}
                 >
-                    Commencer mon guide
+                    Commencer à planifier
                 </Button.Base>
             </Container.RowContainer>
         </Container.ColumnContainer>

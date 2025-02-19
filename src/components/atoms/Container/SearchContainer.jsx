@@ -1,5 +1,6 @@
 import React from "react";
 import { DOM } from "../../nanites";
+import '../../molecules/SearchBar.css'
 
 const SearchContainer = ({children, ...props }) => {
   return (
@@ -8,8 +9,7 @@ const SearchContainer = ({children, ...props }) => {
     alignItems="center"
     margin="0px auto"
     justifyContent="space-between"
-    width="60%"
-    minWidth="300px"
+    width="50%"
     padding="12px 17px 12px 33px"
     borderRadius= "999px"
 backgroundColor= "#FFF"

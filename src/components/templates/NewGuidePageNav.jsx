@@ -49,33 +49,48 @@ const NewGuidePageNav = ({guide, onPageClick}) => {
  
     const handleAddCity = () => {
         setShowPopup(true);
-    };
-
-    const handleSaveCity = () => {
+      };
+      const calculateDayDate = (dayIndex, stayIndex) => {
+        const startDate = new Date(guide.startDate);
+        let totalDays = 0;
+        for (let i = 0; i < stayIndex; i++) {
+          totalDays += guide.stays[i].days.length;
+        }
+        startDate.setDate(startDate.getDate() + totalDays + dayIndex);
+        return startDate.toISOString().split('T')[0];
+      };
+      const handleSaveCity = () => {
         const selectedCity = cities.find(city => city.name === newCityName);
         if (selectedCity) {
-            const newStay = {
-                order: guide.stays.length + 1,
-                startDate: "",
-                endDate: "",
-                description: "",
-                address: {
-                    city: selectedCity.name,
-                    country: guide.address.country,
-                    longitude: selectedCity.longitude,
-                    latitude: selectedCity.latitude
-                },
-                days: [],
-                departingTransports: [],
-                arrivingTransports: []
-            };
-            dispatch(addStay(newStay));
-            dispatch(addEndCity(selectedCity.name));
-            setShowPopup(false);
-            setNewCityName("");
-            handleButtonClick(`stay-${guide.stays.length}`);
+          const newStay = {
+            order: guide.stays.length + 1,
+            startDate: calculateDayDate(0, guide.stays.length),
+            endDate: calculateDayDate(0, guide.stays.length),
+            description: "",
+            address: {
+              city: selectedCity.name,
+              country: guide.address.country,
+              longitude: selectedCity.longitude,
+              latitude: selectedCity.latitude
+            },
+            days: [
+              {
+                date: calculateDayDate(0, guide.stays.length),
+                description: "Premier jour",
+                sections: []
+              }
+            ],
+            departingTransports: [],
+            arrivingTransports: []
+          };
+          dispatch(addStay(newStay));
+          dispatch(addEndCity(selectedCity.name));
+          setShowPopup(false);
+          setNewCityName("");
+          handleButtonClick(`stay-${guide.stays.length}`);
         }
-    };
+      };
+    
 
     return (
         <DOM.StyledContainer backgroundColor="#F6F6F6" width= "270px" height="100%" padding="12px">

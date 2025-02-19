@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "../atoms";
+import { Container, Text, Button } from "../atoms";
 import { HeaderMyGuides, MesBrouillonsMyGuides, MesGuidesPubliesMyGuides, ModalNewGuide } from "../molecules";
 import { useSelector, useDispatch } from "react-redux";
 import { Guide } from "../../store/reducers";
@@ -52,6 +52,24 @@ const MyGuides = () => {
                     }}
                 >
                     <ModalNewGuide onNewGuideClick={closeModal}/>
+                    <Container.ColumnContainer gap="40px"
+                            style={{
+                                backgroundColor: 'white',
+                                padding: '20px',
+                                borderRadius: '8px',
+                                width: '534px',
+                                maxWidth: '90%',
+                                display: 'none'
+                            }}
+                                className="modalMobile"
+                        >
+                            <Container.RowContainer justifyContent="space-between">
+                                <Text.Paragraph style={{ fontSize: "16px", fontWeight: "600"}}>Nouveau guide</Text.Paragraph>
+                                <Button.Base onClick={closeModal}>X</Button.Base>
+                            </Container.RowContainer>
+                            <Text.Paragraph>Veuillez vous connecter sur un device plus large pour accéder aux fonctionnalités de création</Text.Paragraph>
+                </Container.ColumnContainer>
+                                                
                 </DOM.StyledContainer>
             )}
         </Container.Page>

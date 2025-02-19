@@ -41,7 +41,7 @@ const GuideCard = ({ guide, isFavorite, toggleFavorite, isProfilePage = false })
         <DOM.StyledContainer display="flex" height="36px" padding="0 6px" alignItems="center" gap="10px" >
           {!isProfilePage && (
             <Container.RowContainer gap="10px">
-            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={handleProfileClick} >
+            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={handleProfileClick} >
                 <Image.Base width="100%"
                     src={
                         guide.user?.profileImage

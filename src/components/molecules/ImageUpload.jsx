@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Cropper from "react-easy-crop";
 import { DOM } from "../nanites";
+import { Button } from "../atoms";
+import { ReactComponent as IconImage } from "../../assets/Image.svg";
+
 
 const ImageUpload = ({ onImageChange, initialImage }) => {
   const [image, setImage] = useState(null);
@@ -71,14 +74,20 @@ const ImageUpload = ({ onImageChange, initialImage }) => {
 
       {/* Afficher l'image si elle existe */}
       {imageToDisplay && !isCropping && (
-        <DOM.StyledContainer position="relative">
-          <button
+        <DOM.StyledContainer width="100%"
+        height="300px"
+        padding="20px 40px"
+        gap="20px" position="relative" style={{
+          background:  imageToDisplay ? `linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(${imageToDisplay}) lightgray 50% / cover no-repeat` : 'none',
+          backgroundColor:"#E7E7E7",
+  
+        }}>
+          <Button.Base
+          padding="10px"
+          color="#fff"
+          gap="10px"
           style={{
-            padding: "12px",
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
+            
             cursor: "pointer",
             position: "absolute",
             bottom: "20px",
@@ -88,10 +97,10 @@ const ImageUpload = ({ onImageChange, initialImage }) => {
           onClick={() => document.getElementById("file-input").click()}
         >
            Changer la photo de couverture
-        </button>
+           <IconImage />
+        </Button.Base>
          
-          <img src={imageToDisplay} alt="Preview" style={{ width: "100%", borderRadius: "20px" }} />
-          
+               
         </DOM.StyledContainer>
       )}
 

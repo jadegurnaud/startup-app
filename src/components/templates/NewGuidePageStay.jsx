@@ -42,52 +42,57 @@ const NewGuidePageStay = ({guide, selectedStayIndex }) => {
         }
     }, [days, selectedDay]);
 
-    const calculateDayDate = (dayIndex) => {
+    const calculateDayDate = (dayIndex, stayIndex) => {
         const startDate = new Date(guide.startDate);
         let totalDays = 0;
-        for (let i = 0; i < selectedStayIndex; i++) {
-            totalDays += stays[i].days.length;
+        for (let i = 0; i < stayIndex; i++) {
+          totalDays += stays[i].days.length;
         }
         startDate.setDate(startDate.getDate() + totalDays + dayIndex);
         return startDate.toISOString().split('T')[0];
-    };
+      };
 
-    const handleUpdateStayDates = () => {
+      const calculateStayDates = (days, stayIndex) => {
         if (days.length > 0) {
-            const startDate = calculateDayDate(0);
-            const endDate = calculateDayDate(days.length - 1);
-            dispatch(updateStayDates({
-                stayIndex: selectedStayIndex,
-                startDate,
-                endDate
-            }));
+          const startDate = calculateDayDate(0, stayIndex);
+          const endDate = calculateDayDate(days.length - 1, stayIndex);
+          return { startDate, endDate };
         }
-    };
+        return { startDate: "", endDate: "" };
+      };
 
-    const handleIncreaseDays = () => {
-        const nextDate = calculateDayDate(days.length);
-        console.log(nextDate);
+      const handleUpdateStayDates = () => {
+        guide.stays.forEach((stay, index) => {
+          const { startDate, endDate } = calculateStayDates(stay.days, index);
+          dispatch(updateStayDates({
+            stayIndex: index,
+            startDate,
+            endDate
+          }));
+        });
+      };
+
+      const handleIncreaseDays = () => {
+        const nextDate = calculateDayDate(days.length, selectedStayIndex);
         dispatch(addDay({
-            stayIndex: selectedStayIndex,
-            date: nextDate
+          stayIndex: selectedStayIndex,
+          date: nextDate
         }));
-        
         handleUpdateStayDates();
-    };
-    
-    const handleDecreaseDays = () => {
+      };
+      
+      const handleDecreaseDays = () => {
         if (days.length > 1) {
-            const lastDay = days[days.length - 1];
-            if (lastDay?.id) {
-                dispatch(removeDay({
-                    stayIndex: selectedStayIndex,
-                    dayId: lastDay.id
-                }));
-                
-                handleUpdateStayDates();
-            }
+          const lastDay = days[days.length - 1];
+          if (lastDay?.id) {
+            dispatch(removeDay({
+              stayIndex: selectedStayIndex,
+              dayId: lastDay.id
+            }));
+            handleUpdateStayDates();
+          }
         }
-    };
+      };
 
     const handleDayClick = (day) => {
         setSelectedDay(day);
@@ -112,8 +117,9 @@ const NewGuidePageStay = ({guide, selectedStayIndex }) => {
                 stayIndex: selectedStayIndex,
                 section: {
                     sectionType,
-                    title: "",
-                    description: ""
+                    title: '',
+                    description: '',
+                    contentBlocks: []
                 }
             }));
         }
@@ -131,8 +137,11 @@ const NewGuidePageStay = ({guide, selectedStayIndex }) => {
     };
 
     const handleUpdateSection = (sectionId, updates) => {
+        console.log('updates', updates);
         const currentDay = days[selectedDay];
-        if (currentDay?.id) {
+        console.log('currentDay', currentDay);
+        if (currentDay) {
+            console.log('dispatch updateSection');
             dispatch(updateSection({
                 stayIndex: selectedStayIndex,
                 dayId: currentDay.id,

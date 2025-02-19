@@ -9,7 +9,8 @@ import { SearchBar, GuidesFilter, HomeCategorieFilter } from '../molecules';
 import { ReactComponent as GridFour } from '../../assets/GridFour.svg';
 import { ReactComponent as MapTrifold } from '../../assets/MapTrifold.svg';
 import { ca } from 'date-fns/locale';
-
+import '../molecules/SearchBar.css';
+import './Accueil.css';
 
 const Accueil = () => {
   const { guides, favorites } = useSelector((state) => state?.guides);
@@ -91,7 +92,7 @@ const Accueil = () => {
   return (
     <Container.Page className="Accueil">
 
-      <DOM.StyledContainer height="auto" padding="68px 100px" gap="30px" borderBottom="2px solid #F1F1F1" width="100%" >
+      <DOM.StyledContainer className='containerSearchBarContainer' height="auto" padding="68px 100px" gap="30px" borderBottom="2px solid #F1F1F1" width="100%" >
         <SearchBar onLocationSelect={handleLocationSelect} />
 
       </DOM.StyledContainer>
@@ -101,7 +102,7 @@ const Accueil = () => {
       <DOM.StyledContainer padding="20px 20px 40px 20px" display="flex" flexDirection="column" gap="20px" >
         <Container.RowContainer display="flex" justifyContent="space-between" alignItems="center" padding="0px 12px" >
           <GuidesFilter onFilterChange={handleFilterChange}/>
-          <DOM.StyledContainer backgroundColor="#F2F2F2" padding="4px" borderRadius="6px" flexDirection="row" display="flex" >
+          <DOM.StyledContainer className='containerSwitch' backgroundColor="#F2F2F2" padding="4px" borderRadius="6px" flexDirection="row" display="flex" >
 
             <Button.Switch onClick={handleVueListe} style={{
               backgroundColor: isVueListe ? "white" : "transparent",

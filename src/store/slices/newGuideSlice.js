@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Guide } from '../reducers';
 import { RESET_APP_STATE } from '../../actions/resetState';
 
+const initialSectionState = {
+  sectionType: '',
+  title: '',
+  description: '',
+  contentBlocks: []
+};
+
 const initialState = {
   guide: {
     title: "",
@@ -21,7 +28,8 @@ const initialState = {
     categories: [],
     address: null,
     stays: [],
-    user: null
+    user: null,
+    isTravel: false,
   },
   isGuideDirect: true,
   status: {
@@ -95,9 +103,9 @@ export const newGuideSlice = createSlice({
         id: Date.now(), // Temporaire, à remplacer par l'ID du backend
         date: action.payload.date,
         description: "",
-        sections: []
+        sections: [initialSectionState]
       };
-      state.guide.stays[stayIndex].days.push(newDay);
+      state.guide.stays?.[stayIndex]?.days?.push(newDay);
     },
     
     removeDay: (state, action) => {
@@ -109,7 +117,7 @@ export const newGuideSlice = createSlice({
     
     setDayDescription: (state, action) => {
       const { stayIndex, dayId, description } = action.payload;
-      const day = state.guide.stays[stayIndex].days.find(d => d.id === dayId);
+      const day = state.guide.stays[stayIndex]?.days.find(d => d.id === dayId);
       if (day) {
         day.description = description;
       }

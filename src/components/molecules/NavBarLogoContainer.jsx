@@ -140,7 +140,7 @@ export default function NavLogoContainer({ isLogin, user }) {
                     <BookOpenText />
                     <Text.NavSpanLink>Mes guides</Text.NavSpanLink>
                 </Container.NavLinkContainer>
-                <Container.NavLinkContainer id="burger-full" hoverBackgroundColor="#F3F6F4" gap="10px" onClick={() => navigate("/favorites")} >
+                <Container.NavLinkContainer id="burger-full" hoverBackgroundColor="#F3F6F4" gap="10px" onClick={() => handleNavigation("/favorites")} >
                     <Heart />
                     <Text.NavSpanLink >Mes favoris</Text.NavSpanLink>
                 </Container.NavLinkContainer>

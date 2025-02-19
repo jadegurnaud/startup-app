@@ -135,4 +135,7 @@
   #heartSVGnoText {
     display: none;
   }
+  #burger-full {
+    display: flex;
+  }
 }

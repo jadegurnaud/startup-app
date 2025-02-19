@@ -4,7 +4,7 @@ import { MyFav } from "../templates"
 const Favorites = () => {
     return (
         <Container.Page>
-            <Text.Title style={{ marginBottom: "60px" }}>Favoris</Text.Title>
+            <Text.Title style={{ margin: "40px" }}>Favoris</Text.Title>
             <MyFav />
         </Container.Page>
 

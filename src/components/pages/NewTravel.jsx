@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { NewGuidePageStay, NewGuidePageCouverture, NewGuidePageNav, NewGuidePageTransport } from "../templates";
 import { Category, Guide } from "../../store/reducers";
 
-const NewGuide = () => {
-    const { guide, isGuideDirect } = useSelector((state) => state.newGuide);
+const NewTravel = () => {
+    const { guide } = useSelector((state) => state.newGuide);
     const { categories } = useSelector((state) => state?.categories);
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -31,59 +31,38 @@ const NewGuide = () => {
         }
     };
 
-    const createGuideDraft = () => {
+    const createTravel = () => {
         const updatedGuide = { ...guide, status: "draft", user: user.id };
+        console.log("updatedGuide");
+        console.log(updatedGuide);
         if (updatedGuide.guideType === "direct") {
             dispatch(Guide.createGuideDirect(updatedGuide))
                 .then(() => {
-                    navigate("/myGuides");
-                    alert("Le guide a bien été créé.");
+                    navigate("/planMyTravel");
+                    alert("Le voyage a bien été créé.");
                 })
                 .catch(() => {
-                    alert("Il y a eu un problème lors de la création du guide.");
+                    alert("Il y a eu un problème lors de la création du voyage.");
                 });
         } else {
+            console.log(updatedGuide);
             dispatch(Guide.createGuideItinerary(updatedGuide))
                 .then(() => {
-                    navigate("/myGuides");
-                    alert("Le guide a bien été créé.");
+                    navigate("/planMyTravel");
+                    alert("Le voyage a bien été créé.");
                 })
                 .catch(() => {
-                    alert("Il y a eu un problème lors de la création du guide.");
+                    alert("Il y a eu un problème lors de la création du voyage.");
                 });
         }
     };
 
-    const createGuidePublished = () => {
-        const updatedGuide = { ...guide, status: "published", user: user.id };
-        if (updatedGuide.guideType === "direct") {
-            dispatch(Guide.createGuideDirect(updatedGuide))
-                .then(() => {
-                    navigate("/mes-guides");
-                    alert("Le guide a bien été créé.");
-                })
-                .catch(() => {
-                    alert("Il y a eu un problème lors de la création du guide.");
-                });
-        } else {
-            dispatch(Guide.createGuideItinerary(updatedGuide))
-                .then(() => {
-                    navigate("/mes-guides");
-                    alert("Le guide a bien été créé.");
-                })
-                .catch(() => {
-                    alert("Il y a eu un problème lors de la création du guide.");
-                });
-        }
-    };
+ 
 
     return (
         <Container.Page className="NewGuide">
-            <Button.MainButton onClick={createGuideDraft} backgroundColor="#3E5544" hoverBackgroundColor="#56735D" color="white">
+            <Button.MainButton onClick={createTravel} backgroundColor="#3E5544" hoverBackgroundColor="#56735D" color="white">
                 Enregistrer
-            </Button.MainButton>
-            <Button.MainButton onClick={createGuidePublished} backgroundColor="#3E5544" hoverBackgroundColor="#56735D" color="white">
-                Publier
             </Button.MainButton>
 
             <Container.RowContainer alignItems="flex-start" height="100%">
@@ -96,4 +75,4 @@ const NewGuide = () => {
     );
 };
 
-export default NewGuide;
+export default NewTravel;
