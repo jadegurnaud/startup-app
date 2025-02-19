@@ -15,7 +15,11 @@ export default function GuideStays({stays, selectedStayId, onsStaySelect}) {
                     {stay.departingTransports?.length > 0 && (
                         <DOM.StyledContainer style={{ marginLeft: '20px', color: '#860EFF' }}>
                             {stay.departingTransports.map((transport) => (
-                                <Text.Paragraph key={transport.id}>{transport.transportType}</Text.Paragraph>
+                                 <Container.RowContainer gap="10px" margin="0 0 0 20px">
+                                 <DOM.StyledContainer width="2px" height="41px" backgroundColor="#860EFF"></DOM.StyledContainer>
+                             
+                                <Text.Paragraph color="#860EFF" key={transport.id}>{transport.transportType}</Text.Paragraph>
+                            </Container.RowContainer>
                             ))}
                         </DOM.StyledContainer>
                     )}
@@ -23,7 +27,9 @@ export default function GuideStays({stays, selectedStayId, onsStaySelect}) {
                         <DOM.StyledContainer style={{ marginLeft: '20px', color: '#860EFF' }}>
                         
                             {stay.arrivingTransports.map((transport) => (
-                                <Text.Paragraph key={transport.id}>{transport.tansportType}</Text.Paragraph>
+                                
+                                    <Text.Paragraph color="#860EFF" key={transport.id}>{transport.tansportType}</Text.Paragraph>
+                        
                             ))}
                         </DOM.StyledContainer>
                     )}

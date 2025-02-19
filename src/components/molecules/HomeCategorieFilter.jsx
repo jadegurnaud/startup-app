@@ -3,20 +3,15 @@ import { Container, Text, Button } from "../atoms";
 
 export default function HomeCategorieFilter({ categories, onCategorySelect }) {
     const containerRef = useRef(null);
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
 
     const scrollLeft = () => {
-        if (isMounted && containerRef.current) {
+        if (containerRef.current) {
             containerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
         }
     };
 
     const scrollRight = () => {
-        if (isMounted && containerRef.current) {
+        if (containerRef.current) {
             containerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
         }
     };
@@ -29,13 +24,12 @@ export default function HomeCategorieFilter({ categories, onCategorySelect }) {
                 </svg>
             </Button.Base>
             <Container.RowContainer
-                ref={containerRef}
                 display="flex"
                 padding="12px 20px"
                 width="100%"
                 gap="20px"
                 overflow="hidden"
-                whiteSpace="nowrap"
+                style={{ ref:{containerRef} }}
             >
                 {categories && categories.map((categorie) =>
                     <Text.HomeCategorieTexte key={categorie.id} onClick={() => onCategorySelect(categorie.id)}>

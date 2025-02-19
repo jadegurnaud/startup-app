@@ -77,12 +77,12 @@ export default function NavLogoContainer({ isLogin, user }) {
             <Container.ColumnContainer
                 id="menu-burger-open"
                 display={isMenuOpen ? "flex" : "none"}
-                backDropFilter="blur(10px)"
+                backdropFilter="blur(10px)"
             >
                 <Container.ColumnContainer id="burger-mobile" display="none" gap="16px" >
                     {isLogin ?
                         <Container.RowContainer display="flex" justifyContent="space-between" gap="auto" padding="6px" borderRadius="6px" backgroundColor="#F6F6F6" width="100%" >
-                            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={handleProfileClick} >
+                            <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={handleProfileClick} >
                                 <Image.Base width="100%"
                                     src={
                                         user?.profileImage

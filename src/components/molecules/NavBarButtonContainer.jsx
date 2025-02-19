@@ -28,7 +28,7 @@ export default function NavBarButtonContainer({ isLogin, user }) {
                     <DOM.StyledContainer cursor="pointer" >
                         <Notif />
                     </DOM.StyledContainer>
-                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={() => navigate("/profil")} >
                         <Image.Base width="100%"
                             src={
                                 user?.profileImage

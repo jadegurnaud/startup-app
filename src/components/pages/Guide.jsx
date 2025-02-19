@@ -92,7 +92,7 @@ const Guide = () => {
             <BandeauGuide srcCoverImage={srcCoverImage} guideTitle={ guide.title } guideCountry={ guide?.address?.country} />
             <Container.RowContainer style={{ justifyContent: 'space-between', margin: '20px 40px' }}>
                 <Container.RowContainer style={{ gap: '10px', padding: '12px', borderRadius: '6px', backgroundColor: '#F6F6F6' }}>
-                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" backgroundColor="blue" cursor="pointer" onClick={() => navigate("/profil")} >
+                    <DOM.StyledContainer overflow="hidden" borderRadius="50%" width="40px" height="40px" cursor="pointer" onClick={() => navigate("/profil")} >
                             <Image.Base width="100%"
                                 src={
                                     guide.user?.profileImage
@@ -134,11 +134,11 @@ const Guide = () => {
                     width= "439px"
                     padding= "20px"
                     gap= "20px">
-                    <Text.Paragraph>Budget global : </Text.Paragraph>
+                    <Text.Paragraph>Budget global : {guide.price} €</Text.Paragraph>
                     <Container.ColumnContainer gap= "20px" borderRadius= "12px" padding= "20px"
                         border= "1px solid #E5E5E5">
                             <Text.Paragraph>Informations pratiques : </Text.Paragraph>
-                        <Text.Span>BLABLABLAAAAA</Text.Span>
+                        <Text.Span>Mes infos</Text.Span>
                     </Container.ColumnContainer>
                 </Container.ColumnContainer>
             
